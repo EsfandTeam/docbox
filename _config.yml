@@ -1,0 +1,10 @@
+title: DocBox
+description: یک رجیستری از دانش اجرایی و تست‌شده برای موتورهای بازی
+url: "https://esfandteam.github.io"
+baseurl: "/docbox"
+
+# انتخاب تم (ما فعلاً از تم پیش‌فرض و ساده Minima استفاده می‌کنیم)
+theme: minima
+
+# تنظیمات مارک‌داون
+markdown: kramdown
