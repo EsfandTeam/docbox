@@ -1,8 +1,15 @@
 title: DocBox
-description: یک رجیستری از دانش اجرایی و تست‌شده برای موتورهای بازی
+description: یک رجیستری از دانش اجرایی و تست‌شده برای Agentها
 url: "https://esfandteam.github.io"
 baseurl: "/docbox"
 
-theme: minima
+# فعال‌سازی تم حرفه‌ای مستندات
+remote_theme: just-the-docs/just-the-docs
 
-markdown: kramdown
+# فعال‌سازی جستجوی داخلی در سایت
+search_enabled: true
+
+# پلاگین‌های مورد نیاز برای لود کردن تم از راه دور
+plugins:
+  - jekyll-remote-theme
+  - jekyll-seo-tag
