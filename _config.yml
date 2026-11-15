@@ -3,8 +3,6 @@ description: یک رجیستری از دانش اجرایی و تست‌شده �
 url: "https://esfandteam.github.io"
 baseurl: "/docbox"
 
-# انتخاب تم (ما فعلاً از تم پیش‌فرض و ساده Minima استفاده می‌کنیم)
 theme: minima
 
-# تنظیمات مارک‌داون
 markdown: kramdown
