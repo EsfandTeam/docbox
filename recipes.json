@@ -1,0 +1,10 @@
+[
+  {
+    "id": "godot-rocket",
+    "title": "فیزیک موشک در Godot 4",
+    "engine": "Godot 4.x",
+    "verification": "automated",
+    "url_markdown": "https://esfandteam.github.io/docbox/recipes/godot-rocket.md",
+    "url_html": "https://esfandteam.github.io/docbox/recipes/godot-rocket"
+  }
+]
