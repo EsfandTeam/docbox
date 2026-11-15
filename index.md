@@ -1,6 +1,7 @@
 ---
 layout: default
 title: خانه
+nav_order: 1
 ---
 
 # به DocBox خوش آمدید
