@@ -1,35 +1,83 @@
-// وارد کردن فونت فارسی وزیرمتن
+// 1. تنظیمات کلی و فونت
 @import url('https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.0.0/Vazirmatn-font-face.css');
 
-// اعمال فونت و راست‌چین کردن کل سایت
 body {
   font-family: 'Vazirmatn', sans-serif !important;
   direction: rtl;
   text-align: right;
 }
 
-// اصلاح منوی سمت چپ (در حالت راست‌چین، منو باید سمت راست باشد)
+// 2. اصلاح هدر سایت (نوار بالا)
+.site-header {
+  direction: rtl;
+  padding-right: 1rem;
+  padding-left: 1rem;
+}
+
+// اصلاح عنوان سایت در هدر
+.site-title {
+  padding-right: 0 !important;
+  padding-left: 2rem !important;
+}
+
+// اصلاح نوار جستجو
+.search-input {
+  direction: rtl;
+  text-align: right;
+  padding-right: 2.5rem !important;
+  padding-left: 1rem !important;
+}
+.search-icon {
+  right: 0.5rem;
+  left: auto;
+}
+
+// 3. اصلاح منوی کناری (Sidebar)
 .side-bar {
   right: 0;
   left: auto;
-  border-left: 1px solid #eeebee;
+  border-left: 1px solid #eeebee; // خط جداکننده در سمت چپ منو
   border-right: none;
 }
 
-// اصلاح موقعیت محتوای اصلی
+.nav-list .nav-list-item .nav-list-link {
+  padding-right: 1rem;
+  padding-left: 1rem;
+  text-align: right;
+}
+
+// 4. اصلاح محتوای اصلی
 .main {
-  margin-right: 264px; // عرض منو
+  margin-right: 264px; // فاصله از منوی سمت راست
   margin-left: 0;
 }
 
+.main-content {
+  direction: rtl;
+  text-align: right;
+}
+
+// 5. راست‌چین کردن فوتر
+.site-footer {
+  direction: rtl;
+  text-align: right;
+}
+
+// 6. جلوگیری از راست‌چین شدن کدها (کدها همیشه باید انگلیسی و چپ‌چین باشند)
+pre, code, .highlight, pre code {
+  direction: ltr !important;
+  text-align: left !important;
+}
+
+// 7. ریسپانسیو برای موبایل
 @media (max-width: 50rem) {
   .main {
     margin-right: 0;
   }
-}
-
-// راست‌چین کردن کدها (کدها همیشه باید چپ‌چین باشند تا خوانا بمانند)
-pre, code, .highlight {
-  direction: ltr !important;
-  text-align: left !important;
+  .side-bar {
+    right: -100%;
+  }
+  .side-bar.open {
+    right: 0;
+  }
 }
