@@ -16,6 +16,6 @@ plugins:
 
 # لینک‌های بالای منو برای تغییر زبان
 aux_links:
-  "English 🇬🇧": "/docbox/en/"
-  "فارسی 🇮🇷": "/docbox/fa/"
+  "🇮🇷 فارسی": "/docbox/fa/"
+  "🇬🇧 English": "/docbox/en/"
 aux_links_new_tab: false
