@@ -13,3 +13,9 @@ search_enabled: true
 plugins:
   - jekyll-remote-theme
   - jekyll-seo-tag
+
+# لینک‌های بالای منو برای تغییر زبان
+aux_links:
+  "English 🇬🇧": "/docbox/en/"
+  "فارسی 🇮🇷": "/docbox/fa/"
+aux_links_new_tab: false
