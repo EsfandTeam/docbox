@@ -759,3 +759,215 @@ pre, code, .highlight, pre code {
 
   p { margin: 0; font-size: 0.95rem; }
 }
+
+// ----------------------------------------------------------------------------
+// 15. Header v3 — logo mark, pill nav, active state
+// ----------------------------------------------------------------------------
+
+.site-header {
+  .site-header-inner { align-items: center; }
+}
+
+.site-title::before {
+  content: 'D';
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.65rem;
+  height: 1.65rem;
+  margin-left: 0.55rem;
+  margin-right: 0;
+  border-radius: 8px;
+  background: linear-gradient(135deg, var(--docbox-primary) 0%, var(--docbox-hero-bg-2) 100%);
+  color: #fff !important;
+  font-weight: 900;
+  font-size: 1rem;
+  vertical-align: -0.28rem;
+  box-shadow: 0 2px 8px color-mix(in srgb, var(--docbox-primary) 40%, transparent);
+}
+
+.aux-nav-link {
+  font-size: 0.9rem !important;
+  padding: 0.4rem 0.95rem !important;
+  border-radius: 999px !important;
+
+  &.aux-active {
+    color: var(--docbox-primary) !important;
+    background: color-mix(in srgb, var(--docbox-primary) 12%, transparent);
+    font-weight: 700;
+  }
+}
+
+// GitHub link styled as button
+.aux-nav-list-item:last-child .aux-nav-link[href*="github.com"] {
+  background: var(--docbox-text);
+  color: var(--docbox-surface) !important;
+  font-weight: 700;
+
+  &:hover {
+    background: var(--docbox-primary);
+    color: #fff !important;
+  }
+}
+
+.back-to-top {
+  background: var(--docbox-surface);
+  border: 1px solid var(--docbox-border);
+  border-radius: 999px;
+  padding: 0.35rem 0.9rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--docbox-text-muted) !important;
+  box-shadow: var(--docbox-shadow-sm);
+  transition: all var(--docbox-transition);
+
+  &:hover {
+    color: var(--docbox-primary) !important;
+    border-color: var(--docbox-primary);
+  }
+}
+
+// ----------------------------------------------------------------------------
+// 16. Footer v2 — multi-column professional footer
+// ----------------------------------------------------------------------------
+
+.site-footer { padding: 0 !important; }
+
+.db-footer {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.db-footer-main {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 2rem;
+  padding: 2.2rem 0 1.8rem;
+}
+
+.db-footer-brand {
+  .db-footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    font-weight: 800;
+    font-size: 1.15rem;
+    color: var(--docbox-text);
+    margin-bottom: 0.7rem;
+  }
+
+  .db-footer-logo-mark {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.75rem;
+    height: 1.75rem;
+    border-radius: 8px;
+    background: linear-gradient(135deg, var(--docbox-primary) 0%, var(--docbox-hero-bg-2) 100%);
+    color: #fff;
+    font-weight: 900;
+    font-size: 1.05rem;
+    box-shadow: 0 2px 8px color-mix(in srgb, var(--docbox-primary) 40%, transparent);
+  }
+
+  .db-footer-tagline {
+    font-size: 0.88rem;
+    color: var(--docbox-text-muted);
+    line-height: 1.8;
+    margin: 0 0 0.9rem;
+  }
+}
+
+.db-footer-col {
+  h4 {
+    font-size: 0.82rem !important;
+    font-weight: 700 !important;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--docbox-text) !important;
+    margin: 0 0 0.75rem !important;
+    border: none !important;
+    padding: 0 !important;
+  }
+
+  ul { list-style: none; padding: 0; margin: 0; }
+
+  li { margin-bottom: 0.5rem; }
+
+  a {
+    font-size: 0.9rem;
+    color: var(--docbox-text-muted) !important;
+    text-decoration: none !important;
+    border-bottom: none !important;
+    transition: color var(--docbox-transition);
+
+    &:hover { color: var(--docbox-primary) !important; }
+  }
+}
+
+.db-footer-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 1rem 0 1.3rem;
+  border-top: 1px solid var(--docbox-border);
+  font-size: 0.82rem;
+  color: var(--docbox-text-muted);
+}
+
+// Language-conditional visibility
+html:not(.db-en) .en-only { display: none !important; }
+html.db-en .fa-only { display: none !important; }
+
+// ----------------------------------------------------------------------------
+// 17. English pages — proper LTR layout
+// ----------------------------------------------------------------------------
+
+html.db-en {
+  body,
+  .site-header,
+  .main-content,
+  .site-footer,
+  .db-footer,
+  .hero,
+  .breadcrumb-nav-list {
+    direction: ltr;
+    text-align: left;
+  }
+
+  .site-title { padding-left: 0 !important; padding-right: 1.5rem !important; }
+  .site-title::before { margin-right: 0.55rem; margin-left: 0; }
+
+  .main-content ul,
+  .main-content ol { padding-left: 1.4rem; padding-right: 0; }
+
+  .main-content blockquote {
+    border-left: 4px solid var(--docbox-primary);
+    border-right: none;
+  }
+
+  .search-input { padding-left: 2.4rem !important; padding-right: 1rem !important; }
+  .search-icon { left: 0.7rem; right: auto; }
+
+  .lib-search-input { direction: ltr; text-align: left; }
+
+  .main-content table th, .main-content table td { text-align: left; }
+  .recipe-meta th { text-align: left; }
+}
+
+// ----------------------------------------------------------------------------
+// 18. Responsive v2 — footer stacks, header wraps
+// ----------------------------------------------------------------------------
+
+@media (max-width: 56rem) {
+  .db-footer-main { grid-template-columns: 1fr 1fr; gap: 1.4rem; }
+  .aux-nav-link { font-size: 0.82rem !important; padding: 0.3rem 0.6rem !important; }
+}
+
+@media (max-width: 38rem) {
+  .db-footer-main { grid-template-columns: 1fr; }
+  .db-footer-bar { flex-direction: column; align-items: flex-start; }
+}

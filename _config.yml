@@ -1,5 +1,5 @@
 title: DocBox
-description: یک رجیستری از دانش اجرایی و تست‌شده برای Agentهای هوش مصنوعی
+description: A registry of tested, executable knowledge for AI agents — and a trust layer for game engine development
 url: "https://esfandteam.github.io"
 baseurl: "/docbox"
 
@@ -25,10 +25,11 @@ plugins:
   - jekyll-remote-theme
   - jekyll-seo-tag
 
-# ناوبری بالای سایت
+# ناوبری بالای سایت — برچسب‌های فارسی پیش‌فرض؛ اسکریپت در صفحات /en/
+# برچسب‌ها و لینک‌ها را به انگلیسی برمی‌گرداند
 aux_links:
   "دستورپخت‌ها": "/docbox/fa/"
-  "درباره": "/docbox/about.md"
+  "درباره": "/docbox/about"
   "GitHub": "https://github.com/esfandteam/docbox"
   "English": "/docbox/en/"
 aux_links_new_tab: false
@@ -36,8 +37,10 @@ aux_links_new_tab: false
 # جزئیات UX
 heading_anchors: true
 back_to_top: true
-back_to_top_text: "بازگشت به بالا"
-footer_content: "DocBox — لایه اعتماد برای Agentهای هوش مصنوعی · منتشرشده تحت مجوز MIT"
+back_to_top_text: "Back to top"
+
+# فوتر سفارشی در _includes/footer_custom.html ساخته می‌شود
+footer_content: ""
 
 # خروجی تمیز
 compress_html:

@@ -141,10 +141,56 @@
     apply();
   }
 
+  // ---- Per-language localization (fa default, en pages swap) --------------
+  function initLocalization() {
+    var isEn = window.location.pathname.indexOf('/docbox/en') === 0;
+
+    if (isEn) {
+      document.documentElement.classList.add('db-en');
+
+      // swap top-nav labels + targets
+      document.querySelectorAll('.aux-nav-list-item .aux-nav-link').forEach(function (a) {
+        var t = a.textContent.trim();
+        if (t === 'دستورپخت‌ها') { a.textContent = 'Recipes'; a.setAttribute('href', '/docbox/en/'); }
+        else if (t === 'درباره') { a.textContent = 'About'; a.setAttribute('href', '/docbox/en/about'); }
+        else if (t === 'English') { a.textContent = 'فارسی'; a.setAttribute('href', '/docbox/fa/'); }
+      });
+
+      // search placeholder
+      document.querySelectorAll('.search-input').forEach(function (i) {
+        i.setAttribute('placeholder', 'Search recipes…');
+        i.setAttribute('aria-label', 'Search recipes');
+      });
+    } else {
+      document.querySelectorAll('.search-input').forEach(function (i) {
+        i.setAttribute('placeholder', 'جستجو در دستورپخت‌ها…');
+        i.setAttribute('aria-label', 'جستجو در دستورپخت‌ها');
+      });
+      // back-to-top label for fa pages
+      document.querySelectorAll('.back-to-top').forEach(function (a) {
+        a.textContent = 'بازگشت به بالا ↑';
+      });
+    }
+
+    // active nav state
+    var path = window.location.pathname;
+    document.querySelectorAll('.aux-nav-list-item .aux-nav-link').forEach(function (a) {
+      var href = a.getAttribute('href') || '';
+      var internal = href.indexOf('/docbox/') === 0 && href.indexOf('http') !== 0;
+      if (!internal) return;
+      var norm = href.replace(/\/$/, '').replace(/\.md$/, '');
+      var cur = path.replace(/\/$/, '').replace(/\.html$/, '');
+      if (norm === cur || (norm === '/docbox/fa' && (cur === '/docbox' || cur === ''))) {
+        a.classList.add('aux-active');
+      }
+    });
+  }
+
   document.addEventListener('DOMContentLoaded', function () {
     createToggleButton();
     addCopyButtons();
     initLibraryFilter();
+    initLocalization();
   });
 })();
 </script>
