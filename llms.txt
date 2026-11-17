@@ -1,0 +1,22 @@
+# DocBox
+
+> DocBox is an open registry of tested, executable recipes for game engines (currently Godot).
+> Every recipe is human-verified, ships with acceptance tests, failure modes, and runnable GDScript
+> code. DocBox exists so AI agents can produce correct code instead of hallucinating fragments
+> scraped from forums. This file follows the llmstxt.org standard.
+
+## Recipes (machine-readable)
+
+- [recipes.json](https://esfandteam.github.io/docbox/recipes.json): canonical structured catalog
+  with `min_engine_version`, `requires`, `conflicts`, `verification`, and per-recipe URLs.
+
+## Recipes (human-readable)
+
+- [Rocket Physics in Godot 4 (FA)](https://esfandteam.github.io/docbox/fa/recipes/godot-rocket.md): thrust-based motion on RigidBody3D with fuel consumption. Status: human-verified. Engine: Godot 4.x.
+- [Rocket Physics in Godot 4 (EN)](https://esfandteam.github.io/docbox/en/recipes/godot-rocket.md): English mirror of the same recipe.
+
+## Optional
+
+- [About DocBox](https://esfandteam.github.io/docbox/about.md): what DocBox is, the problem it solves, and why it is built for AI agents.
+- [Contributing guide](https://esfandteam.github.io/docbox/CONTRIBUTING.md): how to submit a new recipe.
+- [License (MIT)](https://esfandteam.github.io/docbox/LICENSE): all recipes and code in this registry are MIT-licensed.

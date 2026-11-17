@@ -1,21 +1,48 @@
 title: DocBox
-description: یک رجیستری از دانش اجرایی و تست‌شده برای Agentها
+description: یک رجیستری از دانش اجرایی و تست‌شده برای Agentهای هوش مصنوعی
 url: "https://esfandteam.github.io"
 baseurl: "/docbox"
 
-# فعال‌سازی تم حرفه‌ای مستندات
+# تم مستندات حرفه‌ای
 remote_theme: just-the-docs/just-the-docs
 
-# فعال‌سازی جستجوی داخلی در سایت
+# جستجوی داخلی
 search_enabled: true
+search:
+  heading_level: 2
+  previews: 2
+  preview_words_before: 3
+  preview_words_after: 3
+  tokenizer_separator: /[\s/]+/
+  rel_url: true
+  button: false
 
-# پلاگین‌های مورد نیاز برای لود کردن تم از راه دور
+# پلاگین‌های مورد نیاز
 plugins:
   - jekyll-remote-theme
   - jekyll-seo-tag
 
-# لینک‌های بالای منو برای تغییر زبان
+# لینک‌های نوار بالا (تعویض زبان + درباره)
 aux_links:
+  "درباره": "/docbox/about.md"
   "🇮🇷 فارسی": "/docbox/fa/"
   "🇬🇧 English": "/docbox/en/"
 aux_links_new_tab: false
+
+# تنظیمات ظاهری مدرن تم just-the-docs
+# (روی CSS سفارشی ما در _sass/custom/custom.scss override می‌شود)
+color_scheme: nil
+heading_anchors: true
+back_to_top: true
+back_to_top_text: "بازگشت به بالا"
+
+# فونت و RTL
+# تنظیمات RTL داخل custom.scss انجام می‌شود
+
+# خروجی تمیز
+compress_html:
+  clippings: all
+  comments: all
+  endings: all
+  startings: []
+  blanklines: false

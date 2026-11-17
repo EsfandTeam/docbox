@@ -2,9 +2,22 @@
   {
     "id": "godot-rocket",
     "title": "فیزیک موشک در Godot 4",
-    "engine": "Godot 4.x",
-    "verification": "automated",
-    "url_markdown": "https://esfandteam.github.io/docbox/recipes/godot-rocket.md",
-    "url_html": "https://esfandteam.github.io/docbox/recipes/godot-rocket"
+    "title_en": "Rocket Physics in Godot 4",
+    "summary": "Thrust-based rocket motion using RigidBody3D and apply_central_force, with fuel consumption and acceptance test.",
+    "summary_fa": "حرکت موشک با پیشران روی RigidBody3D و apply_central_force، با مصرف سوخت و تست پذیرش.",
+    "engine": "godot",
+    "min_engine_version": "4.0",
+    "language": "gdscript",
+    "verification": "human-verified",
+    "license": "MIT",
+    "tags": ["physics", "rigidbody", "3d", "thrust", "fuel"],
+    "requires": ["RigidBody3D"],
+    "conflicts": [],
+    "last_tested": "2025-11-17",
+    "tested_by": "esfandteam",
+    "url_markdown": "https://esfandteam.github.io/docbox/fa/recipes/godot-rocket.md",
+    "url_html": "https://esfandteam.github.io/docbox/fa/recipes/godot-rocket",
+    "url_markdown_en": "https://esfandteam.github.io/docbox/en/recipes/godot-rocket.md",
+    "url_html_en": "https://esfandteam.github.io/docbox/en/recipes/godot-rocket"
   }
 ]

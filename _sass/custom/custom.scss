@@ -1,83 +1,482 @@
-// 1. تنظیمات کلی و فونت
+// ============================================================================
+//  DocBox — Custom SCSS for just-the-docs theme
+//  Modern UI/UX + RTL support + verification badges + recipe cards
+// ============================================================================
+
+// 1. Persian font (Vazirmatn) and RTL base
 @import url('https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.0.0/Vazirmatn-font-face.css');
 
+// Modern color palette (CSS custom properties for theme consistency)
+:root {
+  --docbox-bg:            #fafbfc;
+  --docbox-surface:       #ffffff;
+  --docbox-surface-alt:   #f4f6f8;
+  --docbox-border:        #e6e8eb;
+  --docbox-text:          #1f2328;
+  --docbox-text-muted:    #57606a;
+  --docbox-primary:       #0969da;
+  --docbox-primary-dark:  #0550ae;
+  --docbox-accent:        #1f7a4d;
+  --docbox-warning:       #bf8700;
+  --docbox-danger:        #cf222e;
+  --docbox-code-bg:       #161b22;
+  --docbox-code-text:     #e6edf3;
+  --docbox-shadow-sm:     0 1px 2px rgba(0, 0, 0, 0.04);
+  --docbox-shadow-md:     0 4px 12px rgba(0, 0, 0, 0.08);
+  --docbox-radius-sm:     6px;
+  --docbox-radius-md:     10px;
+  --docbox-radius-lg:     14px;
+  --docbox-transition:    180ms cubic-bezier(0.2, 0.6, 0.2, 1);
+}
+
+// Dark mode (respects prefers-color-scheme)
+@media (prefers-color-scheme: dark) {
+  :root {
+    --docbox-bg:            #0d1117;
+    --docbox-surface:       #161b22;
+    --docbox-surface-alt:   #21262d;
+    --docbox-border:        #30363d;
+    --docbox-text:          #e6edf3;
+    --docbox-text-muted:    #8b949e;
+    --docbox-primary:       #58a6ff;
+    --docbox-primary-dark:  #1f6feb;
+    --docbox-accent:        #3fb950;
+    --docbox-warning:       #d29922;
+    --docbox-danger:        #f85149;
+    --docbox-code-bg:       #010409;
+    --docbox-code-text:     #e6edf3;
+    --docbox-shadow-sm:     0 1px 2px rgba(0, 0, 0, 0.3);
+    --docbox-shadow-md:     0 4px 12px rgba(0, 0, 0, 0.4);
+  }
+}
+
+// 2. Body & global typography
 body {
-  font-family: 'Vazirmatn', sans-serif !important;
+  font-family: 'Vazirmatn', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
   direction: rtl;
   text-align: right;
+  background-color: var(--docbox-bg);
+  color: var(--docbox-text);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-// 2. اصلاح هدر سایت (نوار بالا)
+// Smooth color transition for theme changes
+body, .site-header, .side-bar, .main-content, .site-footer {
+  transition: background-color var(--docbox-transition), color var(--docbox-transition);
+}
+
+// 3. Site header (top bar) — modern flat design
 .site-header {
   direction: rtl;
-  padding-right: 1rem;
-  padding-left: 1rem;
+  padding: 0.75rem 1.5rem;
+  background-color: var(--docbox-surface);
+  border-bottom: 1px solid var(--docbox-border);
+  box-shadow: var(--docbox-shadow-sm);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: saturate(180%) blur(8px);
 }
 
-// اصلاح عنوان سایت در هدر
 .site-title {
   padding-right: 0 !important;
   padding-left: 2rem !important;
+  font-weight: 700;
+  font-size: 1.15rem;
+  color: var(--docbox-text) !important;
+  letter-spacing: -0.01em;
+
+  &:hover {
+    color: var(--docbox-primary) !important;
+  }
 }
 
-// اصلاح نوار جستجو
+// 4. Search bar
 .search-input {
   direction: rtl;
   text-align: right;
   padding-right: 2.5rem !important;
   padding-left: 1rem !important;
+  background-color: var(--docbox-surface-alt);
+  border: 1px solid var(--docbox-border);
+  border-radius: var(--docbox-radius-md);
+  color: var(--docbox-text);
+  transition: border-color var(--docbox-transition), box-shadow var(--docbox-transition);
+
+  &:focus {
+    border-color: var(--docbox-primary);
+    box-shadow: 0 0 0 3px rgba(9, 105, 218, 0.15);
+    outline: none;
+  }
 }
 .search-icon {
-  right: 0.5rem;
+  right: 0.75rem;
   left: auto;
+  color: var(--docbox-text-muted);
 }
 
-// 3. اصلاح منوی کناری (Sidebar)
+// 5. Aux links (language switcher)
+.aux-nav-link {
+  padding: 0.4rem 0.85rem !important;
+  border-radius: var(--docbox-radius-sm);
+  font-weight: 500;
+  transition: background-color var(--docbox-transition), color var(--docbox-transition);
+
+  &:hover {
+    background-color: var(--docbox-surface-alt);
+    color: var(--docbox-primary) !important;
+  }
+}
+
+// 6. Sidebar
 .side-bar {
   right: 0;
   left: auto;
-  border-left: 1px solid #eeebee; // خط جداکننده در سمت چپ منو
+  border-left: 1px solid var(--docbox-border);
   border-right: none;
+  background-color: var(--docbox-surface);
+  width: 264px;
 }
 
+.nav-list {
+  padding: 1rem 0.5rem;
+}
+.nav-list-item {
+  margin: 0.15rem 0;
+}
 .nav-list .nav-list-item .nav-list-link {
-  padding-right: 1rem;
-  padding-left: 1rem;
+  padding: 0.55rem 1rem;
   text-align: right;
+  border-radius: var(--docbox-radius-sm);
+  color: var(--docbox-text);
+  font-weight: 500;
+  transition: background-color var(--docbox-transition), color var(--docbox-transition);
+
+  &:hover {
+    background-color: var(--docbox-surface-alt);
+    color: var(--docbox-primary);
+  }
+  &.active {
+    background-color: rgba(9, 105, 218, 0.1);
+    color: var(--docbox-primary);
+    font-weight: 600;
+  }
 }
 
-// 4. اصلاح محتوای اصلی
+// 7. Main content area
 .main {
-  margin-right: 264px; // فاصله از منوی سمت راست
+  margin-right: 264px;
   margin-left: 0;
+  background-color: var(--docbox-bg);
 }
 
 .main-content {
   direction: rtl;
   text-align: right;
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 2.5rem 2rem 4rem;
+  color: var(--docbox-text);
+
+  h1, h2, h3, h4 {
+    color: var(--docbox-text);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.3;
+  }
+  h1 { font-size: 2rem; margin-bottom: 1rem; }
+  h2 {
+    font-size: 1.5rem;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid var(--docbox-border);
+  }
+  h3 { font-size: 1.2rem; margin-top: 1.75rem; }
+
+  p {
+    margin-bottom: 1rem;
+    color: var(--docbox-text);
+  }
+  a {
+    color: var(--docbox-primary);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color var(--docbox-transition);
+
+    &:hover {
+      border-bottom-color: var(--docbox-primary);
+    }
+  }
+  ul, ol {
+    padding-right: 1.5rem;
+    padding-left: 0;
+    margin-bottom: 1rem;
+  }
+  li { margin-bottom: 0.4rem; }
+
+  blockquote {
+    margin: 1.25rem 0;
+    padding: 0.75rem 1.25rem;
+    background-color: var(--docbox-surface-alt);
+    border-right: 4px solid var(--docbox-primary);
+    border-left: none;
+    border-radius: var(--docbox-radius-sm);
+    color: var(--docbox-text-muted);
+    font-style: normal;
+
+    p { margin-bottom: 0; }
+  }
+
+  // Inline code
+  code {
+    font-family: 'JetBrains Mono', 'Fira Code', Consolas, monospace;
+    background-color: var(--docbox-surface-alt);
+    color: var(--docbox-primary-dark);
+    padding: 0.15rem 0.4rem;
+    border-radius: 4px;
+    font-size: 0.9em;
+    direction: ltr;
+    unicode-bidi: embed;
+  }
+
+  // Code blocks — modern dark theme
+  pre {
+    direction: ltr !important;
+    text-align: left !important;
+    background-color: var(--docbox-code-bg) !important;
+    color: var(--docbox-code-text) !important;
+    border-radius: var(--docbox-radius-md);
+    padding: 1.25rem 1.5rem;
+    overflow-x: auto;
+    margin: 1.25rem 0;
+    box-shadow: var(--docbox-shadow-sm);
+    border: 1px solid var(--docbox-border);
+    font-size: 0.875rem;
+    line-height: 1.6;
+
+    code {
+      background-color: transparent;
+      color: inherit;
+      padding: 0;
+      border-radius: 0;
+      font-size: inherit;
+    }
+  }
+
+  // Tables
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.25rem 0;
+    font-size: 0.95rem;
+    box-shadow: var(--docbox-shadow-sm);
+    border-radius: var(--docbox-radius-sm);
+    overflow: hidden;
+
+    th {
+      background-color: var(--docbox-surface-alt);
+      color: var(--docbox-text);
+      font-weight: 600;
+      text-align: right;
+      padding: 0.75rem 1rem;
+      border-bottom: 2px solid var(--docbox-border);
+    }
+    td {
+      padding: 0.65rem 1rem;
+      border-bottom: 1px solid var(--docbox-border);
+      color: var(--docbox-text);
+    }
+    tr:last-child td {
+      border-bottom: none;
+    }
+    tr:hover td {
+      background-color: var(--docbox-surface-alt);
+    }
+  }
 }
 
-// 5. راست‌چین کردن فوتر
+// 8. Recipe meta table (the verification badge table)
+.recipe-meta {
+  width: 100%;
+  margin: 1rem 0 1.5rem;
+  font-size: 0.9rem;
+  border: 1px solid var(--docbox-border);
+  border-radius: var(--docbox-radius-md);
+  overflow: hidden;
+  box-shadow: var(--docbox-shadow-sm);
+
+  th {
+    background-color: var(--docbox-surface-alt);
+    width: 30%;
+    text-align: right;
+    padding: 0.5rem 0.9rem;
+    border: none;
+    border-bottom: 1px solid var(--docbox-border);
+    font-weight: 600;
+    color: var(--docbox-text);
+  }
+  td {
+    padding: 0.5rem 0.9rem;
+    border: none;
+    border-bottom: 1px solid var(--docbox-border);
+    color: var(--docbox-text);
+  }
+  tr:last-child th, tr:last-child td {
+    border-bottom: none;
+  }
+}
+.recipe-meta-inline {
+  th { width: auto; }
+}
+
+// 9. Verification badge
+.badge {
+  display: inline-block;
+  padding: 0.2rem 0.65rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  border-radius: 999px;
+  letter-spacing: 0.01em;
+  line-height: 1.5;
+}
+.badge-verified {
+  background-color: rgba(31, 122, 77, 0.12);
+  color: var(--docbox-accent);
+  border: 1px solid rgba(31, 122, 77, 0.25);
+}
+.badge-automated {
+  background-color: rgba(9, 105, 218, 0.12);
+  color: var(--docbox-primary);
+  border: 1px solid rgba(9, 105, 218, 0.25);
+}
+.badge-warning {
+  background-color: rgba(191, 135, 0, 0.12);
+  color: var(--docbox-warning);
+  border: 1px solid rgba(191, 135, 0, 0.25);
+}
+
+// 10. Hero cards on homepage
+.hero-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 0.75rem;
+  margin: 1.5rem 0 2rem;
+  list-style: none !important;
+  padding: 0 !important;
+
+  li {
+    margin: 0 !important;
+    padding: 0 !important;
+    list-style: none;
+  }
+  a {
+    display: block;
+    padding: 1rem 1.25rem;
+    background-color: var(--docbox-surface);
+    border: 1px solid var(--docbox-border);
+    border-radius: var(--docbox-radius-md);
+    color: var(--docbox-text) !important;
+    font-weight: 600;
+    text-decoration: none !important;
+    border-bottom: none !important;
+    box-shadow: var(--docbox-shadow-sm);
+    transition: transform var(--docbox-transition), box-shadow var(--docbox-transition), border-color var(--docbox-transition);
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--docbox-shadow-md);
+      border-color: var(--docbox-primary);
+      color: var(--docbox-primary) !important;
+      border-bottom: none !important;
+    }
+  }
+}
+
+// 11. Recipe list card on homepage
+.recipe-list {
+  margin: 1rem 0 1.5rem;
+  padding: 1.5rem;
+  background-color: var(--docbox-surface);
+  border: 1px solid var(--docbox-border);
+  border-radius: var(--docbox-radius-md);
+  box-shadow: var(--docbox-shadow-sm);
+
+  h3 {
+    margin-top: 0 !important;
+    font-size: 1.15rem;
+
+    a { color: var(--docbox-primary); }
+  }
+  p { margin-bottom: 0; color: var(--docbox-text-muted); }
+}
+
+// 12. Footer
 .site-footer {
   direction: rtl;
   text-align: right;
+  background-color: var(--docbox-surface);
+  border-top: 1px solid var(--docbox-border);
+  padding: 1.25rem 2rem;
+  color: var(--docbox-text-muted);
+  font-size: 0.9rem;
 }
 
-// 6. جلوگیری از راست‌چین شدن کدها (کدها همیشه باید انگلیسی و چپ‌چین باشند)
+// 13. Keep code blocks always LTR (English code)
 pre, code, .highlight, pre code {
   direction: ltr !important;
   text-align: left !important;
 }
 
-// 7. ریسپانسیو برای موبایل
+// 14. Responsive — mobile
 @media (max-width: 50rem) {
   .main {
     margin-right: 0;
   }
   .side-bar {
     right: -100%;
+    box-shadow: var(--docbox-shadow-md);
+    transition: right var(--docbox-transition);
   }
   .side-bar.open {
     right: 0;
+  }
+  .main-content {
+    padding: 1.5rem 1rem 3rem;
+    h1 { font-size: 1.65rem; }
+    h2 { font-size: 1.3rem; }
+  }
+  .hero-cards {
+    grid-template-columns: 1fr 1fr;
+  }
+  .site-header {
+    padding: 0.5rem 1rem;
+  }
+}
+
+// 15. Scrollbar styling for code blocks (subtle)
+pre::-webkit-scrollbar {
+  height: 8px;
+}
+pre::-webkit-scrollbar-track {
+  background: transparent;
+}
+pre::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+}
+pre::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+// 16. Print-friendly
+@media print {
+  .site-header, .side-bar, .site-footer {
+    display: none;
+  }
+  .main {
+    margin: 0 !important;
   }
 }
