@@ -19,6 +19,11 @@
 - [Tweens (FA)](https://esfandteam.github.io/docbox/fa/recipes/godot-tween.md): chained, parallel and looping animations with create_tween. Status: human-verified. Engine: Godot 4.x.
 - [Audio Playback (FA)](https://esfandteam.github.io/docbox/fa/recipes/godot-audio.md): looping music and SFX with pitch variance. Status: human-verified. Engine: Godot 4.x.
 - [Rocket Physics (FA)](https://esfandteam.github.io/docbox/fa/recipes/godot-rocket.md): thrust-based motion on RigidBody3D with fuel burn. Status: human-verified. Engine: Godot 4.x.
+- [Input Buffer (FA)](https://esfandteam.github.io/docbox/fa/recipes/godot-input-buffer.md): buffer jump presses before landing for responsive controls. Status: human-verified. Engine: Godot 4.x.
+- [Object Pooling (FA)](https://esfandteam.github.io/docbox/fa/recipes/godot-object-pooling.md): recycle bullets/particles with acquire/release, no GC pressure. Status: human-verified. Engine: Godot 4.x.
+- [Simple State Machine (FA)](https://esfandteam.github.io/docbox/fa/recipes/godot-state-machine.md): idle/run/jump states with enum and match. Status: human-verified. Engine: Godot 4.x.
+- [Typewriter Dialogue (FA)](https://esfandteam.github.io/docbox/fa/recipes/godot-dialogue.md): RichTextLabel typewriter with a finished signal. Status: human-verified. Engine: Godot 4.x.
+- [Custom Signals (FA)](https://esfandteam.github.io/docbox/fa/recipes/godot-signals.md): decouple player and HUD with health_changed. Status: human-verified. Engine: Godot 4.x.
 
 ## English mirrors
 

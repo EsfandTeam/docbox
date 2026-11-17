@@ -651,3 +651,111 @@ pre, code, .highlight, pre code {
   .site-header, .site-footer, .copy-btn, .theme-toggle { display: none !important; }
   .main-content { max-width: none; padding: 0; }
 }
+
+// ----------------------------------------------------------------------------
+// 14. Library toolbar (Sketchfab-like: search + category chips) — v3
+// ----------------------------------------------------------------------------
+
+.lib-toolbar {
+  margin: 0.4rem 0 1.2rem;
+
+  .lib-search { margin-bottom: 0.8rem; }
+
+  .lib-search-input {
+    width: 100%;
+    max-width: 520px;
+    display: block;
+    direction: rtl;
+    text-align: right;
+    padding: 0.65rem 1.1rem;
+    font-family: 'Vazirmatn', sans-serif;
+    font-size: 0.95rem;
+    color: var(--docbox-text);
+    background: var(--docbox-surface);
+    border: 1px solid var(--docbox-border);
+    border-radius: var(--docbox-radius-md);
+    box-shadow: var(--docbox-shadow-sm);
+    transition: border-color var(--docbox-transition), box-shadow var(--docbox-transition);
+
+    &::placeholder { color: var(--docbox-text-muted); opacity: 0.8; }
+
+    &:focus {
+      border-color: var(--docbox-primary);
+      box-shadow: 0 0 0 3px color-mix(in srgb, var(--docbox-primary) 18%, transparent);
+      outline: none;
+    }
+  }
+
+  .lib-count {
+    margin: 0.7rem 0 0;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--docbox-text-muted);
+  }
+}
+
+.filter-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.35rem 0.85rem;
+    font-family: 'Vazirmatn', sans-serif;
+    font-size: 0.86rem;
+    font-weight: 600;
+    color: var(--docbox-text-muted);
+    background: var(--docbox-surface);
+    border: 1px solid var(--docbox-border);
+    border-radius: 999px;
+    cursor: pointer;
+    box-shadow: var(--docbox-shadow-sm);
+    transition: all var(--docbox-transition);
+
+    .chip-count {
+      font-size: 0.74rem;
+      font-weight: 700;
+      background: var(--docbox-surface-alt);
+      border-radius: 999px;
+      padding: 0.02rem 0.45rem;
+    }
+
+    &:hover {
+      color: var(--docbox-primary);
+      border-color: color-mix(in srgb, var(--docbox-primary) 40%, var(--docbox-border));
+      transform: translateY(-1px);
+    }
+
+    &.active {
+      color: #fff;
+      background: var(--docbox-primary);
+      border-color: var(--docbox-primary);
+      box-shadow: 0 3px 10px color-mix(in srgb, var(--docbox-primary) 35%, transparent);
+
+      .chip-count { background: rgba(255,255,255,.22); color: #fff; }
+    }
+  }
+}
+
+// Category color accents on cards
+.card.cat-movement { border-top: 3px solid #3b82f6; }
+.card.cat-physics  { border-top: 3px solid #f59e0b; }
+.card.cat-ui       { border-top: 3px solid #8b5cf6; }
+.card.cat-data     { border-top: 3px solid #10b981; }
+.card.cat-patterns { border-top: 3px solid #ec4899; }
+
+// Empty state
+.lib-empty {
+  background: var(--docbox-surface);
+  border: 1px dashed var(--docbox-border);
+  border-radius: var(--docbox-radius-md);
+  padding: 2rem 1.5rem;
+  text-align: center;
+  color: var(--docbox-text-muted);
+  margin: 1rem 0;
+
+  p { margin: 0; font-size: 0.95rem; }
+}

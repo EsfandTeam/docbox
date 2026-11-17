@@ -10,8 +10,15 @@
     "language": "gdscript",
     "verification": "human-verified",
     "license": "MIT",
-    "tags": ["physics", "2d", "character", "jump"],
-    "requires": ["CharacterBody2D"],
+    "tags": [
+      "physics",
+      "2d",
+      "character",
+      "jump"
+    ],
+    "requires": [
+      "CharacterBody2D"
+    ],
     "conflicts": [],
     "last_tested": "2026-11-17",
     "tested_by": "esfandteam",
@@ -31,8 +38,15 @@
     "language": "gdscript",
     "verification": "human-verified",
     "license": "MIT",
-    "tags": ["camera", "2d", "smoothing", "limits"],
-    "requires": ["Camera2D"],
+    "tags": [
+      "camera",
+      "2d",
+      "smoothing",
+      "limits"
+    ],
+    "requires": [
+      "Camera2D"
+    ],
     "conflicts": [],
     "last_tested": "2026-11-17",
     "tested_by": "esfandteam",
@@ -52,8 +66,15 @@
     "language": "gdscript",
     "verification": "human-verified",
     "license": "MIT",
-    "tags": ["io", "json", "save", "fileaccess"],
-    "requires": ["FileAccess"],
+    "tags": [
+      "io",
+      "json",
+      "save",
+      "fileaccess"
+    ],
+    "requires": [
+      "FileAccess"
+    ],
     "conflicts": [],
     "last_tested": "2026-11-17",
     "tested_by": "esfandteam",
@@ -73,8 +94,15 @@
     "language": "gdscript",
     "verification": "human-verified",
     "license": "MIT",
-    "tags": ["scenes", "flow", "fade", "tween"],
-    "requires": ["SceneTree"],
+    "tags": [
+      "scenes",
+      "flow",
+      "fade",
+      "tween"
+    ],
+    "requires": [
+      "SceneTree"
+    ],
     "conflicts": [],
     "last_tested": "2026-11-17",
     "tested_by": "esfandteam",
@@ -94,8 +122,14 @@
     "language": "gdscript",
     "verification": "human-verified",
     "license": "MIT",
-    "tags": ["animation", "tween", "ui"],
-    "requires": ["Tween"],
+    "tags": [
+      "animation",
+      "tween",
+      "ui"
+    ],
+    "requires": [
+      "Tween"
+    ],
     "conflicts": [],
     "last_tested": "2026-11-17",
     "tested_by": "esfandteam",
@@ -115,8 +149,15 @@
     "language": "gdscript",
     "verification": "human-verified",
     "license": "MIT",
-    "tags": ["audio", "sfx", "music", "pitch"],
-    "requires": ["AudioStreamPlayer"],
+    "tags": [
+      "audio",
+      "sfx",
+      "music",
+      "pitch"
+    ],
+    "requires": [
+      "AudioStreamPlayer"
+    ],
     "conflicts": [],
     "last_tested": "2026-11-17",
     "tested_by": "esfandteam",
@@ -136,8 +177,16 @@
     "language": "gdscript",
     "verification": "human-verified",
     "license": "MIT",
-    "tags": ["physics", "3d", "rigidbody", "thrust", "fuel"],
-    "requires": ["RigidBody3D"],
+    "tags": [
+      "physics",
+      "3d",
+      "rigidbody",
+      "thrust",
+      "fuel"
+    ],
+    "requires": [
+      "RigidBody3D"
+    ],
     "conflicts": [],
     "last_tested": "2026-11-17",
     "tested_by": "esfandteam",
@@ -145,5 +194,141 @@
     "url_html": "https://esfandteam.github.io/docbox/fa/recipes/godot-rocket",
     "url_markdown_en": "https://esfandteam.github.io/docbox/en/recipes/godot-rocket.md",
     "url_html_en": "https://esfandteam.github.io/docbox/en/recipes/godot-rocket"
+  },
+  {
+    "id": "godot-input-buffer",
+    "title": "بافر ورودی (Input Buffer) در Godot 4",
+    "title_en": "Input Buffer in Godot 4",
+    "summary": "Buffer jump presses a few frames before landing so responsive controls never eat inputs.",
+    "summary_fa": "ثبت فشردن پرش چند فریم قبل از فرود تا کنترل‌های حساس هیچ ورودی را از دست ندهند.",
+    "engine": "godot",
+    "min_engine_version": "4.0",
+    "language": "gdscript",
+    "verification": "human-verified",
+    "license": "MIT",
+    "tags": [
+      "input",
+      "jump",
+      "feel",
+      "character"
+    ],
+    "requires": [
+      "CharacterBody2D"
+    ],
+    "conflicts": [],
+    "last_tested": "2026-11-17",
+    "tested_by": "esfandteam",
+    "url_markdown": "https://esfandteam.github.io/docbox/fa/recipes/godot-input-buffer.md",
+    "url_html": "https://esfandteam.github.io/docbox/fa/recipes/godot-input-buffer",
+    "url_markdown_en": "https://esfandteam.github.io/docbox/en/recipes/godot-input-buffer.md",
+    "url_html_en": "https://esfandteam.github.io/docbox/en/recipes/godot-input-buffer"
+  },
+  {
+    "id": "godot-object-pooling",
+    "title": "استخر اشیا (Object Pooling) در Godot 4",
+    "title_en": "Object Pooling in Godot 4",
+    "summary": "Pre-allocate and recycle bullets/particles with acquire/release instead of instantiate/queue_free.",
+    "summary_fa": "پیش‌تخصیص و بازیافت گلوله/ذرات با acquire/release به‌جای instantiate/queue_free.",
+    "engine": "godot",
+    "min_engine_version": "4.0",
+    "language": "gdscript",
+    "verification": "human-verified",
+    "license": "MIT",
+    "tags": [
+      "performance",
+      "pattern",
+      "bullets"
+    ],
+    "requires": [
+      "Node2D"
+    ],
+    "conflicts": [],
+    "last_tested": "2026-11-17",
+    "tested_by": "esfandteam",
+    "url_markdown": "https://esfandteam.github.io/docbox/fa/recipes/godot-object-pooling.md",
+    "url_html": "https://esfandteam.github.io/docbox/fa/recipes/godot-object-pooling",
+    "url_markdown_en": "https://esfandteam.github.io/docbox/en/recipes/godot-object-pooling.md",
+    "url_html_en": "https://esfandteam.github.io/docbox/en/recipes/godot-object-pooling"
+  },
+  {
+    "id": "godot-state-machine",
+    "title": "ماشین حالت ساده در Godot 4",
+    "title_en": "Simple State Machine in Godot 4",
+    "summary": "Manage character states (idle/run/jump) with enum + match instead of nested if-statements.",
+    "summary_fa": "مدیریت وضعیت کاراکتر (سکون/دویدن/پرش) با enum و match به‌جای تودرتوی if.",
+    "engine": "godot",
+    "min_engine_version": "4.0",
+    "language": "gdscript",
+    "verification": "human-verified",
+    "license": "MIT",
+    "tags": [
+      "pattern",
+      "architecture",
+      "states"
+    ],
+    "requires": [
+      "CharacterBody2D"
+    ],
+    "conflicts": [],
+    "last_tested": "2026-11-17",
+    "tested_by": "esfandteam",
+    "url_markdown": "https://esfandteam.github.io/docbox/fa/recipes/godot-state-machine.md",
+    "url_html": "https://esfandteam.github.io/docbox/fa/recipes/godot-state-machine",
+    "url_markdown_en": "https://esfandteam.github.io/docbox/en/recipes/godot-state-machine.md",
+    "url_html_en": "https://esfandteam.github.io/docbox/en/recipes/godot-state-machine"
+  },
+  {
+    "id": "godot-dialogue",
+    "title": "سیستم دیالوگ با تایپ‌رایتر در Godot 4",
+    "title_en": "Typewriter Dialogue System in Godot 4",
+    "summary": "Show conversations with a typewriter effect via RichTextLabel.visible_ratio, a Next key, and a finished signal.",
+    "summary_fa": "نمایش مکالمات با افکت تایپ‌رایتر از طریق visible_ratio کلید ادامه و سیگنال پایان گفتگو.",
+    "engine": "godot",
+    "min_engine_version": "4.0",
+    "language": "gdscript",
+    "verification": "human-verified",
+    "license": "MIT",
+    "tags": [
+      "ui",
+      "typewriter",
+      "story"
+    ],
+    "requires": [
+      "RichTextLabel"
+    ],
+    "conflicts": [],
+    "last_tested": "2026-11-17",
+    "tested_by": "esfandteam",
+    "url_markdown": "https://esfandteam.github.io/docbox/fa/recipes/godot-dialogue.md",
+    "url_html": "https://esfandteam.github.io/docbox/fa/recipes/godot-dialogue",
+    "url_markdown_en": "https://esfandteam.github.io/docbox/en/recipes/godot-dialogue.md",
+    "url_html_en": "https://esfandteam.github.io/docbox/en/recipes/godot-dialogue"
+  },
+  {
+    "id": "godot-signals",
+    "title": "سیگنال‌های سفارشی در Godot 4",
+    "title_en": "Custom Signals in Godot 4",
+    "summary": "Decouple player and HUD with signal health_changed(current, max) and connect in _ready.",
+    "summary_fa": "جداسازی بازیکن و HUD با سیگنال health_changed و اتصال در _ready.",
+    "engine": "godot",
+    "min_engine_version": "4.0",
+    "language": "gdscript",
+    "verification": "human-verified",
+    "license": "MIT",
+    "tags": [
+      "signals",
+      "decoupling",
+      "architecture"
+    ],
+    "requires": [
+      "Object"
+    ],
+    "conflicts": [],
+    "last_tested": "2026-11-17",
+    "tested_by": "esfandteam",
+    "url_markdown": "https://esfandteam.github.io/docbox/fa/recipes/godot-signals.md",
+    "url_html": "https://esfandteam.github.io/docbox/fa/recipes/godot-signals",
+    "url_markdown_en": "https://esfandteam.github.io/docbox/en/recipes/godot-signals.md",
+    "url_html_en": "https://esfandteam.github.io/docbox/en/recipes/godot-signals"
   }
 ]

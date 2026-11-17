@@ -90,9 +90,61 @@
     });
   }
 
+  // ---- Library filter + live search (homepage) ---------------------------
+  function initLibraryFilter() {
+    var input = document.getElementById('lib-search-input');
+    var chips = document.getElementById('lib-chips');
+    var grid = document.getElementById('lib-grid');
+    var count = document.getElementById('lib-count');
+    var empty = document.getElementById('lib-empty');
+    if (!input || !chips || !grid || !count) return;
+
+    var cards = Array.prototype.slice.call(grid.querySelectorAll('.card'));
+    var activeCat = 'all';
+    var faDigits = { '0': '۰', '1': '۱', '2': '۲', '3': '۳', '4': '۴',
+                     '5': '۵', '6': '۶', '7': '۷', '8': '۸', '9': '۹' };
+    function toFa(n) {
+      return String(n).replace(/[0-9]/g, function (d) { return faDigits[d]; });
+    }
+
+    function apply() {
+      var q = input.value.trim().toLowerCase();
+      var shown = 0;
+      cards.forEach(function (card) {
+        var okCat = activeCat === 'all' || card.getAttribute('data-cat') === activeCat;
+        var hay = (card.getAttribute('data-text') || '') + ' ' + card.textContent;
+        hay = hay.toLowerCase();
+        var okQ = !q || hay.indexOf(q) !== -1;
+        var show = okCat && okQ;
+        card.style.display = show ? '' : 'none';
+        if (show) shown++;
+      });
+      if (empty) empty.hidden = shown !== 0;
+      var isFa = (input.getAttribute('placeholder') || '').indexOf('جستجو') !== -1;
+      if (isFa) {
+        count.textContent = toFa(shown) + ' دستورپخت';
+      } else {
+        count.textContent = shown + (shown === 1 ? ' recipe' : ' recipes');
+      }
+    }
+
+    chips.addEventListener('click', function (e) {
+      var chip = e.target.closest('.chip');
+      if (!chip) return;
+      chips.querySelectorAll('.chip').forEach(function (c) { c.classList.remove('active'); });
+      chip.classList.add('active');
+      activeCat = chip.getAttribute('data-cat') || 'all';
+      apply();
+    });
+
+    input.addEventListener('input', apply);
+    apply();
+  }
+
   document.addEventListener('DOMContentLoaded', function () {
     createToggleButton();
     addCopyButtons();
+    initLibraryFilter();
   });
 })();
 </script>
