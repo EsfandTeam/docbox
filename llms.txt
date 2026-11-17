@@ -12,8 +12,20 @@
 
 ## Recipes (human-readable)
 
-- [Rocket Physics in Godot 4 (FA)](https://esfandteam.github.io/docbox/fa/recipes/godot-rocket.md): thrust-based motion on RigidBody3D with fuel consumption. Status: human-verified. Engine: Godot 4.x.
-- [Rocket Physics in Godot 4 (EN)](https://esfandteam.github.io/docbox/en/recipes/godot-rocket.md): English mirror of the same recipe.
+- [2D Character Movement (FA)](https://esfandteam.github.io/docbox/fa/recipes/godot-2d-movement.md): move and jump with CharacterBody2D and move_and_slide. Status: human-verified. Engine: Godot 4.x.
+- [Camera Follow (FA)](https://esfandteam.github.io/docbox/fa/recipes/godot-camera-follow.md): native Camera2D smoothing with world limits. Status: human-verified. Engine: Godot 4.x.
+- [Save/Load Games with JSON (FA)](https://esfandteam.github.io/docbox/fa/recipes/godot-save-load-json.md): persist state with FileAccess and JSON to user://. Status: human-verified. Engine: Godot 4.x.
+- [Scene Transitions (FA)](https://esfandteam.github.io/docbox/fa/recipes/godot-scene-transition.md): change_scene_to_file with error checks and a fade effect. Status: human-verified. Engine: Godot 4.x.
+- [Tweens (FA)](https://esfandteam.github.io/docbox/fa/recipes/godot-tween.md): chained, parallel and looping animations with create_tween. Status: human-verified. Engine: Godot 4.x.
+- [Audio Playback (FA)](https://esfandteam.github.io/docbox/fa/recipes/godot-audio.md): looping music and SFX with pitch variance. Status: human-verified. Engine: Godot 4.x.
+- [Rocket Physics (FA)](https://esfandteam.github.io/docbox/fa/recipes/godot-rocket.md): thrust-based motion on RigidBody3D with fuel burn. Status: human-verified. Engine: Godot 4.x.
+
+## English mirrors
+
+All recipes above are mirrored in English under
+`https://esfandteam.github.io/docbox/en/recipes/<recipe-id>.md` — for example:
+[2D Character Movement (EN)](https://esfandteam.github.io/docbox/en/recipes/godot-2d-movement.md),
+[Rocket Physics (EN)](https://esfandteam.github.io/docbox/en/recipes/godot-rocket.md).
 
 ## Optional
 

@@ -1,127 +1,161 @@
 // ============================================================================
-//  DocBox — Custom SCSS for just-the-docs theme
-//  Modern UI/UX + RTL support + verification badges + recipe cards
+//  DocBox — Custom SCSS (v2 — professional, clean, no-sidebar layout)
+//  Design goals: modern docs/product feel (Stripe/Linear-like), NOT wiki-like
+//  - Top navigation instead of sidebar
+//  - Hero landing + card grids
+//  - Light/dark themes (auto + manual toggle via [data-theme])
+//  - Copy buttons on code blocks (JS in _includes/head_custom.html)
+//  - Full RTL support with Vazirmatn
 // ============================================================================
 
-// 1. Persian font (Vazirmatn) and RTL base
 @import url('https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.0.0/Vazirmatn-font-face.css');
 
-// Modern color palette (CSS custom properties for theme consistency)
+// ----------------------------------------------------------------------------
+// 1. Design tokens
+// ----------------------------------------------------------------------------
+
 :root {
-  --docbox-bg:            #fafbfc;
-  --docbox-surface:       #ffffff;
-  --docbox-surface-alt:   #f4f6f8;
-  --docbox-border:        #e6e8eb;
-  --docbox-text:          #1f2328;
-  --docbox-text-muted:    #57606a;
-  --docbox-primary:       #0969da;
-  --docbox-primary-dark:  #0550ae;
-  --docbox-accent:        #1f7a4d;
-  --docbox-warning:       #bf8700;
-  --docbox-danger:        #cf222e;
-  --docbox-code-bg:       #161b22;
-  --docbox-code-text:     #e6edf3;
-  --docbox-shadow-sm:     0 1px 2px rgba(0, 0, 0, 0.04);
-  --docbox-shadow-md:     0 4px 12px rgba(0, 0, 0, 0.08);
-  --docbox-radius-sm:     6px;
-  --docbox-radius-md:     10px;
-  --docbox-radius-lg:     14px;
-  --docbox-transition:    180ms cubic-bezier(0.2, 0.6, 0.2, 1);
+  --docbox-bg:           #f8f9fb;
+  --docbox-surface:      #ffffff;
+  --docbox-surface-alt:  #f1f3f6;
+  --docbox-border:       #e4e7ec;
+  --docbox-text:         #1a1f27;
+  --docbox-text-muted:   #5b6472;
+  --docbox-primary:      #2563eb;
+  --docbox-primary-dark: #1d4ed8;
+  --docbox-accent:       #16a34a;
+  --docbox-warning:      #d97706;
+  --docbox-danger:       #dc2626;
+  --docbox-code-bg:      #0f1729;
+  --docbox-code-text:    #e2e8f0;
+  --docbox-hero-bg-1:    #1d4ed8;
+  --docbox-hero-bg-2:    #0e7490;
+  --docbox-shadow-sm:    0 1px 2px rgba(16, 24, 40, .06);
+  --docbox-shadow-md:    0 6px 16px rgba(16, 24, 40, .10);
+  --docbox-shadow-lg:    0 16px 40px rgba(16, 24, 40, .14);
+  --docbox-radius-sm:    8px;
+  --docbox-radius-md:    12px;
+  --docbox-radius-lg:    18px;
+  --docbox-transition:   180ms cubic-bezier(.2, .6, .2, 1);
 }
 
-// Dark mode (respects prefers-color-scheme)
+@mixin dark-vars {
+  --docbox-bg:           #0b0f17;
+  --docbox-surface:      #111722;
+  --docbox-surface-alt:  #1a2231;
+  --docbox-border:       #2a3446;
+  --docbox-text:         #e6eaf2;
+  --docbox-text-muted:   #97a1b3;
+  --docbox-primary:      #60a5fa;
+  --docbox-primary-dark: #3b82f6;
+  --docbox-accent:       #34d399;
+  --docbox-warning:      #fbbf24;
+  --docbox-danger:       #f87171;
+  --docbox-code-bg:      #060a13;
+  --docbox-code-text:    #e2e8f0;
+  --docbox-hero-bg-1:    #1e3a8a;
+  --docbox-hero-bg-2:    #155e75;
+  --docbox-shadow-sm:    0 1px 2px rgba(0, 0, 0, .4);
+  --docbox-shadow-md:    0 6px 16px rgba(0, 0, 0, .5);
+  --docbox-shadow-lg:    0 16px 40px rgba(0, 0, 0, .6);
+}
+
 @media (prefers-color-scheme: dark) {
-  :root {
-    --docbox-bg:            #0d1117;
-    --docbox-surface:       #161b22;
-    --docbox-surface-alt:   #21262d;
-    --docbox-border:        #30363d;
-    --docbox-text:          #e6edf3;
-    --docbox-text-muted:    #8b949e;
-    --docbox-primary:       #58a6ff;
-    --docbox-primary-dark:  #1f6feb;
-    --docbox-accent:        #3fb950;
-    --docbox-warning:       #d29922;
-    --docbox-danger:        #f85149;
-    --docbox-code-bg:       #010409;
-    --docbox-code-text:     #e6edf3;
-    --docbox-shadow-sm:     0 1px 2px rgba(0, 0, 0, 0.3);
-    --docbox-shadow-md:     0 4px 12px rgba(0, 0, 0, 0.4);
-  }
+  :root:not([data-theme="light"]) { @include dark-vars; }
 }
+[data-theme="dark"] { @include dark-vars; }
 
-// 2. Body & global typography
+// ----------------------------------------------------------------------------
+// 2. Base
+// ----------------------------------------------------------------------------
+
 body {
   font-family: 'Vazirmatn', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
   direction: rtl;
   text-align: right;
-  background-color: var(--docbox-bg);
-  color: var(--docbox-text);
-  line-height: 1.7;
+  background-color: var(--docbox-bg) !important;
+  color: var(--docbox-text) !important;
+  line-height: 1.75;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-// Smooth color transition for theme changes
-body, .site-header, .side-bar, .main-content, .site-footer {
+body, .site-header, .main-content, .site-footer {
   transition: background-color var(--docbox-transition), color var(--docbox-transition);
 }
 
-// 3. Site header (top bar) — modern flat design
+// ----------------------------------------------------------------------------
+// 3. Header (top bar) — replaces sidebar as primary navigation
+// ----------------------------------------------------------------------------
+
 .site-header {
   direction: rtl;
-  padding: 0.75rem 1.5rem;
-  background-color: var(--docbox-surface);
-  border-bottom: 1px solid var(--docbox-border);
+  padding: 0.7rem 1.5rem;
+  background-color: color-mix(in srgb, var(--docbox-surface) 88%, transparent);
+  border-top: none !important;
+  border-bottom: 1px solid var(--docbox-border) !important;
   box-shadow: var(--docbox-shadow-sm);
   position: sticky;
   top: 0;
   z-index: 100;
-  backdrop-filter: saturate(180%) blur(8px);
+  backdrop-filter: saturate(180%) blur(10px);
 }
 
 .site-title {
   padding-right: 0 !important;
-  padding-left: 2rem !important;
-  font-weight: 700;
-  font-size: 1.15rem;
-  color: var(--docbox-text) !important;
+  padding-left: 1.5rem !important;
+  font-weight: 800;
+  font-size: 1.2rem;
   letter-spacing: -0.01em;
+  color: var(--docbox-text) !important;
+  transition: color var(--docbox-transition);
 
-  &:hover {
-    color: var(--docbox-primary) !important;
-  }
+  &:hover { color: var(--docbox-primary) !important; }
 }
 
-// 4. Search bar
+// Theme toggle button (injected by head_custom.html)
+.theme-toggle {
+  background: var(--docbox-surface-alt);
+  color: var(--docbox-text);
+  border: 1px solid var(--docbox-border);
+  border-radius: 999px;
+  width: 2.1rem;
+  height: 2.1rem;
+  font-size: 0.95rem;
+  cursor: pointer;
+  margin-inline-start: 0.5rem;
+  transition: background-color var(--docbox-transition), transform var(--docbox-transition);
+
+  &:hover { background: var(--docbox-primary); color: #fff; transform: scale(1.06); }
+}
+
+// Search
 .search-input {
   direction: rtl;
   text-align: right;
-  padding-right: 2.5rem !important;
+  padding-right: 2.4rem !important;
   padding-left: 1rem !important;
   background-color: var(--docbox-surface-alt);
   border: 1px solid var(--docbox-border);
   border-radius: var(--docbox-radius-md);
   color: var(--docbox-text);
-  transition: border-color var(--docbox-transition), box-shadow var(--docbox-transition);
 
   &:focus {
     border-color: var(--docbox-primary);
-    box-shadow: 0 0 0 3px rgba(9, 105, 218, 0.15);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--docbox-primary) 18%, transparent);
     outline: none;
   }
 }
-.search-icon {
-  right: 0.75rem;
-  left: auto;
-  color: var(--docbox-text-muted);
-}
+.search-icon { right: 0.7rem; left: auto; color: var(--docbox-text-muted); }
 
-// 5. Aux links (language switcher)
+// Aux links (top navigation)
+.aux-nav .aux-nav-list { align-items: center !important; }
 .aux-nav-link {
-  padding: 0.4rem 0.85rem !important;
+  padding: 0.35rem 0.8rem !important;
   border-radius: var(--docbox-radius-sm);
-  font-weight: 500;
+  font-weight: 600;
+  font-size: 0.92rem;
+  color: var(--docbox-text-muted) !important;
   transition: background-color var(--docbox-transition), color var(--docbox-transition);
 
   &:hover {
@@ -130,353 +164,490 @@ body, .site-header, .side-bar, .main-content, .site-footer {
   }
 }
 
-// 6. Sidebar
-.side-bar {
-  right: 0;
-  left: auto;
-  border-left: 1px solid var(--docbox-border);
-  border-right: none;
-  background-color: var(--docbox-surface);
-  width: 264px;
-}
+// ----------------------------------------------------------------------------
+// 4. Main content — full width, centered (no sidebar)
+// ----------------------------------------------------------------------------
 
-.nav-list {
-  padding: 1rem 0.5rem;
-}
-.nav-list-item {
-  margin: 0.15rem 0;
-}
-.nav-list .nav-list-item .nav-list-link {
-  padding: 0.55rem 1rem;
-  text-align: right;
-  border-radius: var(--docbox-radius-sm);
-  color: var(--docbox-text);
-  font-weight: 500;
-  transition: background-color var(--docbox-transition), color var(--docbox-transition);
-
-  &:hover {
-    background-color: var(--docbox-surface-alt);
-    color: var(--docbox-primary);
-  }
-  &.active {
-    background-color: rgba(9, 105, 218, 0.1);
-    color: var(--docbox-primary);
-    font-weight: 600;
-  }
-}
-
-// 7. Main content area
-.main {
-  margin-right: 264px;
-  margin-left: 0;
-  background-color: var(--docbox-bg);
-}
+.main { margin: 0 !important; }
 
 .main-content {
   direction: rtl;
   text-align: right;
-  max-width: 880px;
+  max-width: 960px;
   margin: 0 auto;
-  padding: 2.5rem 2rem 4rem;
+  padding: 2rem 1.5rem 4rem;
   color: var(--docbox-text);
 
-  h1, h2, h3, h4 {
-    color: var(--docbox-text);
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    line-height: 1.3;
-  }
-  h1 { font-size: 2rem; margin-bottom: 1rem; }
+  h1 { font-size: 2.1rem; font-weight: 800; letter-spacing: -0.02em; }
   h2 {
-    font-size: 1.5rem;
-    margin-top: 2.5rem;
+    font-size: 1.45rem;
+    font-weight: 700;
+    margin-top: 2.4rem;
     margin-bottom: 1rem;
     padding-bottom: 0.4rem;
     border-bottom: 1px solid var(--docbox-border);
   }
-  h3 { font-size: 1.2rem; margin-top: 1.75rem; }
+  h3 { font-size: 1.18rem; font-weight: 700; margin-top: 1.6rem; }
 
-  p {
-    margin-bottom: 1rem;
-    color: var(--docbox-text);
-  }
+  p { color: var(--docbox-text); }
+
   a {
     color: var(--docbox-primary);
     text-decoration: none;
-    border-bottom: 1px solid transparent;
-    transition: border-color var(--docbox-transition);
+    border-bottom: 1px solid color-mix(in srgb, var(--docbox-primary) 30%, transparent);
+    transition: border-color var(--docbox-transition), color var(--docbox-transition);
 
-    &:hover {
-      border-bottom-color: var(--docbox-primary);
-    }
+    &:hover { color: var(--docbox-primary-dark); border-bottom-color: var(--docbox-primary-dark); }
   }
-  ul, ol {
-    padding-right: 1.5rem;
-    padding-left: 0;
-    margin-bottom: 1rem;
-  }
+
+  ul, ol { padding-right: 1.4rem; padding-left: 0; }
   li { margin-bottom: 0.4rem; }
 
   blockquote {
-    margin: 1.25rem 0;
-    padding: 0.75rem 1.25rem;
+    margin: 1.3rem 0;
+    padding: 0.85rem 1.2rem;
     background-color: var(--docbox-surface-alt);
     border-right: 4px solid var(--docbox-primary);
     border-left: none;
     border-radius: var(--docbox-radius-sm);
     color: var(--docbox-text-muted);
-    font-style: normal;
 
     p { margin-bottom: 0; }
   }
 
-  // Inline code
+  hr { border: none; border-top: 1px solid var(--docbox-border); }
+}
+
+// Breadcrumbs
+.breadcrumb-nav-list-item {
+  font-size: 0.85rem;
+  color: var(--docbox-text-muted);
+}
+
+// ----------------------------------------------------------------------------
+// 5. Code — dark always, LTR, copy button
+// ----------------------------------------------------------------------------
+
+.main-content code {
+  font-family: 'JetBrains Mono', 'Fira Code', Consolas, monospace;
+  background-color: var(--docbox-surface-alt);
+  color: var(--docbox-primary-dark);
+  padding: 0.15rem 0.42rem;
+  border-radius: 5px;
+  font-size: 0.88em;
+}
+
+.main-content pre,
+.main-content .highlight pre {
+  position: relative;
+  direction: ltr !important;
+  text-align: left !important;
+  background-color: var(--docbox-code-bg) !important;
+  color: var(--docbox-code-text) !important;
+  border-radius: var(--docbox-radius-md);
+  padding: 1.2rem 1.4rem;
+  overflow-x: auto;
+  margin: 1.3rem 0;
+  border: 1px solid var(--docbox-border);
+  box-shadow: var(--docbox-shadow-sm);
+  font-size: 0.855rem;
+  line-height: 1.65;
+
   code {
-    font-family: 'JetBrains Mono', 'Fira Code', Consolas, monospace;
-    background-color: var(--docbox-surface-alt);
-    color: var(--docbox-primary-dark);
-    padding: 0.15rem 0.4rem;
-    border-radius: 4px;
-    font-size: 0.9em;
-    direction: ltr;
-    unicode-bidi: embed;
+    background-color: transparent;
+    color: inherit;
+    padding: 0;
+    font-size: inherit;
+  }
+}
+
+.copy-btn {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  z-index: 2;
+  background: rgba(255, 255, 255, 0.08);
+  color: #cbd5e1;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 7px;
+  padding: 0.22rem 0.7rem;
+  font-family: 'Vazirmatn', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color var(--docbox-transition), color var(--docbox-transition);
+
+  &:hover { background: var(--docbox-primary); color: #fff; border-color: var(--docbox-primary); }
+}
+
+// Syntax highlighting: keep readable on dark bg
+.main-content .highlight .gp { color: #94a3b8; }
+
+// Scrollbar
+pre::-webkit-scrollbar { height: 8px; }
+pre::-webkit-scrollbar-track { background: transparent; }
+pre::-webkit-scrollbar-thumb { background: rgba(255,255,255,.14); border-radius: 4px; }
+pre::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,.28); }
+
+// ----------------------------------------------------------------------------
+// 6. Hero (homepage)
+// ----------------------------------------------------------------------------
+
+.hero {
+  direction: rtl;
+  text-align: center;
+  background: linear-gradient(135deg, var(--docbox-hero-bg-1) 0%, var(--docbox-hero-bg-2) 100%);
+  border-radius: var(--docbox-radius-lg);
+  padding: 3rem 1.5rem 2.6rem;
+  margin: 1.2rem 0 2.2rem;
+  color: #fff;
+  box-shadow: var(--docbox-shadow-lg);
+
+  .hero-kicker {
+    display: inline-block;
+    background: rgba(255,255,255,.14);
+    border: 1px solid rgba(255,255,255,.25);
+    border-radius: 999px;
+    padding: 0.25rem 1rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 1.1rem;
+    color: #fff;
   }
 
-  // Code blocks — modern dark theme
-  pre {
-    direction: ltr !important;
-    text-align: left !important;
-    background-color: var(--docbox-code-bg) !important;
-    color: var(--docbox-code-text) !important;
+  h1 {
+    color: #fff !important;
+    font-size: 2.3rem;
+    font-weight: 800;
+    line-height: 1.35;
+    margin: 0 0 0.8rem;
+
+    .highlight-word {
+      background: rgba(255,255,255,.16);
+      border-radius: 10px;
+      padding: 0 0.4rem;
+    }
+  }
+
+  .hero-sub {
+    color: rgba(255,255,255,.88);
+    font-size: 1.06rem;
+    max-width: 620px;
+    margin: 0 auto 1.6rem;
+  }
+}
+
+.hero-actions {
+  display: flex;
+  gap: 0.8rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 1.8rem;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.65rem 1.5rem;
+  border-radius: var(--docbox-radius-md);
+  font-weight: 700;
+  font-size: 0.98rem;
+  text-decoration: none !important;
+  border: 1px solid transparent;
+  transition: transform var(--docbox-transition), box-shadow var(--docbox-transition), background-color var(--docbox-transition);
+
+  &:hover { transform: translateY(-2px); box-shadow: var(--docbox-shadow-md); }
+}
+.btn-primary { background: #fff; color: var(--docbox-hero-bg-1) !important; }
+.btn-ghost {
+  background: rgba(255,255,255,.12);
+  color: #fff !important;
+  border-color: rgba(255,255,255,.35);
+  &:hover { background: rgba(255,255,255,.2); }
+}
+
+.hero-stats {
+  display: flex;
+  gap: 0.7rem;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  .stat {
+    background: rgba(255,255,255,.12);
+    border: 1px solid rgba(255,255,255,.22);
     border-radius: var(--docbox-radius-md);
-    padding: 1.25rem 1.5rem;
-    overflow-x: auto;
-    margin: 1.25rem 0;
-    box-shadow: var(--docbox-shadow-sm);
-    border: 1px solid var(--docbox-border);
-    font-size: 0.875rem;
-    line-height: 1.6;
+    padding: 0.6rem 1.3rem;
+    min-width: 120px;
 
-    code {
-      background-color: transparent;
-      color: inherit;
-      padding: 0;
-      border-radius: 0;
-      font-size: inherit;
-    }
+    b { display: block; font-size: 1.25rem; color: #fff; }
+    span { font-size: 0.8rem; color: rgba(255,255,255,.8); }
+  }
+}
+
+// ----------------------------------------------------------------------------
+// 7. Cards / grids
+// ----------------------------------------------------------------------------
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+  margin: 1.3rem 0 1.6rem;
+}
+
+.card {
+  display: block;
+  background: var(--docbox-surface);
+  border: 1px solid var(--docbox-border);
+  border-radius: var(--docbox-radius-md);
+  padding: 1.15rem 1.25rem;
+  text-decoration: none !important;
+  box-shadow: var(--docbox-shadow-sm);
+  transition: transform var(--docbox-transition), box-shadow var(--docbox-transition), border-color var(--docbox-transition);
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--docbox-shadow-md);
+    border-color: color-mix(in srgb, var(--docbox-primary) 45%, var(--docbox-border));
   }
 
-  // Tables
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 1.25rem 0;
-    font-size: 0.95rem;
-    box-shadow: var(--docbox-shadow-sm);
-    border-radius: var(--docbox-radius-sm);
-    overflow: hidden;
+  .card-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.55rem;
+  }
 
-    th {
-      background-color: var(--docbox-surface-alt);
-      color: var(--docbox-text);
-      font-weight: 600;
-      text-align: right;
-      padding: 0.75rem 1rem;
-      border-bottom: 2px solid var(--docbox-border);
-    }
-    td {
-      padding: 0.65rem 1rem;
-      border-bottom: 1px solid var(--docbox-border);
-      color: var(--docbox-text);
-    }
-    tr:last-child td {
-      border-bottom: none;
-    }
-    tr:hover td {
-      background-color: var(--docbox-surface-alt);
+  .card-engine {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--docbox-primary);
+    background: color-mix(in srgb, var(--docbox-primary) 12%, transparent);
+    border-radius: 999px;
+    padding: 0.15rem 0.6rem;
+  }
+
+  h3 {
+    margin: 0 0 0.4rem !important;
+    font-size: 1.06rem !important;
+    color: var(--docbox-text) !important;
+    border: none !important;
+    padding: 0 !important;
+    margin-top: 0 !important;
+  }
+
+  p {
+    margin: 0 0 0.6rem;
+    font-size: 0.88rem;
+    color: var(--docbox-text-muted);
+    line-height: 1.7;
+  }
+
+  .card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+
+    span {
+      font-size: 0.72rem;
+      color: var(--docbox-text-muted);
+      background: var(--docbox-surface-alt);
+      border: 1px solid var(--docbox-border);
+      border-radius: 6px;
+      padding: 0.1rem 0.5rem;
     }
   }
 }
 
-// 8. Recipe meta table (the verification badge table)
+.card-soon {
+  border-style: dashed !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  opacity: 0.85;
+
+  &:hover { transform: none !important; }
+}
+
+// Steps (how it works)
+.steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin: 1.3rem 0;
+
+  .step {
+    background: var(--docbox-surface);
+    border: 1px solid var(--docbox-border);
+    border-radius: var(--docbox-radius-md);
+    padding: 1.2rem 1.3rem;
+    box-shadow: var(--docbox-shadow-sm);
+
+    .step-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 2rem;
+      height: 2rem;
+      border-radius: 999px;
+      background: var(--docbox-primary);
+      color: #fff;
+      font-weight: 800;
+      margin-bottom: 0.6rem;
+    }
+    h3 { margin: 0 0 0.35rem !important; font-size: 1rem !important; border: none !important; }
+    p { margin: 0; font-size: 0.88rem; color: var(--docbox-text-muted); }
+  }
+}
+
+// ----------------------------------------------------------------------------
+// 8. Recipe meta + badges + TOC
+// ----------------------------------------------------------------------------
+
 .recipe-meta {
   width: 100%;
-  margin: 1rem 0 1.5rem;
+  margin: 1rem 0 1.4rem;
   font-size: 0.9rem;
+  background: var(--docbox-surface);
   border: 1px solid var(--docbox-border);
   border-radius: var(--docbox-radius-md);
+  overflow: hidden;
+  box-shadow: var(--docbox-shadow-sm);
+  border-collapse: separate;
+  border-spacing: 0;
+
+  th {
+    background-color: var(--docbox-surface-alt);
+    width: 28%;
+    text-align: right;
+    padding: 0.5rem 0.95rem;
+    font-weight: 700;
+    color: var(--docbox-text-muted);
+    border-bottom: 1px solid var(--docbox-border);
+  }
+  td {
+    padding: 0.5rem 0.95rem;
+    border-bottom: 1px solid var(--docbox-border);
+  }
+  tr:last-child th, tr:last-child td { border-bottom: none; }
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.18rem 0.65rem;
+  font-size: 0.76rem;
+  font-weight: 700;
+  border-radius: 999px;
+  line-height: 1.5;
+}
+.badge-verified {
+  background-color: color-mix(in srgb, var(--docbox-accent) 14%, transparent);
+  color: var(--docbox-accent);
+  border: 1px solid color-mix(in srgb, var(--docbox-accent) 30%, transparent);
+}
+.badge-automated {
+  background-color: color-mix(in srgb, var(--docbox-primary) 12%, transparent);
+  color: var(--docbox-primary);
+  border: 1px solid color-mix(in srgb, var(--docbox-primary) 28%, transparent);
+}
+.badge-soon {
+  background-color: color-mix(in srgb, var(--docbox-warning) 14%, transparent);
+  color: var(--docbox-warning);
+  border: 1px solid color-mix(in srgb, var(--docbox-warning) 30%, transparent);
+}
+
+.toc-card {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 0.9rem;
+  background: var(--docbox-surface);
+  border: 1px solid var(--docbox-border);
+  border-radius: var(--docbox-radius-md);
+  padding: 0.7rem 1.1rem;
+  margin: 1.1rem 0 1.4rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+
+  a { border-bottom: none !important; }
+  a:hover { color: var(--docbox-primary); }
+}
+
+.back-link {
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+// ----------------------------------------------------------------------------
+// 9. Tables
+// ----------------------------------------------------------------------------
+
+.main-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.3rem 0;
+  font-size: 0.93rem;
+  background: var(--docbox-surface);
+  border: 1px solid var(--docbox-border);
+  border-radius: var(--docbox-radius-sm);
   overflow: hidden;
   box-shadow: var(--docbox-shadow-sm);
 
   th {
     background-color: var(--docbox-surface-alt);
-    width: 30%;
+    font-weight: 700;
     text-align: right;
-    padding: 0.5rem 0.9rem;
-    border: none;
-    border-bottom: 1px solid var(--docbox-border);
-    font-weight: 600;
-    color: var(--docbox-text);
+    padding: 0.65rem 1rem;
+    border-bottom: 2px solid var(--docbox-border);
   }
   td {
-    padding: 0.5rem 0.9rem;
-    border: none;
+    padding: 0.55rem 1rem;
     border-bottom: 1px solid var(--docbox-border);
-    color: var(--docbox-text);
   }
-  tr:last-child th, tr:last-child td {
-    border-bottom: none;
-  }
-}
-.recipe-meta-inline {
-  th { width: auto; }
+  tr:last-child td { border-bottom: none; }
+  tbody tr:hover td { background-color: var(--docbox-surface-alt); }
 }
 
-// 9. Verification badge
-.badge {
-  display: inline-block;
-  padding: 0.2rem 0.65rem;
-  font-size: 0.78rem;
-  font-weight: 600;
-  border-radius: 999px;
-  letter-spacing: 0.01em;
-  line-height: 1.5;
-}
-.badge-verified {
-  background-color: rgba(31, 122, 77, 0.12);
-  color: var(--docbox-accent);
-  border: 1px solid rgba(31, 122, 77, 0.25);
-}
-.badge-automated {
-  background-color: rgba(9, 105, 218, 0.12);
-  color: var(--docbox-primary);
-  border: 1px solid rgba(9, 105, 218, 0.25);
-}
-.badge-warning {
-  background-color: rgba(191, 135, 0, 0.12);
-  color: var(--docbox-warning);
-  border: 1px solid rgba(191, 135, 0, 0.25);
-}
+// ----------------------------------------------------------------------------
+// 10. Footer
+// ----------------------------------------------------------------------------
 
-// 10. Hero cards on homepage
-.hero-cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 0.75rem;
-  margin: 1.5rem 0 2rem;
-  list-style: none !important;
-  padding: 0 !important;
-
-  li {
-    margin: 0 !important;
-    padding: 0 !important;
-    list-style: none;
-  }
-  a {
-    display: block;
-    padding: 1rem 1.25rem;
-    background-color: var(--docbox-surface);
-    border: 1px solid var(--docbox-border);
-    border-radius: var(--docbox-radius-md);
-    color: var(--docbox-text) !important;
-    font-weight: 600;
-    text-decoration: none !important;
-    border-bottom: none !important;
-    box-shadow: var(--docbox-shadow-sm);
-    transition: transform var(--docbox-transition), box-shadow var(--docbox-transition), border-color var(--docbox-transition);
-
-    &:hover {
-      transform: translateY(-2px);
-      box-shadow: var(--docbox-shadow-md);
-      border-color: var(--docbox-primary);
-      color: var(--docbox-primary) !important;
-      border-bottom: none !important;
-    }
-  }
-}
-
-// 11. Recipe list card on homepage
-.recipe-list {
-  margin: 1rem 0 1.5rem;
-  padding: 1.5rem;
-  background-color: var(--docbox-surface);
-  border: 1px solid var(--docbox-border);
-  border-radius: var(--docbox-radius-md);
-  box-shadow: var(--docbox-shadow-sm);
-
-  h3 {
-    margin-top: 0 !important;
-    font-size: 1.15rem;
-
-    a { color: var(--docbox-primary); }
-  }
-  p { margin-bottom: 0; color: var(--docbox-text-muted); }
-}
-
-// 12. Footer
 .site-footer {
   direction: rtl;
-  text-align: right;
+  text-align: center;
   background-color: var(--docbox-surface);
   border-top: 1px solid var(--docbox-border);
-  padding: 1.25rem 2rem;
+  padding: 1.4rem 2rem;
   color: var(--docbox-text-muted);
-  font-size: 0.9rem;
+  font-size: 0.88rem;
 }
 
-// 13. Keep code blocks always LTR (English code)
+// ----------------------------------------------------------------------------
+// 11. Code direction guard
+// ----------------------------------------------------------------------------
+
 pre, code, .highlight, pre code {
   direction: ltr !important;
   text-align: left !important;
 }
 
-// 14. Responsive — mobile
-@media (max-width: 50rem) {
-  .main {
-    margin-right: 0;
-  }
-  .side-bar {
-    right: -100%;
-    box-shadow: var(--docbox-shadow-md);
-    transition: right var(--docbox-transition);
-  }
-  .side-bar.open {
-    right: 0;
-  }
-  .main-content {
-    padding: 1.5rem 1rem 3rem;
-    h1 { font-size: 1.65rem; }
-    h2 { font-size: 1.3rem; }
-  }
-  .hero-cards {
-    grid-template-columns: 1fr 1fr;
-  }
-  .site-header {
-    padding: 0.5rem 1rem;
-  }
+// ----------------------------------------------------------------------------
+// 12. Responsive
+// ----------------------------------------------------------------------------
+
+@media (max-width: 56rem) {
+  .main-content { padding: 1.4rem 1rem 3rem; }
+  .main-content h1 { font-size: 1.7rem; }
+  .hero { padding: 2.2rem 1.1rem 2rem; }
+  .hero h1 { font-size: 1.65rem !important; }
+  .cards { grid-template-columns: 1fr; }
+  .steps { grid-template-columns: 1fr; }
+  .site-header { padding: 0.55rem 1rem; }
 }
 
-// 15. Scrollbar styling for code blocks (subtle)
-pre::-webkit-scrollbar {
-  height: 8px;
-}
-pre::-webkit-scrollbar-track {
-  background: transparent;
-}
-pre::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.15);
-  border-radius: 4px;
-}
-pre::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.25);
-}
+// ----------------------------------------------------------------------------
+// 13. Print
+// ----------------------------------------------------------------------------
 
-// 16. Print-friendly
 @media print {
-  .site-header, .side-bar, .site-footer {
-    display: none;
-  }
-  .main {
-    margin: 0 !important;
-  }
+  .site-header, .site-footer, .copy-btn, .theme-toggle { display: none !important; }
+  .main-content { max-width: none; padding: 0; }
 }

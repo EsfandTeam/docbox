@@ -7,23 +7,29 @@ nav_order: 1
 
 # پیاده‌سازی فیزیک موشک در Godot 4
 
+[← بازگشت به فهرست دستورپخت‌ها](../index.md){: .back-link }
+
 <table class="recipe-meta">
   <tr><th>وضعیت تأیید</th><td><span class="badge badge-verified">human-verified</span></td></tr>
   <tr><th>موتور</th><td>Godot 4.x (حداقل ۴.۰)</td></tr>
   <tr><th>زبان</th><td>GDScript</td></tr>
   <tr><th>مجوز</th><td>MIT</td></tr>
-  <tr><th>آخرین تست</th><td>۲۰۲۵-۱۱-۱۷</td></tr>
+  <tr><th>آخرین تست</th><td>۲۰۲۶-۱۱-۱۷</td></tr>
 </table>
 
-## ۱. منبع اصلی (Provenance)
+<nav class="toc-card">
+  <a href="#provenance">منبع اصلی</a> · <a href="#summary">خلاصه اجرایی</a> · <a href="#code">کد کامل</a> · <a href="#test">تست پذیرش</a> · <a href="#failures">حالت‌های شکست</a>
+</nav>
+
+## ۱. منبع اصلی (Provenance) {: #provenance }
 
 این مستند بر اساس مفاهیم پایه‌ای فیزیک در مستندات رسمی Godot (تحت مجوز CC BY 3.0) تدوین شده است. پیاده‌سازی کد و تست پذیرش، حاصل بازنویسی و آزمایش مستقل در محیط Godot 4 است.
 
-## ۲. خلاصه اجرایی
+## ۲. خلاصه اجرایی {: #summary }
 
 برای شبیه‌سازی حرکت یک موشک (یا هر وسیله نقلیه پرنده)، نباید مستقیماً به موقعیت (Position) یا سرعت (Velocity) دست بزنیم. بهترین روش استفاده از یک نود `RigidBody3D` و اعمال نیروی پیشران (Thrust) در هر فریم فیزیکی است. این کار باعث می‌شود موتور فیزیک Godot به صورت خودکار برخوردها، جرم (Mass) و درگ (Drag) را محاسبه کند.
 
-## ۳. کد کامل (GDScript)
+## ۳. کد کامل (GDScript) {: #code }
 
 این اسکریپت را روی یک نود از نوع `RigidBody3D` قرار دهید. مطمئن شوید که جرم (Mass) نود در Inspector روی یک مقدار منطقی (مثلاً ۱۰) تنظیم شده است.
 
@@ -57,7 +63,7 @@ func _physics_process(delta: float) -> void:
             current_fuel = 0.0
 ```
 
-## ۴. تست پذیرش (Acceptance Test)
+## ۴. تست پذیرش (Acceptance Test) {: #test }
 
 برای اطمینان از صحت فیزیک، این تست را اجرا کنید:
 
@@ -79,7 +85,7 @@ a = 50 m/s²
 - مقدار `current_fuel` باید به `90` برسد.
 - پس از اتمام سوخت، شتاب باید صفر شده و موشک با سرعت ثابت به حرکت ادامه دهد (قانون اول نیوتن).
 
-## ۵. حالت‌های شکست (Failure Modes)
+## ۵. حالت‌های شکست (Failure Modes) {: #failures }
 
 **ناپایداری عددی (Tunneling):**
 اگر `thrust_force` را بسیار بالا ببرید (مثلاً `100,000`) و نرخ تیک فیزیک (Physics Tick Rate) پایین باشد، ممکن است موشک در یک فریم از دیوار عبور کند.

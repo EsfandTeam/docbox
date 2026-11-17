@@ -6,6 +6,9 @@ baseurl: "/docbox"
 # تم مستندات حرفه‌ای
 remote_theme: just-the-docs/just-the-docs
 
+# چیدمان مدرن: بدون سایدبار ویکی‌پدیایی — ناوبری از نوار بالایی
+nav_enabled: false
+
 # جستجوی داخلی
 search_enabled: true
 search:
@@ -22,22 +25,19 @@ plugins:
   - jekyll-remote-theme
   - jekyll-seo-tag
 
-# لینک‌های نوار بالا (تعویض زبان + درباره)
+# ناوبری بالای سایت
 aux_links:
+  "دستورپخت‌ها": "/docbox/fa/"
   "درباره": "/docbox/about.md"
-  "🇮🇷 فارسی": "/docbox/fa/"
-  "🇬🇧 English": "/docbox/en/"
+  "GitHub": "https://github.com/esfandteam/docbox"
+  "English": "/docbox/en/"
 aux_links_new_tab: false
 
-# تنظیمات ظاهری مدرن تم just-the-docs
-# (روی CSS سفارشی ما در _sass/custom/custom.scss override می‌شود)
-color_scheme: nil
+# جزئیات UX
 heading_anchors: true
 back_to_top: true
 back_to_top_text: "بازگشت به بالا"
-
-# فونت و RTL
-# تنظیمات RTL داخل custom.scss انجام می‌شود
+footer_content: "DocBox — لایه اعتماد برای Agentهای هوش مصنوعی · منتشرشده تحت مجوز MIT"
 
 # خروجی تمیز
 compress_html:

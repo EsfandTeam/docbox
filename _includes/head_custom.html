@@ -1,0 +1,98 @@
+<script>
+// DocBox custom scripts: copy button on code blocks + light/dark theme toggle
+(function () {
+  // ---- Theme toggle -------------------------------------------------------
+  var THEME_KEY = 'docbox-theme';
+
+  function applyTheme(theme) {
+    if (theme === 'dark' || theme === 'light') {
+      document.documentElement.setAttribute('data-theme', theme);
+    } else {
+      document.documentElement.removeAttribute('data-theme');
+    }
+  }
+
+  var stored = null;
+  try { stored = localStorage.getItem(THEME_KEY); } catch (e) {}
+  applyTheme(stored);
+
+  function createToggleButton() {
+    var header = document.querySelector('.site-header');
+    if (!header) return;
+
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'theme-toggle';
+    btn.setAttribute('aria-label', 'تغییر تم روشن/تاریک');
+
+    function isDark() {
+      var attr = document.documentElement.getAttribute('data-theme');
+      if (attr === 'dark') return true;
+      if (attr === 'light') return false;
+      return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    }
+
+    function render() {
+      btn.textContent = isDark() ? '☀' : '☾';
+    }
+
+    btn.addEventListener('click', function () {
+      var next = isDark() ? 'light' : 'dark';
+      applyTheme(next);
+      try { localStorage.setItem(THEME_KEY, next); } catch (e) {}
+      render();
+    });
+
+    render();
+    header.appendChild(btn);
+  }
+
+  // ---- Copy buttons on code blocks ---------------------------------------
+  function addCopyButtons() {
+    var blocks = document.querySelectorAll('.main-content pre');
+    blocks.forEach(function (pre) {
+      if (pre.querySelector('.copy-btn')) return;
+      pre.style.position = 'relative';
+
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'copy-btn';
+      btn.textContent = 'کپی';
+
+      function flash(msg) {
+        btn.textContent = msg;
+        setTimeout(function () { btn.textContent = 'کپی'; }, 1500);
+      }
+
+      btn.addEventListener('click', function () {
+        var code = pre.querySelector('code');
+        var text = code ? code.innerText : pre.innerText;
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(function () { flash('کپی شد ✓'); });
+        } else {
+          var ta = document.createElement('textarea');
+          ta.value = text;
+          ta.style.position = 'fixed';
+          ta.style.opacity = '0';
+          document.body.appendChild(ta);
+          ta.select();
+          try {
+            document.execCommand('copy');
+            flash('کپی شد ✓');
+          } catch (e) {
+            flash('خطا');
+          }
+          document.body.removeChild(ta);
+        }
+      });
+
+      pre.appendChild(btn);
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    createToggleButton();
+    addCopyButtons();
+  });
+})();
+</script>
