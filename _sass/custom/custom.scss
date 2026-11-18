@@ -971,3 +971,139 @@ html.db-en {
   .db-footer-main { grid-template-columns: 1fr; }
   .db-footer-bar { flex-direction: column; align-items: flex-start; }
 }
+
+// ----------------------------------------------------------------------------
+// 19. Code language label + prev/next + related recipes
+// ----------------------------------------------------------------------------
+
+.code-lang {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  font-family: 'JetBrains Mono', Consolas, monospace;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.35);
+  pointer-events: none;
+  direction: ltr;
+}
+
+.recipe-pn {
+  display: flex;
+  gap: 0.8rem;
+  margin: 2.4rem 0 1.4rem;
+
+  .recipe-pn-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding: 0.85rem 1.1rem;
+    background: var(--docbox-surface);
+    border: 1px solid var(--docbox-border);
+    border-radius: var(--docbox-radius-md);
+    box-shadow: var(--docbox-shadow-sm);
+    text-decoration: none !important;
+    transition: all var(--docbox-transition);
+
+    &.prev { text-align: right; }
+    &.next { text-align: left; }
+    &.prev:hover, &.next:hover {
+      border-color: color-mix(in srgb, var(--docbox-primary) 45%, var(--docbox-border));
+      box-shadow: var(--docbox-shadow-md);
+      transform: translateY(-2px);
+    }
+
+    .recipe-pn-dir {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--docbox-primary);
+    }
+
+    .recipe-pn-title {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--docbox-text);
+    }
+  }
+}
+
+.recipe-rel-title { border-bottom: none !important; margin-bottom: 0.4rem !important; }
+
+// ----------------------------------------------------------------------------
+// 20. Hero terminal (agent fetch preview)
+// ----------------------------------------------------------------------------
+
+.hero-code {
+  max-width: 640px;
+  margin: 0.4rem auto 1.8rem;
+  background: rgba(6, 10, 19, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: var(--docbox-radius-md);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+  overflow: hidden;
+  direction: ltr;
+  text-align: left;
+
+  .hero-code-bar {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.55rem 0.9rem;
+    background: rgba(255, 255, 255, 0.06);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+    i {
+      display: inline-block;
+      width: 0.65rem;
+      height: 0.65rem;
+      border-radius: 999px;
+      background: #f87171;
+      &:nth-child(2) { background: #fbbf24; }
+      &:nth-child(3) { background: #34d399; }
+    }
+
+    span {
+      margin-left: 0.6rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      color: rgba(255, 255, 255, 0.45);
+    }
+  }
+
+  pre {
+    margin: 0 !important;
+    padding: 1rem 1.1rem !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    font-size: 0.78rem !important;
+    line-height: 1.7 !important;
+    color: #a5d6ff !important;
+  }
+}
+
+// ----------------------------------------------------------------------------
+// 21. 404 page
+// ----------------------------------------------------------------------------
+
+.db-404 {
+  text-align: center;
+  padding: 4rem 1rem 3rem;
+
+  .db-404-code {
+    font-size: 5.5rem;
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    line-height: 1;
+    background: linear-gradient(135deg, var(--docbox-primary), var(--docbox-hero-bg-2));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  h1 { border: none !important; }
+  p { color: var(--docbox-text-muted); max-width: 440px; margin: 0.8rem auto 1.6rem; }
+}

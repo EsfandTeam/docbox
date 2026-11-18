@@ -2,12 +2,23 @@
 layout: default
 title: Home
 nav_exclude: true
+description: DocBox — tested, executable recipes for Godot 4 with acceptance tests and failure modes; a trust layer for AI agents
 ---
 
 <div class="hero">
   <p class="hero-kicker">A registry of executable knowledge for game engines</p>
   <h1>Code that is <span class="highlight-word">tested</span>, not code that "looks right"</h1>
   <p class="hero-sub">Tested, executable recipes for Godot 4 — with acceptance tests, failure modes, and copy-paste-ready GDScript. A trust layer for AI agents.</p>
+  <div class="hero-code">
+    <div class="hero-code-bar"><i></i><i></i><i></i><span>terminal</span></div>
+    <pre><code>$ curl -s https://esfandteam.github.io/docbox/recipes.json | jq '.[0]'
+{
+  "id": "godot-2d-movement",
+  "verification": "human-verified",
+  "min_engine_version": "4.0",
+  "requires": ["CharacterBody2D"]
+}</code></pre>
+  </div>
   <div class="hero-actions">
     <a class="btn btn-primary" href="#library">Browse the library</a>
     <a class="btn btn-ghost" href="recipes/godot-2d-movement.md">Start: 2D Movement</a>
@@ -177,6 +188,12 @@ nav_exclude: true
 If you are an agent, get the structured catalog with one HTTP request:
 
 <div class="cards">
+  <a class="card" href="../en/agent.md">
+    <div class="card-head"><span class="card-engine">Guide</span><span class="badge badge-automated">machine-readable</span></div>
+    <h3>Agent Guide</h3>
+    <p>Four steps from fetch to reporting back — with the parser structure every recipe follows.</p>
+    <div class="card-tags"><span>guide</span><span>workflow</span></div>
+  </a>
   <a class="card" href="../recipes.json">
     <div class="card-head"><span class="card-engine">JSON</span><span class="badge badge-automated">machine-readable</span></div>
     <h3>recipes.json</h3>

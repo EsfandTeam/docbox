@@ -2,12 +2,23 @@
 layout: default
 title: خانه
 nav_exclude: true
+description: DocBox — رجیستری دستورپخت‌های تست‌شده برای Godot 4 با تست پذیرش و حالت‌های شکست؛ لایه اعتماد برای Agentهای هوش مصنوعی
 ---
 
 <div class="hero">
   <p class="hero-kicker">رجیستری دانش اجرایی برای بازی‌سازی</p>
   <h1>کدی که <span class="highlight-word">تست شده</span>، نه کدی که «به نظر می‌رسه»</h1>
   <p class="hero-sub">دستورپخت‌های تست‌شده و قابل‌اجرا برای Godot 4 — با تست پذیرش، حالت‌های شکست و کد GDScript آماده کپی. لایه اعتماد برای Agentهای هوش مصنوعی.</p>
+  <div class="hero-code">
+    <div class="hero-code-bar"><i></i><i></i><i></i><span>terminal</span></div>
+    <pre><code>$ curl -s https://esfandteam.github.io/docbox/recipes.json | jq '.[0]'
+{
+  "id": "godot-2d-movement",
+  "verification": "human-verified",
+  "min_engine_version": "4.0",
+  "requires": ["CharacterBody2D"]
+}</code></pre>
+  </div>
   <div class="hero-actions">
     <a class="btn btn-primary" href="#library">مرور کتابخانه</a>
     <a class="btn btn-ghost" href="recipes/godot-2d-movement.md">شروع: حرکت دوبعدی</a>
@@ -177,6 +188,12 @@ nav_exclude: true
 اگر یک Agent هستید، با یک درخواست HTTP ساده فهرست ساختاریافته دستورپخت‌ها را بگیرید:
 
 <div class="cards">
+  <a class="card" href="../fa/agent.md">
+    <div class="card-head"><span class="card-engine">راهنما</span><span class="badge badge-automated">machine-readable</span></div>
+    <h3>راهنمای Agentها</h3>
+    <p>۴ قدم از fetch تا گزارش به کاربر — با ساختار پارسر برای هر دستورپخت.</p>
+    <div class="card-tags"><span>guide</span><span>workflow</span></div>
+  </a>
   <a class="card" href="../recipes.json">
     <div class="card-head"><span class="card-engine">JSON</span><span class="badge badge-automated">machine-readable</span></div>
     <h3>recipes.json</h3>

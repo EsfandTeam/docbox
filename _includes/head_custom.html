@@ -1,3 +1,4 @@
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%232563eb'/%3E%3Cstop offset='1' stop-color='%230e7490'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='14' fill='url(%23g)'/%3E%3Ctext x='32' y='44' font-family='Arial,sans-serif' font-size='38' font-weight='900' fill='%23fff' text-anchor='middle'%3ED%3C/text%3E%3C/svg%3E">
 <script>
 // DocBox custom scripts: copy button on code blocks + light/dark theme toggle
 (function () {
@@ -186,11 +187,91 @@
     });
   }
 
+  // ---- Code block language labels ----------------------------------------
+  function addCodeLabels() {
+    document.querySelectorAll('.main-content pre').forEach(function (pre) {
+      var code = pre.querySelector('code');
+      if (!code) return;
+      var cls = code.className || '';
+      var lang = null;
+      if (cls.indexOf('gdscript') !== -1) lang = 'GDScript';
+      else if (cls.indexOf('language-json') !== -1) lang = 'JSON';
+      else if (cls.indexOf('text') !== -1) lang = 'Output';
+      if (!lang) return;
+      var tag = document.createElement('span');
+      tag.className = 'code-lang';
+      tag.textContent = lang;
+      pre.appendChild(tag);
+    });
+  }
+
+  // ---- Prev / Next + Related recipes (on recipe pages) --------------------
+  function initRecipeNav() {
+    var m = window.location.pathname.match(/\/(fa|en)\/recipes\/([a-z0-9-]+?)(\.md|\.html)?$/);
+    if (!m) return;
+    var lang = m[1], id = m[2];
+    var fa = lang === 'fa';
+    fetch('/docbox/recipes.json').then(function (r) { return r.json(); }).then(function (list) {
+      var idx = -1, entry = null;
+      list.forEach(function (e, i) { if (e.id === id) { idx = i; entry = e; } });
+      if (idx === -1) return;
+
+      // prev / next bar
+      var html = '<div class="recipe-pn">';
+      if (idx > 0) {
+        var p = list[idx - 1];
+        html += '<a class="recipe-pn-item prev" href="/docbox/' + lang + '/recipes/' + p.id + '">' +
+          '<span class="recipe-pn-dir">' + (fa ? 'قبلی' : 'Previous') + '</span>' +
+          '<span class="recipe-pn-title">' + (fa ? p.title : (p.title_en || p.title)) + '</span></a>';
+      } else {
+        html += '<span class="recipe-pn-item"></span>';
+      }
+      if (idx < list.length - 1) {
+        var n = list[idx + 1];
+        html += '<a class="recipe-pn-item next" href="/docbox/' + lang + '/recipes/' + n.id + '">' +
+          '<span class="recipe-pn-dir">' + (fa ? 'بعدی' : 'Next') + '</span>' +
+          '<span class="recipe-pn-title">' + (fa ? n.title : (n.title_en || n.title)) + '</span></a>';
+      } else {
+        html += '<span class="recipe-pn-item"></span>';
+      }
+      html += '</div>';
+
+      // related (shared tags), 3 cards
+      var rel = list.filter(function (e) {
+        return e.id !== id && e.tags.some(function (t) { return entry.tags.indexOf(t) !== -1; });
+      }).slice(0, 3);
+
+      if (rel.length) {
+        html += '<h2 class="recipe-rel-title">' + (fa ? 'دستورپخت‌های مرتبط' : 'Related recipes') + '</h2><div class="cards recipe-rel">';
+        rel.forEach(function (e) {
+          var title = fa ? e.title : (e.title_en || e.title);
+          var sum = fa ? e.summary_fa : e.summary;
+          html += '<a class="card cat-patterns" href="/docbox/' + lang + '/recipes/' + e.id + '">' +
+            '<div class="card-head"><span class="card-engine">Godot 4.x</span>' +
+            '<span class="badge badge-verified">human-verified</span></div>' +
+            '<h3>' + title + '</h3><p>' + sum + '</p>' +
+            '<div class="card-tags">' + e.tags.map(function (t) { return '<span>' + t + '</span>'; }).join('') +
+            '</div></a>';
+        });
+        html += '</div>';
+      }
+
+      var main = document.querySelector('.main-content');
+      if (main) {
+        var wrap = document.createElement('div');
+        wrap.innerHTML = html;
+        main.appendChild(wrap);
+      }
+    }).catch(function () {});
+  }
+
   document.addEventListener('DOMContentLoaded', function () {
     createToggleButton();
     addCopyButtons();
     initLibraryFilter();
     initLocalization();
+    addCodeLabels();
+    initRecipeNav();
   });
 })();
 </script>

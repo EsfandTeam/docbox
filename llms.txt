@@ -35,5 +35,7 @@ All recipes above are mirrored in English under
 ## Optional
 
 - [About DocBox](https://esfandteam.github.io/docbox/about.md): what DocBox is, the problem it solves, and why it is built for AI agents.
+- [Agent Guide (EN)](https://esfandteam.github.io/docbox/en/agent.md): how agents should fetch, filter, and apply recipes in three HTTP requests.
+- [Agent Guide (FA)](https://esfandteam.github.io/docbox/fa/agent.md): the same guide in Persian.
 - [Contributing guide](https://esfandteam.github.io/docbox/CONTRIBUTING.md): how to submit a new recipe.
 - [License (MIT)](https://esfandteam.github.io/docbox/LICENSE): all recipes and code in this registry are MIT-licensed.
