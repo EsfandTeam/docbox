@@ -18,7 +18,7 @@
   applyTheme(stored);
 
   function createToggleButton() {
-    var header = document.querySelector('.site-header');
+    var header = document.querySelector('.main-header') || document.querySelector('.site-header');
     if (!header) return;
 
     var btn = document.createElement('button');
@@ -265,8 +265,60 @@
     }).catch(function () {});
   }
 
+  // ---- Brand + language switcher (segmented control) ---------------------
+  function initHeaderExtras() {
+    var header = document.querySelector('.main-header') || document.querySelector('.site-header');
+    if (!header) return;
+    var path = window.location.pathname;
+    var isEn = path.indexOf('/docbox/en') === 0;
+
+    // brand at the start
+    if (!header.querySelector('.db-brand')) {
+      var brand = document.createElement('a');
+      brand.className = 'db-brand';
+      brand.href = isEn ? '/docbox/en/' : '/docbox/fa/';
+      brand.innerHTML = '<span class="db-brand-mark">D</span><span>DocBox</span>';
+      header.insertBefore(brand, header.firstChild);
+    }
+
+    // language switcher replaces the old plain language link
+    function counterpart(toEn) {
+      var p = path;
+      if (toEn) {
+        p = p.replace('/docbox/fa/', '/docbox/en/');
+        if (p.indexOf('/docbox/en') !== 0) {
+          if (p.indexOf('/docbox/about') === 0) p = '/docbox/en/about';
+          else if (p.indexOf('/docbox/agent') === 0) p = '/docbox/en/agent';
+          else p = '/docbox/en/';
+        }
+      } else {
+        p = p.replace('/docbox/en/', '/docbox/fa/');
+        if (p.indexOf('/docbox/fa') !== 0) p = '/docbox/fa/';
+      }
+      return p;
+    }
+
+    var old = Array.prototype.filter.call(
+      header.querySelectorAll('.aux-nav-link'),
+      function (a) {
+        var href = a.getAttribute('href') || '';
+        return href.indexOf('/docbox/en') === 0;
+      }
+    );
+    if (old.length && !header.querySelector('.lang-switch')) {
+      var li = old[0].closest('li') || old[0];
+      var sw = document.createElement('div');
+      sw.className = 'lang-switch';
+      sw.innerHTML =
+        '<a class="lang-btn' + (isEn ? '' : ' active') + '" href="' + counterpart(false) + '">فارسی</a>' +
+        '<a class="lang-btn' + (isEn ? ' active' : '') + '" href="' + counterpart(true) + '">EN</a>';
+      li.replaceWith(sw);
+    }
+  }
+
   document.addEventListener('DOMContentLoaded', function () {
     createToggleButton();
+    initHeaderExtras();
     addCopyButtons();
     initLibraryFilter();
     initLocalization();
