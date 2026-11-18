@@ -42,10 +42,11 @@ back_to_top_text: "Back to top"
 # فوتر سفارشی در _includes/footer_custom.html ساخته می‌شود
 footer_content: ""
 
-# خروجی تمیز
+# خروجی تمیز — «endings: all» ممنوع است؛ خط‌های جدید را داخل <script> هم
+# حذف می‌کند و کامنت‌های // کل اسکریپت را غیرفعال می‌کنند (باگ قبلی)
 compress_html:
   clippings: all
   comments: all
-  endings: all
+  endings: []
   startings: []
   blanklines: false

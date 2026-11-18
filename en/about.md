@@ -61,4 +61,4 @@ After review by the team, the recipe is published with `human-verified` status.
 
 ## License
 
-All recipes and code inside DocBox are published under the **MIT** license. The full text is in [`LICENSE`](LICENSE).
+All recipes and code inside DocBox are published under the **MIT** license. The full text is in [`LICENSE`](/docbox/LICENSE).

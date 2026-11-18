@@ -5,6 +5,7 @@
     "title_en": "2D Character Movement in Godot 4",
     "summary": "Player movement and jumping with CharacterBody2D and move_and_slide, with manual gravity and calculable jump height.",
     "summary_fa": "حرکت و پرش بازیکن با CharacterBody2D و move_and_slide، با گرانش دستی و ارتفاع پرش قابل‌محاسبه.",
+    "category": "movement",
     "engine": "godot",
     "min_engine_version": "4.0",
     "language": "gdscript",
@@ -22,9 +23,9 @@
     "conflicts": [],
     "last_tested": "2026-11-17",
     "tested_by": "esfandteam",
-    "url_markdown": "https://esfandteam.github.io/docbox/fa/recipes/godot-2d-movement.md",
+    "url_markdown": "https://raw.githubusercontent.com/esfandteam/docbox/main/fa/recipes/godot-2d-movement.md",
     "url_html": "https://esfandteam.github.io/docbox/fa/recipes/godot-2d-movement",
-    "url_markdown_en": "https://esfandteam.github.io/docbox/en/recipes/godot-2d-movement.md",
+    "url_markdown_en": "https://raw.githubusercontent.com/esfandteam/docbox/main/en/recipes/godot-2d-movement.md",
     "url_html_en": "https://esfandteam.github.io/docbox/en/recipes/godot-2d-movement"
   },
   {
@@ -33,6 +34,7 @@
     "title_en": "Camera Follow in Godot 4",
     "summary": "Native Camera2D position smoothing with world limits and physics-tick callback — no hand-rolled lerp.",
     "summary_fa": "نرم‌سازی داخلی Camera2D با مرزهای دنیا و callback فیزیک — بدون لرپ دستی.",
+    "category": "movement",
     "engine": "godot",
     "min_engine_version": "4.0",
     "language": "gdscript",
@@ -50,9 +52,9 @@
     "conflicts": [],
     "last_tested": "2026-11-17",
     "tested_by": "esfandteam",
-    "url_markdown": "https://esfandteam.github.io/docbox/fa/recipes/godot-camera-follow.md",
+    "url_markdown": "https://raw.githubusercontent.com/esfandteam/docbox/main/fa/recipes/godot-camera-follow.md",
     "url_html": "https://esfandteam.github.io/docbox/fa/recipes/godot-camera-follow",
-    "url_markdown_en": "https://esfandteam.github.io/docbox/en/recipes/godot-camera-follow.md",
+    "url_markdown_en": "https://raw.githubusercontent.com/esfandteam/docbox/main/en/recipes/godot-camera-follow.md",
     "url_html_en": "https://esfandteam.github.io/docbox/en/recipes/godot-camera-follow"
   },
   {
@@ -61,6 +63,7 @@
     "title_en": "Save/Load Games with JSON in Godot 4",
     "summary": "Persist game state with FileAccess and JSON to the safe user:// path, with error handling and corrupt-file protection.",
     "summary_fa": "ذخیره وضعیت بازی با FileAccess و JSON در مسیر امن user://، با مدیریت خطا و فایل خراب.",
+    "category": "data",
     "engine": "godot",
     "min_engine_version": "4.0",
     "language": "gdscript",
@@ -78,9 +81,9 @@
     "conflicts": [],
     "last_tested": "2026-11-17",
     "tested_by": "esfandteam",
-    "url_markdown": "https://esfandteam.github.io/docbox/fa/recipes/godot-save-load-json.md",
+    "url_markdown": "https://raw.githubusercontent.com/esfandteam/docbox/main/fa/recipes/godot-save-load-json.md",
     "url_html": "https://esfandteam.github.io/docbox/fa/recipes/godot-save-load-json",
-    "url_markdown_en": "https://esfandteam.github.io/docbox/en/recipes/godot-save-load-json.md",
+    "url_markdown_en": "https://raw.githubusercontent.com/esfandteam/docbox/main/en/recipes/godot-save-load-json.md",
     "url_html_en": "https://esfandteam.github.io/docbox/en/recipes/godot-save-load-json"
   },
   {
@@ -89,6 +92,7 @@
     "title_en": "Scene Transitions in Godot 4",
     "summary": "Switch scenes with SceneTree.change_scene_to_file including error-code checks and an optional fade transition via Tween.",
     "summary_fa": "تعویض صحنه با change_scene_to_file همراه با چک کد خطا و جلوه محو‌شدگی اختیاری با Tween.",
+    "category": "ui",
     "engine": "godot",
     "min_engine_version": "4.0",
     "language": "gdscript",
@@ -106,9 +110,9 @@
     "conflicts": [],
     "last_tested": "2026-11-17",
     "tested_by": "esfandteam",
-    "url_markdown": "https://esfandteam.github.io/docbox/fa/recipes/godot-scene-transition.md",
+    "url_markdown": "https://raw.githubusercontent.com/esfandteam/docbox/main/fa/recipes/godot-scene-transition.md",
     "url_html": "https://esfandteam.github.io/docbox/fa/recipes/godot-scene-transition",
-    "url_markdown_en": "https://esfandteam.github.io/docbox/en/recipes/godot-scene-transition.md",
+    "url_markdown_en": "https://raw.githubusercontent.com/esfandteam/docbox/main/en/recipes/godot-scene-transition.md",
     "url_html_en": "https://esfandteam.github.io/docbox/en/recipes/godot-scene-transition"
   },
   {
@@ -117,6 +121,7 @@
     "title_en": "Tweens in Godot 4",
     "summary": "Chained, parallel and looping property animations with create_tween, bound to the owning node for leak-free cleanup.",
     "summary_fa": "انیمیشن‌های زنجیره‌ای، موازی و حلقه‌ای با create_tween، متصل به نود مالک برای پاکسازی بدون نشتی.",
+    "category": "ui",
     "engine": "godot",
     "min_engine_version": "4.0",
     "language": "gdscript",
@@ -133,9 +138,9 @@
     "conflicts": [],
     "last_tested": "2026-11-17",
     "tested_by": "esfandteam",
-    "url_markdown": "https://esfandteam.github.io/docbox/fa/recipes/godot-tween.md",
+    "url_markdown": "https://raw.githubusercontent.com/esfandteam/docbox/main/fa/recipes/godot-tween.md",
     "url_html": "https://esfandteam.github.io/docbox/fa/recipes/godot-tween",
-    "url_markdown_en": "https://esfandteam.github.io/docbox/en/recipes/godot-tween.md",
+    "url_markdown_en": "https://raw.githubusercontent.com/esfandteam/docbox/main/en/recipes/godot-tween.md",
     "url_html_en": "https://esfandteam.github.io/docbox/en/recipes/godot-tween"
   },
   {
@@ -144,6 +149,7 @@
     "title_en": "Audio Playback in Godot 4",
     "summary": "Looping music via the finished signal and SFX with pitch variance; correct decibel-based volume handling.",
     "summary_fa": "موسیقی لوپ با سیگنال finished و جلوه صوتی با واریانس گام؛ مدیریت صحیح بلندی بر حسب دسی‌بل.",
+    "category": "data",
     "engine": "godot",
     "min_engine_version": "4.0",
     "language": "gdscript",
@@ -161,9 +167,9 @@
     "conflicts": [],
     "last_tested": "2026-11-17",
     "tested_by": "esfandteam",
-    "url_markdown": "https://esfandteam.github.io/docbox/fa/recipes/godot-audio.md",
+    "url_markdown": "https://raw.githubusercontent.com/esfandteam/docbox/main/fa/recipes/godot-audio.md",
     "url_html": "https://esfandteam.github.io/docbox/fa/recipes/godot-audio",
-    "url_markdown_en": "https://esfandteam.github.io/docbox/en/recipes/godot-audio.md",
+    "url_markdown_en": "https://raw.githubusercontent.com/esfandteam/docbox/main/en/recipes/godot-audio.md",
     "url_html_en": "https://esfandteam.github.io/docbox/en/recipes/godot-audio"
   },
   {
@@ -172,6 +178,7 @@
     "title_en": "Rocket Physics in Godot 4",
     "summary": "Thrust-based rocket motion on RigidBody3D with apply_central_force and fuel consumption, verified against Newton's second law.",
     "summary_fa": "حرکت موشک با پیشران روی RigidBody3D و apply_central_force و مصرف سوخت، تأییدشده با قانون دوم نیوتن.",
+    "category": "physics",
     "engine": "godot",
     "min_engine_version": "4.0",
     "language": "gdscript",
@@ -190,9 +197,9 @@
     "conflicts": [],
     "last_tested": "2026-11-17",
     "tested_by": "esfandteam",
-    "url_markdown": "https://esfandteam.github.io/docbox/fa/recipes/godot-rocket.md",
+    "url_markdown": "https://raw.githubusercontent.com/esfandteam/docbox/main/fa/recipes/godot-rocket.md",
     "url_html": "https://esfandteam.github.io/docbox/fa/recipes/godot-rocket",
-    "url_markdown_en": "https://esfandteam.github.io/docbox/en/recipes/godot-rocket.md",
+    "url_markdown_en": "https://raw.githubusercontent.com/esfandteam/docbox/main/en/recipes/godot-rocket.md",
     "url_html_en": "https://esfandteam.github.io/docbox/en/recipes/godot-rocket"
   },
   {
@@ -201,6 +208,7 @@
     "title_en": "Input Buffer in Godot 4",
     "summary": "Buffer jump presses a few frames before landing so responsive controls never eat inputs.",
     "summary_fa": "ثبت فشردن پرش چند فریم قبل از فرود تا کنترل‌های حساس هیچ ورودی را از دست ندهند.",
+    "category": "movement",
     "engine": "godot",
     "min_engine_version": "4.0",
     "language": "gdscript",
@@ -218,9 +226,9 @@
     "conflicts": [],
     "last_tested": "2026-11-17",
     "tested_by": "esfandteam",
-    "url_markdown": "https://esfandteam.github.io/docbox/fa/recipes/godot-input-buffer.md",
+    "url_markdown": "https://raw.githubusercontent.com/esfandteam/docbox/main/fa/recipes/godot-input-buffer.md",
     "url_html": "https://esfandteam.github.io/docbox/fa/recipes/godot-input-buffer",
-    "url_markdown_en": "https://esfandteam.github.io/docbox/en/recipes/godot-input-buffer.md",
+    "url_markdown_en": "https://raw.githubusercontent.com/esfandteam/docbox/main/en/recipes/godot-input-buffer.md",
     "url_html_en": "https://esfandteam.github.io/docbox/en/recipes/godot-input-buffer"
   },
   {
@@ -229,6 +237,7 @@
     "title_en": "Object Pooling in Godot 4",
     "summary": "Pre-allocate and recycle bullets/particles with acquire/release instead of instantiate/queue_free.",
     "summary_fa": "پیش‌تخصیص و بازیافت گلوله/ذرات با acquire/release به‌جای instantiate/queue_free.",
+    "category": "patterns",
     "engine": "godot",
     "min_engine_version": "4.0",
     "language": "gdscript",
@@ -245,9 +254,9 @@
     "conflicts": [],
     "last_tested": "2026-11-17",
     "tested_by": "esfandteam",
-    "url_markdown": "https://esfandteam.github.io/docbox/fa/recipes/godot-object-pooling.md",
+    "url_markdown": "https://raw.githubusercontent.com/esfandteam/docbox/main/fa/recipes/godot-object-pooling.md",
     "url_html": "https://esfandteam.github.io/docbox/fa/recipes/godot-object-pooling",
-    "url_markdown_en": "https://esfandteam.github.io/docbox/en/recipes/godot-object-pooling.md",
+    "url_markdown_en": "https://raw.githubusercontent.com/esfandteam/docbox/main/en/recipes/godot-object-pooling.md",
     "url_html_en": "https://esfandteam.github.io/docbox/en/recipes/godot-object-pooling"
   },
   {
@@ -256,6 +265,7 @@
     "title_en": "Simple State Machine in Godot 4",
     "summary": "Manage character states (idle/run/jump) with enum + match instead of nested if-statements.",
     "summary_fa": "مدیریت وضعیت کاراکتر (سکون/دویدن/پرش) با enum و match به‌جای تودرتوی if.",
+    "category": "patterns",
     "engine": "godot",
     "min_engine_version": "4.0",
     "language": "gdscript",
@@ -272,9 +282,9 @@
     "conflicts": [],
     "last_tested": "2026-11-17",
     "tested_by": "esfandteam",
-    "url_markdown": "https://esfandteam.github.io/docbox/fa/recipes/godot-state-machine.md",
+    "url_markdown": "https://raw.githubusercontent.com/esfandteam/docbox/main/fa/recipes/godot-state-machine.md",
     "url_html": "https://esfandteam.github.io/docbox/fa/recipes/godot-state-machine",
-    "url_markdown_en": "https://esfandteam.github.io/docbox/en/recipes/godot-state-machine.md",
+    "url_markdown_en": "https://raw.githubusercontent.com/esfandteam/docbox/main/en/recipes/godot-state-machine.md",
     "url_html_en": "https://esfandteam.github.io/docbox/en/recipes/godot-state-machine"
   },
   {
@@ -283,6 +293,7 @@
     "title_en": "Typewriter Dialogue System in Godot 4",
     "summary": "Show conversations with a typewriter effect via RichTextLabel.visible_ratio, a Next key, and a finished signal.",
     "summary_fa": "نمایش مکالمات با افکت تایپ‌رایتر از طریق visible_ratio کلید ادامه و سیگنال پایان گفتگو.",
+    "category": "ui",
     "engine": "godot",
     "min_engine_version": "4.0",
     "language": "gdscript",
@@ -299,9 +310,9 @@
     "conflicts": [],
     "last_tested": "2026-11-17",
     "tested_by": "esfandteam",
-    "url_markdown": "https://esfandteam.github.io/docbox/fa/recipes/godot-dialogue.md",
+    "url_markdown": "https://raw.githubusercontent.com/esfandteam/docbox/main/fa/recipes/godot-dialogue.md",
     "url_html": "https://esfandteam.github.io/docbox/fa/recipes/godot-dialogue",
-    "url_markdown_en": "https://esfandteam.github.io/docbox/en/recipes/godot-dialogue.md",
+    "url_markdown_en": "https://raw.githubusercontent.com/esfandteam/docbox/main/en/recipes/godot-dialogue.md",
     "url_html_en": "https://esfandteam.github.io/docbox/en/recipes/godot-dialogue"
   },
   {
@@ -310,6 +321,7 @@
     "title_en": "Custom Signals in Godot 4",
     "summary": "Decouple player and HUD with signal health_changed(current, max) and connect in _ready.",
     "summary_fa": "جداسازی بازیکن و HUD با سیگنال health_changed و اتصال در _ready.",
+    "category": "patterns",
     "engine": "godot",
     "min_engine_version": "4.0",
     "language": "gdscript",
@@ -326,9 +338,9 @@
     "conflicts": [],
     "last_tested": "2026-11-17",
     "tested_by": "esfandteam",
-    "url_markdown": "https://esfandteam.github.io/docbox/fa/recipes/godot-signals.md",
+    "url_markdown": "https://raw.githubusercontent.com/esfandteam/docbox/main/fa/recipes/godot-signals.md",
     "url_html": "https://esfandteam.github.io/docbox/fa/recipes/godot-signals",
-    "url_markdown_en": "https://esfandteam.github.io/docbox/en/recipes/godot-signals.md",
+    "url_markdown_en": "https://raw.githubusercontent.com/esfandteam/docbox/main/en/recipes/godot-signals.md",
     "url_html_en": "https://esfandteam.github.io/docbox/en/recipes/godot-signals"
   }
 ]

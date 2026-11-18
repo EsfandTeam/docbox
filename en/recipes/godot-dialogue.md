@@ -7,7 +7,7 @@ nav_order: 11
 
 # Typewriter Dialogue System in Godot 4
 
-[← Back to recipe index](../index.md){: .back-link }
+[← Back to recipe index](../){: .back-link }
 
 <table class="recipe-meta">
   <tr><th>Verification</th><td><span class="badge badge-verified">human-verified</span></td></tr>

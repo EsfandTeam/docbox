@@ -105,3 +105,13 @@ https://esfandteam.github.io/docbox/recipes.json
 | `Ctrl + A` + Delete در File Explorer | ❌ ممنوع — `.git` را هم پاک می‌کند |
 | PowerShell `Remove-Item` | ❌ ممنوع — ریسک حذف اشتباه (یک بار فولدر اشتباه را خالی کرد) |
 | وب‌جستجوی GitHub Web UI | ❌ برای `_config.yml` و فولدرهای مخفی کار نمی‌کند |
+
+## یادداشت نسخه ۵ (فیکس باگ‌های بحرانی)
+
+| فایل جدید/تغییر یافته | نکته |
+|---|---|
+| `assets/js/docbox.js` | **فایل جدید** — تمام جاوااسکریپت سایت اینجاست. هرگز داخل `<script>` در `head_custom.html` کد ننویس؛ `compress_html` خط‌های جدید را حذف می‌کند و کامنت `//` کل اسکریپت را می‌کُشد |
+| `_config.yml` | `endings: all` ممنوع — برای همیشه `endings: []` بماند |
+| لینک‌های `.md` | هرگز به `*.md` لینک نده (روی GitHub Pages بدون front matter → 404؛ با front matter → تبدیل به HTML می‌شود). آدرس بدون پسوند یا لینک raw `raw.githubusercontent.com/.../main/...md` |
+| `recipes.json` | فیلد `category` جدید اضافه شد (movement/physics/ui/data/patterns) — با چیپ‌های صفحه اصلی باید هم‌خوان بماند |
+| فوتر | تم خروجی را `<footer>` بدون کلاس می‌دهد؛ استایل در `custom.scss` با سلکتور `footer` است نه `.site-footer` |

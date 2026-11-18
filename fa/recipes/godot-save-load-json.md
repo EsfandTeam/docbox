@@ -7,7 +7,7 @@ nav_order: 4
 
 # ذخیره و بارگذاری بازی با JSON در Godot 4
 
-[← بازگشت به فهرست دستورپخت‌ها](../index.md){: .back-link }
+[← بازگشت به فهرست دستورپخت‌ها](../){: .back-link }
 
 <table class="recipe-meta">
   <tr><th>وضعیت تأیید</th><td><span class="badge badge-verified">human-verified</span></td></tr>

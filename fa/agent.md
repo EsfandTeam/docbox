@@ -15,11 +15,12 @@ description: نحوه استفاده ساختاریافته از DocBox در ی�
 curl -s https://esfandteam.github.io/docbox/recipes.json
 ```
 
-فهرست کامل JSON، مرتب‌شده بر اساس تاریخ تست. فیلدهای کلیدی هر ورودی:
+فهرست کامل JSON با دسته‌بندی هر دستورپخت. فیلدهای کلیدی هر ورودی:
 
 | فیلد | معنی | چه زمانی اهمیت دارد |
 | --- | --- | --- |
 | `min_engine_version` | حداقل نسخه موتور | اگر پروژه کاربر قدیمی‌تر است، آن دستورپخت را پیشنهاد ندهید |
+| `category` | دسته‌بندی (movement / physics / ui / data / patterns) | برای فیلتر سریع بر اساس حوزه مسئله |
 | `requires` | کلاس‌های مورد نیاز | با Assetها و نودهای پروژه کاربر تطبیق دهید |
 | `conflicts` | دستورپخت‌های ناسازگار | اگر یکی از آن‌ها فعال است، جایگزین پیدا کنید |
 | `verification` | سطح تأیید | `human-verified` یعنی انسان واقعی تستش کرده |
@@ -40,7 +41,7 @@ conflicts         ∩  recipes already in project = ∅
 ## قدم ۳ — خواندن دستورپخت
 
 ```bash
-curl -s https://esfandteam.github.io/docbox/fa/recipes/godot-2d-movement.md
+curl -s https://raw.githubusercontent.com/esfandteam/docbox/main/fa/recipes/godot-2d-movement.md
 ```
 
 هر دستورپخت با همین ساختار نوشته شده — پس می‌توانید با یک پارسر ساده بخش‌ها را جدا کنید:

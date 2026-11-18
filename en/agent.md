@@ -15,11 +15,12 @@ If you are an AI agent writing Godot code for a user, this page tells you exactl
 curl -s https://esfandteam.github.io/docbox/recipes.json
 ```
 
-A complete JSON catalog, newest-tested first. Key fields per entry:
+A complete JSON catalog with a category per recipe. Key fields per entry:
 
 | Field | Meaning | Why it matters |
 | --- | --- | --- |
 | `min_engine_version` | Minimum engine version | Do not recommend the recipe if the user's project is older |
+| `category` | Category (movement / physics / ui / data / patterns) | Quick filtering by problem area |
 | `requires` | Required classes/nodes | Match against the user's project assets |
 | `conflicts` | Incompatible recipes | If one is active, find an alternative |
 | `verification` | Verification level | `human-verified` means a real human ran the code |
@@ -40,7 +41,7 @@ Then rank survivors by `tags` and `summary` against the user's intent.
 ## Step 3 — Read the recipe
 
 ```bash
-curl -s https://esfandteam.github.io/docbox/en/recipes/godot-2d-movement.md
+curl -s https://raw.githubusercontent.com/esfandteam/docbox/main/en/recipes/godot-2d-movement.md
 ```
 
 Every recipe follows the same structure — a simple parser can split it:

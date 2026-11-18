@@ -80,7 +80,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-body, .site-header, .main-content, .site-footer {
+body, .site-header, .main-content, footer {
   transition: background-color var(--docbox-transition), color var(--docbox-transition);
 }
 
@@ -88,6 +88,11 @@ body, .site-header, .main-content, .site-footer {
 // 3. Header (top bar) — replaces sidebar as primary navigation
 //    Live theme renders the bar as .main-header (not .site-header)
 // ----------------------------------------------------------------------------
+
+// تم در عرض زیر 31.25rem هدر را کاملاً display:none می‌کند — بازگرداندن هدر در موبایل
+.main .main-header {
+  display: flex !important;
+}
 
 .site-header,
 .main-header {
@@ -757,17 +762,33 @@ pre::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,.28); }
 }
 
 // ----------------------------------------------------------------------------
-// 10. Footer
+// 10. Footer — تم واقعی یک <footer> بدون کلاس، فرزند مستقیم .main-content می‌سازد
 // ----------------------------------------------------------------------------
 
-.site-footer {
+// خط جداکننده اضافه‌ای که تم قبل از فوتر می‌گذارد
+.main-content > hr {
+  display: none;
+}
+
+footer {
   direction: rtl;
   text-align: center;
   background-color: var(--docbox-surface);
   border-top: 1px solid var(--docbox-border);
-  padding: 1.4rem 2rem;
+  padding: 0;
   color: var(--docbox-text-muted);
   font-size: 0.88rem;
+
+  // پاراگراف لینک بازگشت به بالا (اولین فرزند footer)
+  > p {
+    text-align: center;
+    margin: 1.2rem 0 0;
+  }
+
+  // جمله انگلیسی اعتبار tem در موبایل — برای یکدستی زبان پنهان می‌شود
+  > .d-md-none {
+    display: none !important;
+  }
 }
 
 // ----------------------------------------------------------------------------
@@ -793,12 +814,33 @@ pre, code, .highlight, pre code {
   .site-header, .main-header { padding: 0.55rem 1rem !important; }
 }
 
+// هدر در موبایل: جستجو یک ردیف کامل، لینک‌ها با wrap
+@media (max-width: 38rem) {
+  .main .main-header .search {
+    flex: 1 1 100%;
+  }
+  .aux-nav-list {
+    flex-wrap: wrap;
+  }
+  .aux-nav {
+    margin-inline-start: 0 !important;
+  }
+}
+
+// لنگرها زیر هدر چسبان نروند
+.main-content h1[id],
+.main-content h2[id],
+.main-content h3[id],
+.main-content h4[id] {
+  scroll-margin-top: 5.5rem;
+}
+
 // ----------------------------------------------------------------------------
 // 13. Print
 // ----------------------------------------------------------------------------
 
 @media print {
-  .site-header, .main-header, .site-footer, .copy-btn, .theme-toggle { display: none !important; }
+  .site-header, .main-header, footer, .copy-btn, .theme-toggle { display: none !important; }
   .main-content { max-width: none; padding: 0; }
 }
 
@@ -940,6 +982,8 @@ pre, code, .highlight, pre code {
   box-shadow: 0 2px 8px color-mix(in srgb, var(--docbox-primary) 40%, transparent);
 }
 
+// لینک بازگشت به بالا — تم آن را بدون کلاس و فقط با id رندر می‌کند
+#back-to-top,
 .back-to-top {
   background: var(--docbox-surface);
   border: 1px solid var(--docbox-border);
@@ -960,8 +1004,6 @@ pre, code, .highlight, pre code {
 // ----------------------------------------------------------------------------
 // 16. Footer v2 — multi-column professional footer
 // ----------------------------------------------------------------------------
-
-.site-footer { padding: 0 !important; }
 
 .db-footer {
   max-width: 960px;
@@ -1061,7 +1103,7 @@ html.db-en {
   .site-header,
   .main-header,
   .main-content,
-  .site-footer,
+  footer,
   .db-footer,
   .hero,
   .breadcrumb-nav-list {

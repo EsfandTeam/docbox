@@ -8,34 +8,36 @@
 ## Recipes (machine-readable)
 
 - [recipes.json](https://esfandteam.github.io/docbox/recipes.json): canonical structured catalog
-  with `min_engine_version`, `requires`, `conflicts`, `verification`, and per-recipe URLs.
+  with `category`, `min_engine_version`, `requires`, `conflicts`, `verification`, and per-recipe URLs
+  (`url_markdown` links point to raw Markdown on GitHub; `url_html` links point to the rendered site).
 
-## Recipes (human-readable)
+## Recipes (human-readable, raw Markdown)
 
-- [2D Character Movement (FA)](https://esfandteam.github.io/docbox/fa/recipes/godot-2d-movement.md): move and jump with CharacterBody2D and move_and_slide. Status: human-verified. Engine: Godot 4.x.
-- [Camera Follow (FA)](https://esfandteam.github.io/docbox/fa/recipes/godot-camera-follow.md): native Camera2D smoothing with world limits. Status: human-verified. Engine: Godot 4.x.
-- [Save/Load Games with JSON (FA)](https://esfandteam.github.io/docbox/fa/recipes/godot-save-load-json.md): persist state with FileAccess and JSON to user://. Status: human-verified. Engine: Godot 4.x.
-- [Scene Transitions (FA)](https://esfandteam.github.io/docbox/fa/recipes/godot-scene-transition.md): change_scene_to_file with error checks and a fade effect. Status: human-verified. Engine: Godot 4.x.
-- [Tweens (FA)](https://esfandteam.github.io/docbox/fa/recipes/godot-tween.md): chained, parallel and looping animations with create_tween. Status: human-verified. Engine: Godot 4.x.
-- [Audio Playback (FA)](https://esfandteam.github.io/docbox/fa/recipes/godot-audio.md): looping music and SFX with pitch variance. Status: human-verified. Engine: Godot 4.x.
-- [Rocket Physics (FA)](https://esfandteam.github.io/docbox/fa/recipes/godot-rocket.md): thrust-based motion on RigidBody3D with fuel burn. Status: human-verified. Engine: Godot 4.x.
-- [Input Buffer (FA)](https://esfandteam.github.io/docbox/fa/recipes/godot-input-buffer.md): buffer jump presses before landing for responsive controls. Status: human-verified. Engine: Godot 4.x.
-- [Object Pooling (FA)](https://esfandteam.github.io/docbox/fa/recipes/godot-object-pooling.md): recycle bullets/particles with acquire/release, no GC pressure. Status: human-verified. Engine: Godot 4.x.
-- [Simple State Machine (FA)](https://esfandteam.github.io/docbox/fa/recipes/godot-state-machine.md): idle/run/jump states with enum and match. Status: human-verified. Engine: Godot 4.x.
-- [Typewriter Dialogue (FA)](https://esfandteam.github.io/docbox/fa/recipes/godot-dialogue.md): RichTextLabel typewriter with a finished signal. Status: human-verified. Engine: Godot 4.x.
-- [Custom Signals (FA)](https://esfandteam.github.io/docbox/fa/recipes/godot-signals.md): decouple player and HUD with health_changed. Status: human-verified. Engine: Godot 4.x.
+- [2D Character Movement (FA)](https://raw.githubusercontent.com/esfandteam/docbox/main/fa/recipes/godot-2d-movement.md): move and jump with CharacterBody2D and move_and_slide. Status: human-verified. Engine: Godot 4.x.
+- [Camera Follow (FA)](https://raw.githubusercontent.com/esfandteam/docbox/main/fa/recipes/godot-camera-follow.md): native Camera2D smoothing with world limits. Status: human-verified. Engine: Godot 4.x.
+- [Save/Load Games with JSON (FA)](https://raw.githubusercontent.com/esfandteam/docbox/main/fa/recipes/godot-save-load-json.md): persist state with FileAccess and JSON to user://. Status: human-verified. Engine: Godot 4.x.
+- [Scene Transitions (FA)](https://raw.githubusercontent.com/esfandteam/docbox/main/fa/recipes/godot-scene-transition.md): change_scene_to_file with error checks and a fade effect. Status: human-verified. Engine: Godot 4.x.
+- [Tweens (FA)](https://raw.githubusercontent.com/esfandteam/docbox/main/fa/recipes/godot-tween.md): chained, parallel and looping animations with create_tween. Status: human-verified. Engine: Godot 4.x.
+- [Audio Playback (FA)](https://raw.githubusercontent.com/esfandteam/docbox/main/fa/recipes/godot-audio.md): looping music and SFX with pitch variance. Status: human-verified. Engine: Godot 4.x.
+- [Rocket Physics (FA)](https://raw.githubusercontent.com/esfandteam/docbox/main/fa/recipes/godot-rocket.md): thrust-based motion on RigidBody3D with fuel burn. Status: human-verified. Engine: Godot 4.x.
+- [Input Buffer (FA)](https://raw.githubusercontent.com/esfandteam/docbox/main/fa/recipes/godot-input-buffer.md): buffer jump presses before landing for responsive controls. Status: human-verified. Engine: Godot 4.x.
+- [Object Pooling (FA)](https://raw.githubusercontent.com/esfandteam/docbox/main/fa/recipes/godot-object-pooling.md): recycle bullets/particles with acquire/release, no GC pressure. Status: human-verified. Engine: Godot 4.x.
+- [Simple State Machine (FA)](https://raw.githubusercontent.com/esfandteam/docbox/main/fa/recipes/godot-state-machine.md): idle/run/jump states with enum and match. Status: human-verified. Engine: Godot 4.x.
+- [Typewriter Dialogue (FA)](https://raw.githubusercontent.com/esfandteam/docbox/main/fa/recipes/godot-dialogue.md): RichTextLabel typewriter with a finished signal. Status: human-verified. Engine: Godot 4.x.
+- [Custom Signals (FA)](https://raw.githubusercontent.com/esfandteam/docbox/main/fa/recipes/godot-signals.md): decouple player and HUD with health_changed. Status: human-verified. Engine: Godot 4.x.
 
 ## English mirrors
 
-All recipes above are mirrored in English under
-`https://esfandteam.github.io/docbox/en/recipes/<recipe-id>.md` — for example:
-[2D Character Movement (EN)](https://esfandteam.github.io/docbox/en/recipes/godot-2d-movement.md),
-[Rocket Physics (EN)](https://esfandteam.github.io/docbox/en/recipes/godot-rocket.md).
+All recipes above are mirrored in English as raw Markdown under
+`https://raw.githubusercontent.com/esfandteam/docbox/main/en/recipes/<recipe-id>.md` — for example:
+[2D Character Movement (EN)](https://raw.githubusercontent.com/esfandteam/docbox/main/en/recipes/godot-2d-movement.md),
+[Rocket Physics (EN)](https://raw.githubusercontent.com/esfandteam/docbox/main/en/recipes/godot-rocket.md).
+Rendered HTML versions live at `https://esfandteam.github.io/docbox/en/recipes/<recipe-id>`.
 
 ## Optional
 
-- [About DocBox](https://esfandteam.github.io/docbox/about.md): what DocBox is, the problem it solves, and why it is built for AI agents.
-- [Agent Guide (EN)](https://esfandteam.github.io/docbox/en/agent.md): how agents should fetch, filter, and apply recipes in three HTTP requests.
-- [Agent Guide (FA)](https://esfandteam.github.io/docbox/fa/agent.md): the same guide in Persian.
+- [About DocBox](https://raw.githubusercontent.com/esfandteam/docbox/main/about.md): what DocBox is, the problem it solves, and why it is built for AI agents.
+- [Agent Guide (EN)](https://raw.githubusercontent.com/esfandteam/docbox/main/en/agent.md): how agents should fetch, filter, and apply recipes in three HTTP requests.
+- [Agent Guide (FA)](https://raw.githubusercontent.com/esfandteam/docbox/main/fa/agent.md): the same guide in Persian.
 - [Contributing guide](https://esfandteam.github.io/docbox/CONTRIBUTING.md): how to submit a new recipe.
 - [License (MIT)](https://esfandteam.github.io/docbox/LICENSE): all recipes and code in this registry are MIT-licensed.
