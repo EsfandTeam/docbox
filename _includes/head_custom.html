@@ -149,12 +149,11 @@
     if (isEn) {
       document.documentElement.classList.add('db-en');
 
-      // swap top-nav labels + targets
-      document.querySelectorAll('.aux-nav-list-item .aux-nav-link').forEach(function (a) {
+      // swap top-nav labels + targets (live theme renders links as .site-button)
+      document.querySelectorAll('.aux-nav-list-item .site-button').forEach(function (a) {
         var t = a.textContent.trim();
         if (t === 'دستورپخت‌ها') { a.textContent = 'Recipes'; a.setAttribute('href', '/docbox/en/'); }
         else if (t === 'درباره') { a.textContent = 'About'; a.setAttribute('href', '/docbox/en/about'); }
-        else if (t === 'English') { a.textContent = 'فارسی'; a.setAttribute('href', '/docbox/fa/'); }
       });
 
       // search placeholder
@@ -175,7 +174,7 @@
 
     // active nav state
     var path = window.location.pathname;
-    document.querySelectorAll('.aux-nav-list-item .aux-nav-link').forEach(function (a) {
+    document.querySelectorAll('.aux-nav-list-item .site-button').forEach(function (a) {
       var href = a.getAttribute('href') || '';
       var internal = href.indexOf('/docbox/') === 0 && href.indexOf('http') !== 0;
       if (!internal) return;
@@ -281,7 +280,7 @@
       header.insertBefore(brand, header.firstChild);
     }
 
-    // language switcher replaces the old plain language link
+    // language dropdown (کشویی) replaces the plain language link
     function counterpart(toEn) {
       var p = path;
       if (toEn) {
@@ -298,21 +297,44 @@
       return p;
     }
 
-    var old = Array.prototype.filter.call(
-      header.querySelectorAll('.aux-nav-link'),
-      function (a) {
+    if (!header.querySelector('.lang-switch')) {
+      var langLi = null;
+      header.querySelectorAll('.aux-nav-list-item .site-button').forEach(function (a) {
         var href = a.getAttribute('href') || '';
-        return href.indexOf('/docbox/en') === 0;
+        if (href.indexOf('/docbox/en') === 0) langLi = a.closest('li') || a;
+      });
+      if (langLi) {
+        var sw = document.createElement('div');
+        sw.className = 'lang-switch' + (isEn ? ' en' : '');
+        sw.innerHTML =
+          '<button type="button" class="lang-toggle" aria-haspopup="true" aria-expanded="false">' +
+          '<span class="lang-globe">🌐</span>' +
+          '<span class="lang-current">' + (isEn ? 'English' : 'فارسی') + '</span>' +
+          '<span class="lang-caret">▾</span></button>' +
+          '<div class="lang-menu" hidden>' +
+          '<a class="lang-option' + (isEn ? '' : ' active') + '" href="' + counterpart(false) + '">' +
+          '<span>فارسی</span><span class="lang-sub">Persian</span></a>' +
+          '<a class="lang-option' + (isEn ? ' active' : '') + '" href="' + counterpart(true) + '">' +
+          '<span>English</span><span class="lang-sub">انگلیسی</span></a>' +
+          '</div>';
+
+        var toggle = sw.querySelector('.lang-toggle');
+        var menu = sw.querySelector('.lang-menu');
+        toggle.addEventListener('click', function (e) {
+          e.stopPropagation();
+          var open = menu.hidden;
+          menu.hidden = !open;
+          toggle.setAttribute('aria-expanded', String(open));
+        });
+        document.addEventListener('click', function (e) {
+          if (!sw.contains(e.target)) { menu.hidden = true; toggle.setAttribute('aria-expanded', 'false'); }
+        });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape') { menu.hidden = true; toggle.setAttribute('aria-expanded', 'false'); }
+        });
+
+        langLi.replaceWith(sw);
       }
-    );
-    if (old.length && !header.querySelector('.lang-switch')) {
-      var li = old[0].closest('li') || old[0];
-      var sw = document.createElement('div');
-      sw.className = 'lang-switch';
-      sw.innerHTML =
-        '<a class="lang-btn' + (isEn ? '' : ' active') + '" href="' + counterpart(false) + '">فارسی</a>' +
-        '<a class="lang-btn' + (isEn ? ' active' : '') + '" href="' + counterpart(true) + '">EN</a>';
-      li.replaceWith(sw);
     }
   }
 

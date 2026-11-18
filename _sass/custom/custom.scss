@@ -136,33 +136,84 @@ body, .site-header, .main-content, .site-footer {
   }
 }
 
-// Language switcher (segmented control, injected by head_custom.html)
+// Language dropdown (کشویی, injected by head_custom.html)
 .lang-switch {
+  position: relative;
   display: inline-flex;
+}
+
+.lang-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.32rem 0.8rem;
+  font-family: 'Vazirmatn', sans-serif;
+  font-size: 0.84rem;
+  font-weight: 700;
+  color: var(--docbox-text);
   background: var(--docbox-surface-alt);
   border: 1px solid var(--docbox-border);
   border-radius: 999px;
-  padding: 0.18rem;
-  gap: 0.15rem;
-}
-
-.lang-btn {
-  display: inline-flex;
-  align-items: center;
-  padding: 0.22rem 0.8rem;
-  border-radius: 999px;
-  font-size: 0.82rem;
-  font-weight: 700;
-  color: var(--docbox-text-muted);
-  text-decoration: none !important;
+  cursor: pointer;
   transition: all var(--docbox-transition);
 
-  &:hover { color: var(--docbox-primary); }
+  .lang-globe { font-size: 0.9rem; line-height: 1; }
+  .lang-caret { font-size: 0.7rem; color: var(--docbox-text-muted); transition: transform var(--docbox-transition); }
+
+  &:hover {
+    border-color: color-mix(in srgb, var(--docbox-primary) 40%, var(--docbox-border));
+    color: var(--docbox-primary);
+  }
+
+  &[aria-expanded="true"] .lang-caret { transform: rotate(180deg); }
+}
+
+.lang-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  inset-inline-end: 0;
+  min-width: 185px;
+  background: var(--docbox-surface);
+  border: 1px solid var(--docbox-border);
+  border-radius: var(--docbox-radius-md);
+  box-shadow: var(--docbox-shadow-lg);
+  padding: 0.35rem;
+  z-index: 200;
+  animation: lang-pop 140ms cubic-bezier(.2, .6, .2, 1);
+}
+
+@keyframes lang-pop {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.lang-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--docbox-radius-sm);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--docbox-text) !important;
+  text-decoration: none !important;
+  transition: background-color var(--docbox-transition);
+
+  .lang-sub {
+    font-size: 0.72rem;
+    font-weight: 500;
+    color: var(--docbox-text-muted);
+  }
+
+  &:hover { background: var(--docbox-surface-alt); }
 
   &.active {
-    background: var(--docbox-primary);
-    color: #fff !important;
-    box-shadow: 0 2px 6px color-mix(in srgb, var(--docbox-primary) 35%, transparent);
+    color: var(--docbox-primary) !important;
+    background: color-mix(in srgb, var(--docbox-primary) 10%, transparent);
+
+    &::before { content: '✓'; font-weight: 800; margin-inline-end: 0.3rem; }
+    .lang-sub { color: var(--docbox-primary); }
   }
 }
 
@@ -213,19 +264,49 @@ body, .site-header, .main-content, .site-footer {
 }
 .search-icon { right: 0.7rem; left: auto; color: var(--docbox-text-muted); }
 
-// Aux links (top navigation)
-.aux-nav .aux-nav-list { align-items: center !important; }
-.aux-nav-link {
-  padding: 0.35rem 0.8rem !important;
-  border-radius: var(--docbox-radius-sm);
+// Aux links (top navigation) — live theme renders them as .site-button
+.aux-nav { margin-inline-start: auto; }
+.aux-nav-list {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.3rem !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+.aux-nav .site-button {
+  display: inline-block !important;
+  padding: 0.4rem 0.95rem !important;
+  border-radius: 999px !important;
   font-weight: 600;
-  font-size: 0.92rem;
+  font-size: 0.9rem;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
   color: var(--docbox-text-muted) !important;
+  text-decoration: none !important;
   transition: background-color var(--docbox-transition), color var(--docbox-transition);
 
   &:hover {
     background-color: var(--docbox-surface-alt);
     color: var(--docbox-primary) !important;
+  }
+
+  &.aux-active {
+    color: var(--docbox-primary) !important;
+    background: color-mix(in srgb, var(--docbox-primary) 12%, transparent);
+    font-weight: 700;
+  }
+}
+
+// GitHub link styled as button
+.aux-nav .site-button[href*="github.com"] {
+  background: var(--docbox-text) !important;
+  color: var(--docbox-surface) !important;
+  font-weight: 700;
+
+  &:hover {
+    background: var(--docbox-primary) !important;
+    color: #fff !important;
   }
 }
 
@@ -727,13 +808,15 @@ pre, code, .highlight, pre code {
 
 .lib-toolbar {
   margin: 0.4rem 0 1.2rem;
+  text-align: center;
 
   .lib-search { margin-bottom: 0.8rem; }
 
   .lib-search-input {
     width: 100%;
-    max-width: 520px;
+    max-width: 560px;
     display: block;
+    margin: 0 auto;
     direction: rtl;
     text-align: right;
     padding: 0.65rem 1.1rem;
@@ -757,6 +840,7 @@ pre, code, .highlight, pre code {
 
   .lib-count {
     margin: 0.7rem 0 0;
+    text-align: center;
     font-size: 0.85rem;
     font-weight: 600;
     color: var(--docbox-text-muted);
@@ -766,6 +850,7 @@ pre, code, .highlight, pre code {
 .filter-chips {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 0.45rem;
 
   .chip {
@@ -853,30 +938,6 @@ pre, code, .highlight, pre code {
   font-size: 1rem;
   vertical-align: -0.28rem;
   box-shadow: 0 2px 8px color-mix(in srgb, var(--docbox-primary) 40%, transparent);
-}
-
-.aux-nav-link {
-  font-size: 0.9rem !important;
-  padding: 0.4rem 0.95rem !important;
-  border-radius: 999px !important;
-
-  &.aux-active {
-    color: var(--docbox-primary) !important;
-    background: color-mix(in srgb, var(--docbox-primary) 12%, transparent);
-    font-weight: 700;
-  }
-}
-
-// GitHub link styled as button
-.aux-nav-list-item:last-child .aux-nav-link[href*="github.com"] {
-  background: var(--docbox-text);
-  color: var(--docbox-surface) !important;
-  font-weight: 700;
-
-  &:hover {
-    background: var(--docbox-primary);
-    color: #fff !important;
-  }
 }
 
 .back-to-top {
@@ -1035,7 +1096,8 @@ html.db-en {
 
 @media (max-width: 56rem) {
   .db-footer-main { grid-template-columns: 1fr 1fr; gap: 1.4rem; }
-  .aux-nav-link { font-size: 0.82rem !important; padding: 0.3rem 0.6rem !important; }
+  .aux-nav .site-button { font-size: 0.82rem !important; padding: 0.3rem 0.6rem !important; }
+  .db-brand { font-size: 1.05rem; }
 }
 
 @media (max-width: 38rem) {
