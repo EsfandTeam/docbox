@@ -21,15 +21,15 @@ nav_order: 9
   <a href="#provenance">Provenance</a> · <a href="#summary">Summary</a> · <a href="#code">Full Code</a> · <a href="#test">Acceptance Test</a> · <a href="#failures">Failure Modes</a>
 </nav>
 
-## 1. Provenance {: #provenance }
+<h2 id="provenance">1. Provenance</h2>
 
 Based on the official `Node` class documentation — [Node — Godot Docs](https://docs.godotengine.org/en/stable/classes/class_node.html). The methods `set_visible`, `set_physics_process` and `queue_free` are documented on that page. Implementation and acceptance test are an independent rewrite verified in Godot 4.
 
-## 2. Executive Summary {: #summary } {: #summary }
+<h2 id="summary">2. Executive Summary</h2>
 
 Instantiating and freeing bullets or particles every frame puts heavy load on the allocator and causes micro-stutters. The fix: an object pool — pre-create N instances up front and hide them; "spawning" acquires one from the pool, "removing" never calls `queue_free` but only `set_visible(false)` plus `set_physics_process(false)` and returns it to the pool (`release`). The number of real instances stays constant for the lifetime of the game.
 
-## 3. Full Code (GDScript) {: #code }
+<h2 id="code">3. Full Code (GDScript)</h2>
 
 **A simple pool with a pre-allocated array:**
 
@@ -107,7 +107,7 @@ func _expire() -> void:
         pool.release(self)
 ```
 
-## 4. Acceptance Test {: #test }
+<h2 id="test">4. Acceptance Test</h2>
 
 **Prerequisites:** a pool of size `20`; fire `100` bullets over `10` seconds (10 bullets per second, each bullet living 1 second).
 
@@ -129,7 +129,7 @@ acquire failures            = 0 (10 concurrent < 20 capacity)
 - The Profiler must never show a steadily growing Node count; the "Nodes" curve must stay flat.
 - If concurrency exceeds capacity (e.g. 25 live bullets with a pool of 20), `acquire` must return `null` and `shoot` must skip silently — no crash.
 
-## 5. Failure Modes {: #failures }
+<h2 id="failures">5. Failure Modes</h2>
 
 **Forgetting to reset state on acquire:**
 If you do not reset previous properties (direction, speed, `modulate`, collision state) when pulling a bullet from the pool, the new shot inherits the previous one's data — bullets fire "backwards" by mistake. Overwrite every dynamic state inside `acquire`.

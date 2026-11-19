@@ -21,15 +21,15 @@ nav_order: 5
   <a href="#provenance">منبع اصلی</a> · <a href="#summary">خلاصه اجرایی</a> · <a href="#code">کد کامل</a> · <a href="#test">تست پذیرش</a> · <a href="#failures">حالت‌های شکست</a>
 </nav>
 
-## ۱. منبع اصلی {: #provenance }
+<h2 id="provenance">۱. منبع اصلی</h2>
 
 این مستند بر اساس آموزش رسمی «Change scenes manually» مستندات Godot تدوین شده است — [Change scenes manually — Godot Docs](https://docs.godotengine.org/en/stable/tutorials/scripting/change_scenes_manually.html). پیاده‌سازی و تست پذیرش، بازنویسی و آزمایش مستقل است.
 
-## ۲. خلاصه اجرایی {: #summary }
+<h2 id="summary">۲. خلاصه اجرایی</h2>
 
 روش استاندارد تعویض صحنه در Godot 4 فراخوانی `get_tree().change_scene_to_file(path)` است. این متد فوری صحنه را عوض نمی‌کند: عملیات تا انتهای فریم جاری به تعویق می‌افتد (deferred) تا از حذف نودِ در حال اجرا وسط کد جلوگیری شود. برای جلوه‌ی حرفه‌ای، قبل از تعویض یک محو‌شدگی (fade) با Tween اضافه می‌کنیم.
 
-## ۳. کد کامل (GDScript) {: #code }
+<h2 id="code">۳. کد کامل (GDScript)</h2>
 
 **انتقال ساده — اسکریپت روی یک دکمه:**
 
@@ -65,7 +65,7 @@ func start_transition() -> void:
     tween.tween_callback(func(): get_tree().change_scene_to_file(next_scene_path))
 ```
 
-## ۴. تست پذیرش {: #test }
+<h2 id="test">۴. تست پذیرش</h2>
 
 **پیش‌نیازها:** دو صحنه (`level_1.tscn` و `level_2.tscn`)، دکمه‌ای در صحنه‌ی اول با اسکریپت بالا.
 
@@ -84,7 +84,7 @@ func start_transition() -> void:
 - در نسخه‌ی fade: صفحه در `0.3` ثانیه سیاه می‌شود، صحنه عوض می‌شود و سپس fade باید با ورود صحنه‌ی جدید ریست شود (فید-این در `_ready` صحنه‌ی جدید).
 - مسیر اشتباه (فایل ناموجود): `err` باید غیرصفر باشد و پیام خطا در Output چاپ شود — بدون کرش.
 
-## ۵. حالت‌های شکست (Failure Modes) {: #failures }
+<h2 id="failures">۵. حالت‌های شکست (Failure Modes)</h2>
 
 **مسیر بدون `res://`:**
 مسیر باید کامل باشد؛ `"level_2.tscn"` بدون پیشوند `res://scenes/` پیدا نمی‌شود و `err` غیرصفر برمی‌گردد. خطا را چک کنید وگرنه تعویض بی‌صدا شکست می‌خورد.

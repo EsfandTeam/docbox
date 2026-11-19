@@ -21,15 +21,15 @@ nav_order: 11
   <a href="#provenance">Provenance</a> · <a href="#summary">Summary</a> · <a href="#code">Full Code</a> · <a href="#test">Acceptance Test</a> · <a href="#failures">Failure Modes</a>
 </nav>
 
-## 1. Provenance {: #provenance }
+<h2 id="provenance">1. Provenance</h2>
 
 Based on the official `RichTextLabel` class documentation — [RichTextLabel — Godot Docs](https://docs.godotengine.org/en/stable/classes/class_richtextlabel.html) (the `visible_ratio` property). Implementation and acceptance test are an independent rewrite verified in Godot 4.
 
-## 2. Executive Summary {: #summary } {: #summary }
+<h2 id="summary">2. Executive Summary</h2>
 
 A minimal dialogue system needs three things: an array of lines, a typewriter that reveals text gradually via `visible_ratio`, and a Next key that either skips the typewriter (show the full line instantly) or advances to the next line. When the last line ends, the `dialogue_finished` signal is emitted so the player regains control. No other node needs to know dialogue internals — only the signal.
 
-## 3. Full Code (GDScript) {: #code }
+<h2 id="code">3. Full Code (GDScript)</h2>
 
 **Dialogue core with typewriter:**
 
@@ -113,7 +113,7 @@ func _physics_process(delta: float) -> void:
     move_and_slide()
 ```
 
-## 4. Acceptance Test {: #test }
+<h2 id="test">4. Acceptance Test</h2>
 
 **Prerequisites:** a `DialogueBox` with a `RichTextLabel` and two test lines; the default `ui_accept` action enabled.
 
@@ -134,7 +134,7 @@ visible_ratio delta  = per-frame increment = 30 / 40 = 0.75 per second
 - After the last line plus one more press, `dialogue_finished` must be emitted exactly once and the box hidden.
 - While the box is visible the player must not be able to move; movement must resume immediately after the signal.
 
-## 5. Failure Modes {: #failures }
+<h2 id="failures">5. Failure Modes</h2>
 
 **Division by zero on empty lines:**
 If a line is an empty string, `float(label.text.length())` is zero and the ratio increment raises a division-by-zero error. Filter empty lines before playing or use `maxi(1, text.length())` for the length.

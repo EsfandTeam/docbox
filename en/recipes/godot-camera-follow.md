@@ -21,15 +21,15 @@ nav_order: 3
   <a href="#provenance">Provenance</a> · <a href="#summary">Summary</a> · <a href="#code">Full Code</a> · <a href="#test">Acceptance Test</a> · <a href="#failures">Failure Modes</a>
 </nav>
 
-## 1. Provenance {: #provenance }
+<h2 id="provenance">1. Provenance</h2>
 
 Based on the official `Camera2D` class documentation — [Camera2D — Godot Docs](https://docs.godotengine.org/en/stable/classes/class_camera2d.html). Implementation and acceptance test are an independent rewrite verified in Godot 4.
 
-## 2. Summary {: #summary }
+<h2 id="summary">2. Summary</h2>
 
 Do not hand-roll lerp followers — Godot 4 has built-in `position_smoothing` on `Camera2D` that is frame-rate friendly and jitter-free. Add `limit_left/right/top/bottom` so the camera never shows space outside your level.
 
-## 3. Full Code (GDScript) {: #code }
+<h2 id="code">3. Full Code (GDScript)</h2>
 
 Attach to a `Camera2D` node; make it a child of the player, or let `make_current()` activate it.
 
@@ -55,7 +55,7 @@ func _ready() -> void:
     make_current()
 ```
 
-## 4. Acceptance Test {: #test }
+<h2 id="test">4. Acceptance Test</h2>
 
 **Prerequisites:** camera with `follow_speed = 5.0`, a player far from the camera, limits enabled.
 
@@ -72,7 +72,7 @@ gap(1) = 200 · e^(−5) ≈ 1.35 px
 - Walking to the level edge: the view stops at the `limit`, never showing empty space.
 - Lowering `follow_speed` to `2.0` makes the follow visibly slower.
 
-## 5. Failure Modes {: #failures }
+<h2 id="failures">5. Failure Modes</h2>
 
 **Manual lerp while the camera is a child of the player:**
 Two transforms stack and the camera jumps or moves double-speed. Choose one: child-of-player or manual lerp — not both.

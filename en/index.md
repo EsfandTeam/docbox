@@ -31,7 +31,7 @@ description: DocBox — tested, executable recipes for Godot 4 with acceptance t
   </div>
 </div>
 
-## Recipe Library {: #library }
+<h2 id="library">Recipe Library</h2>
 
 <div class="lib-toolbar">
   <div class="lib-search">

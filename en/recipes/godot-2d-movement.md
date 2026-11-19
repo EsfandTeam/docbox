@@ -21,15 +21,15 @@ nav_order: 2
   <a href="#provenance">Provenance</a> · <a href="#summary">Summary</a> · <a href="#code">Full Code</a> · <a href="#test">Acceptance Test</a> · <a href="#failures">Failure Modes</a>
 </nav>
 
-## 1. Provenance {: #provenance }
+<h2 id="provenance">1. Provenance</h2>
 
 Based on the official `CharacterBody2D` pattern from the Godot documentation — [CharacterBody2D — Godot Docs](https://docs.godotengine.org/en/stable/classes/class_characterbody2d.html). Implementation and acceptance test are an independent rewrite verified in Godot 4.
 
-## 2. Summary {: #summary }
+<h2 id="summary">2. Summary</h2>
 
 Use `CharacterBody2D` for player-controlled movement, not `RigidBody2D` — a player must move exactly as commanded instead of being pushed around by the physics engine. Add gravity manually to `velocity.y` and call `move_and_slide()` to get collisions and wall sliding for free.
 
-## 3. Full Code (GDScript) {: #code }
+<h2 id="code">3. Full Code (GDScript)</h2>
 
 Attach to a `CharacterBody2D` node. Define three input actions in Project Settings → Input Map: `move_left`, `move_right`, `jump`.
 
@@ -59,7 +59,7 @@ func _physics_process(delta: float) -> void:
     move_and_slide()
 ```
 
-## 4. Acceptance Test {: #test }
+<h2 id="test">4. Acceptance Test</h2>
 
 **Prerequisites:** `CharacterBody2D` with the script above standing on a horizontal `StaticBody2D`, default values.
 
@@ -77,7 +77,7 @@ h_max   = v² / (2·g)                = 160000 / 1960 ≈ 81.6 px
 - After landing, `is_on_floor()` becomes `true` and jumping works again.
 - Pressing into a wall: the character stops with a sliding motion, no jitter, no penetration.
 
-## 5. Failure Modes {: #failures }
+<h2 id="failures">5. Failure Modes</h2>
 
 **Calling `move_and_slide()` in `_process`:**
 Movement must run in `_physics_process(delta)`; frame rate leaks into physics and behavior differs across machines.

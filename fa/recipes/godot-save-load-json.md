@@ -21,15 +21,15 @@ nav_order: 4
   <a href="#provenance">منبع اصلی</a> · <a href="#summary">خلاصه اجرایی</a> · <a href="#code">کد کامل</a> · <a href="#test">تست پذیرش</a> · <a href="#failures">حالت‌های شکست</a>
 </nav>
 
-## ۱. منبع اصلی {: #provenance }
+<h2 id="provenance">۱. منبع اصلی</h2>
 
 این مستند بر اساس آموزش رسمی «Saving games» مستندات Godot تدوین شده است — [Saving games — Godot Docs](https://docs.godotengine.org/en/stable/tutorials/io/saving_games.html). پیاده‌سازی و تست پذیرش، بازنویسی و آزمایش مستقل است.
 
-## ۲. خلاصه اجرایی {: #summary }
+<h2 id="summary">۲. خلاصه اجرایی</h2>
 
 برای ذخیره‌ی پیشرفت بازی، داده‌ها را در یک `Dictionary` ساده جمع کنید، با `JSON.stringify` به متن تبدیل و با `FileAccess` در مسیر `user://` بنویسید. مسیر `user://` در ویندوز و مک و لینوکس به پوشه‌ی داده‌ی کاربر (قابل‌نوشتن در همه سیستم‌عامل‌ها) نگاشت می‌شود — هرگز در `res://` فایل ننویسید، چون بعد از export فقط-خواندنی است.
 
-## ۳. کد کامل (GDScript) {: #code }
+<h2 id="code">۳. کد کامل (GDScript)</h2>
 
 ```gdscript
 const SAVE_PATH := "user://save.json"
@@ -66,7 +66,7 @@ var loaded := load_game()
 print(loaded["level"])  # 3
 ```
 
-## ۴. تست پذیرش {: #test }
+<h2 id="test">۴. تست پذیرش</h2>
 
 **پیش‌نیازها:** هیچ نود خاصی لازم نیست؛ اسکریپت را روی یک نود دلخواه بگذارید و دو دکمه/کلید برای ذخیره و بارگذاری ببندید.
 
@@ -89,7 +89,7 @@ load_game() پس از اجرای دوباره بازی
 - پس از بستن و اجرای دوباره‌ی بازی، `load_game()` باید دقیقاً همان دیکشنری را برگرداند.
 - اگر فایل پاک شده باشد، `load_game()` باید `{}` برگرداند — نه کرش.
 
-## ۵. حالت‌های شکست (Failure Modes) {: #failures }
+<h2 id="failures">۵. حالت‌های شکست (Failure Modes)</h2>
 
 **`JSON.parse_string` روی متن خراب:**
 اگر فایل ناقص یا دستکاری‌شده باشد، `parse_string` مقدار `null` برمی‌گرداند — نه استثنا. بدون چکِ `typeof`، دسترسی به کلیدها کرش می‌کند.

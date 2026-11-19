@@ -21,15 +21,15 @@ nav_order: 10
   <a href="#provenance">منبع اصلی</a> · <a href="#summary">خلاصه اجرایی</a> · <a href="#code">کد کامل</a> · <a href="#test">تست پذیرش</a> · <a href="#failures">حالت‌های شکست</a>
 </nav>
 
-## ۱. منبع اصلی {: #provenance }
+<h2 id="provenance">۱. منبع اصلی</h2>
 
 این مستند بر اساس راهنمای رسمی مبانی GDScript تدوین شده است — [GDScript basics — Godot Docs](https://docs.godotengine.org/en/stable/getting_started/scripting/gdscript/gdscript_basics.html) (بخش‌های `match` و `enum`). پیاده‌سازی و تست پذیرش، بازنویسی و آزمایش مستقل است.
 
-## ۲. خلاصه اجرایی {: #summary }
+<h2 id="summary">۲. خلاصه اجرایی</h2>
 
 برای شخصیت‌هایی با چند رفتار متمایز (ایستاده، دویدن، پرش)، به‌جای پرچم‌های بولی متعدد که با هم تناقض پیدا می‌کنند، از یک `enum` برای حالت‌ها و `match` در `_physics_process` استفاده کنید. در هر فریم فقط یک حالت فعال است و هر حالت ورودی و فیزیک مخصوص خودش را دارد. گذارها در یک تابع کوچک متمرکز می‌شوند تا رفتار قابل پیش‌بینی و قابل تست باشد.
 
-## ۳. کد کامل (GDScript) {: #code }
+<h2 id="code">۳. کد کامل (GDScript)</h2>
 
 **ماشین حالت با enum + match روی CharacterBody2D:**
 
@@ -100,7 +100,7 @@ func _process(_delta: float) -> void:
     $StateLabel.text = State.keys()[state]
 ```
 
-## ۴. تست پذیرش {: #test }
+<h2 id="test">۴. تست پذیرش</h2>
 
 **پیش‌نیازها:** صحنه‌ی CharacterBody2D با زمین و پرتگاه؛ اکشن‌های `jump`، `move_left`، `move_right` تعریف شده باشند؛ یک `StateLabel` برای نمایش حالت.
 
@@ -126,7 +126,7 @@ any   | same-state transition requested  | ignored (no change)
 - فشردن پرش در حالت JUMP نباید هیچ تغییری ایجاد کند (گارد `_do_jump`).
 - پس از فرود، حالت باید بلافاصله RUN یا IDLE شود، هرگز JUMP باقی نماند.
 
-## ۵. حالت‌های شکست (Failure Modes) {: #failures }
+<h2 id="failures">۵. حالت‌های شکست (Failure Modes)</h2>
 
 **گذار تکراری یا چرخه‌ای:**
 اگر چند شاخه در یک فریم هم‌زمان شرط گذار را درست کنند (مثلاً هم `direction != 0` و هم `jump pressed`)، آخرین شرط برنده می‌شود و رفتار ممکن است بین حالت‌ها لرزش داشته باشد. ترتیب شاخه‌ها را مشخص کنید و از گارد `new_state == state` استفاده کنید.

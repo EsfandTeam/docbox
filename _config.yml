@@ -35,7 +35,13 @@ aux_links:
 aux_links_new_tab: false
 
 # جزئیات UX
-heading_anchors: true
+# لنگر هدینگ‌ها عمداً خاموش است. تم فقط با heading_anchors != false یک فیلتر
+# Liquid سمت سرور (vendor/anchor_headings.html) روی {{ content }} اجرا می‌کند
+# و داخل «هر» h2/h3 یک <a class="anchor-heading"> تزریق می‌کند. داخل کارت‌های
+# لینک‌دار (<a class="card"> … <h3> …) این یعنی لینک تودرتو که در HTML نامعتبر
+# است؛ پارسر مرورگر کارت را همان‌جا می‌بندد و h3/p/badgeها به‌عنوان آیتم‌های
+# جداگانهٔ گرید بیرون کارت رندر می‌شوند (خرابی چیدمان کتابخانه).
+heading_anchors: false
 back_to_top: true
 back_to_top_text: "Back to top"
 

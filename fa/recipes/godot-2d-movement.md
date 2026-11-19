@@ -21,15 +21,15 @@ nav_order: 2
   <a href="#provenance">منبع اصلی</a> · <a href="#summary">خلاصه اجرایی</a> · <a href="#code">کد کامل</a> · <a href="#test">تست پذیرش</a> · <a href="#failures">حالت‌های شکست</a>
 </nav>
 
-## ۱. منبع اصلی {: #provenance }
+<h2 id="provenance">۱. منبع اصلی</h2>
 
 این مستند بر اساس الگوی رسمی `CharacterBody2D` در مستندات Godot تدوین شده است — [CharacterBody2D — Godot Docs](https://docs.godotengine.org/en/stable/classes/class_characterbody2d.html). پیاده‌سازی و تست پذیرش، بازنویسی و آزمایش مستقل در Godot 4 است.
 
-## ۲. خلاصه اجرایی {: #summary }
+<h2 id="summary">۲. خلاصه اجرایی</h2>
 
 برای حرکت بازیکن دوبعدی از `CharacterBody2D` استفاده کنید، نه `RigidBody2D`. کاراکتر کنترل‌شده توسط بازیکن باید دقیقاً طبق فرمان حرکت کند و توسط موتور فیزیک پرتاب نشود؛ `CharacterBody2D` دقیقاً برای همین ساخته شده. گرانش را دستی به `velocity.y` اضافه می‌کنیم و متد `move_and_slide()` برخورد و لغزش روی دیوارها را خودکار مدیریت می‌کند.
 
-## ۳. کد کامل (GDScript) {: #code }
+<h2 id="code">۳. کد کامل (GDScript)</h2>
 
 این اسکریپت را روی یک نود `CharacterBody2D` بگذارید. در تنظیمات پروژه (Project Settings → Input Map) سه اکشن با نام‌های `move_left`، `move_right` و `jump` تعریف کنید.
 
@@ -59,7 +59,7 @@ func _physics_process(delta: float) -> void:
     move_and_slide()
 ```
 
-## ۴. تست پذیرش {: #test }
+<h2 id="test">۴. تست پذیرش</h2>
 
 **پیش‌نیازها:** نود `CharacterBody2D` با کد بالا روی یک نود `StaticBody2D` افقی (زمین)، مقادیر پیش‌فرض اسکریپت.
 
@@ -77,7 +77,7 @@ h_max   = v² / (2·g)             = 160000 / 1960 ≈ 81.6 px
 - پس از فرود، `is_on_floor()` باید `true` شود و پرش دوباره ممکن باشد.
 - روی دیوار فشار داده شود: کاراکتر باید لغزشی بایستد، نه اینکه تکان بخورد یا داخل دیوار برود.
 
-## ۵. حالت‌های شکست (Failure Modes) {: #failures }
+<h2 id="failures">۵. حالت‌های شکست (Failure Modes)</h2>
 
 **فراخوانی `move_and_slide()` در `_process`:**
 حرکت باید در `_physics_process(delta)` انجام شود؛ در `_process` نرخ فریم روی فیزیک اثر می‌گذارد و رفتار روی دستگاه‌های مختلف ناسازگار می‌شود.

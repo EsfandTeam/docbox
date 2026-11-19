@@ -21,15 +21,15 @@ nav_order: 6
   <a href="#provenance">Provenance</a> · <a href="#summary">Summary</a> · <a href="#code">Full Code</a> · <a href="#test">Acceptance Test</a> · <a href="#failures">Failure Modes</a>
 </nav>
 
-## 1. Provenance {: #provenance }
+<h2 id="provenance">1. Provenance</h2>
 
 Based on the official `Tween` class documentation — [Tween — Godot Docs](https://docs.godotengine.org/en/stable/classes/class_tween.html). Implementation and acceptance test are an independent rewrite verified in Godot 4.
 
-## 2. Summary {: #summary }
+<h2 id="summary">2. Summary</h2>
 
 For short animations (movement, fading, color changes) use `create_tween()` instead of a full `AnimationPlayer`. A Tween is an ordered chain: each `tween_property` starts after the previous one finishes. Tweens are bound to the node that created them — when the node dies, the Tween dies with it, so there is no leak.
 
-## 3. Full Code (GDScript) {: #code }
+<h2 id="code">3. Full Code (GDScript)</h2>
 
 **Simple chain — move, then fade:**
 
@@ -64,7 +64,7 @@ func pop_in() -> void:
     tween.tween_property(self, "modulate:a", 1.0, 0.3)
 ```
 
-## 4. Acceptance Test {: #test }
+<h2 id="test">4. Acceptance Test</h2>
 
 **Prerequisites:** a `Sprite2D` with the script above.
 
@@ -81,7 +81,7 @@ offset          = 100 · 0.5 = 50 px
 - With `set_loops`: the bounce repeats forever; freeing the node stops it without errors in the Output panel.
 - With `set_parallel(true)`: scale and alpha change simultaneously, not back-to-back.
 
-## 5. Failure Modes {: #failures }
+<h2 id="failures">5. Failure Modes</h2>
 
 **Creating a Tween every frame:**
 Calling `create_tween()` inside `_process` builds a fresh Tween each frame, each restarting halfway — the animation appears locked and CPU is wasted. Create it once.

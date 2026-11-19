@@ -21,15 +21,15 @@ nav_order: 7
   <a href="#provenance">منبع اصلی</a> · <a href="#summary">خلاصه اجرایی</a> · <a href="#code">کد کامل</a> · <a href="#test">تست پذیرش</a> · <a href="#failures">حالت‌های شکست</a>
 </nav>
 
-## ۱. منبع اصلی {: #provenance }
+<h2 id="provenance">۱. منبع اصلی</h2>
 
 این مستند بر اساس مستندات کلاس رسمی `AudioStreamPlayer` و آموزش صوت مستندات Godot تدوین شده است — [AudioStreamPlayer — Godot Docs](https://docs.godotengine.org/en/stable/classes/class_audio_stream_player.html). پیاده‌سازی و تست پذیرش، بازنویسی و آزمایش مستقل است.
 
-## ۲. خلاصه اجرایی {: #summary }
+<h2 id="summary">۲. خلاصه اجرایی</h2>
 
 برای موسیقی و جلوه‌های صوتی در Godot 4 از `AudioStreamPlayer` (صوت دوبعدی از رابط کاربری/بدون موقعیت)، `AudioStreamPlayer2D` (صوت مکانی در دنیا) و `AudioStreamPlayer3D` (صوت سه‌بعدی) استفاده کنید. بلندی صدا با `volume_db` بر حسب دسی‌بل تنظیم می‌شود (نه درصد!) و گام صدا با `pitch_scale` ضرب می‌شود — هم سرعت هم زیربایی را تغییر می‌دهد، پس برای واریانس جلوه‌های صوتی ابزار ساده و مؤثری است.
 
-## ۳. کد کامل (GDScript) {: #code }
+<h2 id="code">۳. کد کامل (GDScript)</h2>
 
 **موسیقی پس‌زمینه با لوپ ساده:**
 
@@ -57,7 +57,7 @@ func play_sfx() -> void:
     play()
 ```
 
-## ۴. تست پذیرش {: #test }
+<h2 id="test">۴. تست پذیرش</h2>
 
 **پیش‌نیازها:** یک `AudioStreamPlayer` با یک استریم وارد‌شده (مثلاً یک WAV دو ثانیه‌ای)، کد بالا.
 
@@ -77,7 +77,7 @@ pitch_scale = 2.0
 - `play_sfx()` با واریانس `±۵٪` باید هر بار کمی متفاوت به نظر برسد، ولی همان صدا شنیده شود.
 - با `pitch_scale = 2.0`، زمان پخش باید نصف شود و زیربایی صداقت مشهود داشته باشد.
 
-## ۵. حالت‌های شکست (Failure Modes) {: #failures }
+<h2 id="failures">۵. حالت‌های شکست (Failure Modes)</h2>
 
 **فراخوانی `play()` روی پلیر در حال پخش:**
 پخش جاری ری‌استارت می‌شود. برای شلیک‌های سریع و پشت‌سرهم (تیراندازی)، یا `max_polyphony` را در Inspector بالا ببرید یا چند `AudioStreamPlayer` از یک استریم داشته باشید.

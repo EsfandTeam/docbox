@@ -31,7 +31,7 @@ description: DocBox — رجیستری دستورپخت‌های تست‌شده
   </div>
 </div>
 
-## کتابخانه دستورپخت‌ها {: #library }
+<h2 id="library">کتابخانه دستورپخت‌ها</h2>
 
 <div class="lib-toolbar">
   <div class="lib-search">

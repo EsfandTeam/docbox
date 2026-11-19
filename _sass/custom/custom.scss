@@ -346,7 +346,11 @@ body, .site-header, .main-content, footer {
 
   p { color: var(--docbox-text); }
 
-  a {
+  // فقط لینک‌های متنی — نه کارت‌ها (a.card) و نه دکمه‌ها (a.btn). قاعدهٔ بدون
+  // :not با specificity بالاتر از .card/.btn، transition و border-bottom
+  // آن‌ها را بازنویسی می‌کرد: انیمیشن hover کارت مرده و خط زیرین رنگی
+  // می‌گرفت (یکی از ریشه‌های خرابی ظاهری کارت‌ها)
+  a:not(.card):not(.btn) {
     color: var(--docbox-primary);
     text-decoration: none;
     border-bottom: 1px solid color-mix(in srgb, var(--docbox-primary) 30%, transparent);
@@ -1281,4 +1285,15 @@ html.db-en {
 
   h1 { border: none !important; }
   p { color: var(--docbox-text-muted); max-width: 440px; margin: 0.8rem auto 1.6rem; }
+}
+
+// ----------------------------------------------------------------------------
+// 22. اسکیپ‌لینک تم — باگ سرریز افقی مجازی
+// تم اسکیپ‌لینک را با left:-999px از دید خارج می‌کند؛ در صفحهٔ RTL همین
+// آفست به‌صورت ۹۹۹ پیکسل سرریز افقی در scrollWidth می‌نشیند (سمت چپِ
+// محتوای RTL). صفر کردن left کافی است: خود تم با width/height 1px و
+// overflow:hidden آن را پنهان نگه می‌دارد و حالت focus آن مستقل کار می‌کند.
+// ----------------------------------------------------------------------------
+a.skip-to-main {
+  left: 0;
 }

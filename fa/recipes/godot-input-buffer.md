@@ -21,15 +21,15 @@ nav_order: 8
   <a href="#provenance">منبع اصلی</a> · <a href="#summary">خلاصه اجرایی</a> · <a href="#code">کد کامل</a> · <a href="#test">تست پذیرش</a> · <a href="#failures">حالت‌های شکست</a>
 </nav>
 
-## ۱. منبع اصلی {: #provenance }
+<h2 id="provenance">۱. منبع اصلی</h2>
 
 این مستند بر اساس آموزش رسمی `CharacterBody2D` مستندات Godot تدوین شده است — [CharacterBody2D — Godot Docs](https://docs.godotengine.org/en/stable/tutorials/2d/character_body_2d.html). ایده‌ی بافر ورودی الگوی شناخته‌شده‌ی بازی‌های پلتفرمری است؛ پیاده‌سازی و تست پذیرش، بازنویسی و آزمایش مستقل است.
 
-## ۲. خلاصه اجرایی {: #summary }
+<h2 id="summary">۲. خلاصه اجرایی</h2>
 
 اگر بازیکن فقط در همان فریمی که `is_on_floor()` است کلید پرش را بفشارد، پرش حس «سفت» می‌دهد و ورودی‌های کمی زودتر نادیده گرفته می‌شوند. راه‌حل: هر بار `Input.is_action_just_pressed("jump")` درست بود، یک تایمر بافر (مثلاً `0.12` ثانیه) ریست کنید. در `_physics_process`، پرش فقط وقتی اجرا شود که شخصیت روی زمین باشد **و** بافر هنوز فعال باشد. نتیجه: فشردن کلید تا `0.12` ثانیه قبل از فرود هم پرش را فعال می‌کند.
 
-## ۳. کد کامل (GDScript) {: #code }
+<h2 id="code">۳. کد کامل (GDScript)</h2>
 
 **CharacterBody2D با بافر ورودی و coyote time:**
 
@@ -105,7 +105,7 @@ func _physics_process(delta: float) -> void:
     move_and_slide()
 ```
 
-## ۴. تست پذیرش {: #test }
+<h2 id="test">۴. تست پذیرش</h2>
 
 **پیش‌نیازها:** صحنه‌ی CharacterBody2D با دیوار و زمین، اکشن‌های `jump`، `move_left`، `move_right` در Input Map تعریف شده باشند. بازی با ۶۰ فریم بر ثانیه اجرا شود (delta ≈ `0.01667` ثانیه).
 
@@ -125,7 +125,7 @@ result          = jump fires on the landing frame
 - فشردن کلید در هوا **بدون** بافر نباید پرش ایجاد کند؛ پس از فرود هم نباید پرش رخ دهد اگر بافر مصرف شده یا منقضی شده باشد.
 - لاگ debug بگذارید (`print("jump fired")`) و مطمئن شوید دقیقاً یک بار در فرود چاپ می‌شود، نه در هر فریم تماس.
 
-## ۵. حالت‌های شکست (Failure Modes) {: #failures }
+<h2 id="failures">۵. حالت‌های شکست (Failure Modes)</h2>
 
 **کاهش بافر داخل `_process` به‌جای `_physics_process`:**
 `_process` و `_physics_process` نرخ متفاوتی دارند؛ اگر delta را در `_process` کم کنید و پرش را در فیزیک بررسی کنید، بافر با سرعت اشتباهی خالی می‌شود و در ۱۴۴fps عملاً نصف پنجره‌ی تحمل را از دست می‌دهید. بافر و مصرف آن هر دو باید در فیزیک باشند.

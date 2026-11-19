@@ -21,15 +21,15 @@ nav_order: 12
   <a href="#provenance">منبع اصلی</a> · <a href="#summary">خلاصه اجرایی</a> · <a href="#code">کد کامل</a> · <a href="#test">تست پذیرش</a> · <a href="#failures">حالت‌های شکست</a>
 </nav>
 
-## ۱. منبع اصلی {: #provenance }
+<h2 id="provenance">۱. منبع اصلی</h2>
 
 این مستند بر اساس دو صفحه‌ی رسمی مستندات Godot تدوین شده است — بخش سیگنال‌های [GDScript basics — Godot Docs](https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/gdscript_basics.html#signals) و مستندات کلاس [Object — Godot Docs](https://docs.godotengine.org/en/stable/classes/class_object.html) (متدهای `connect`، `emit_signal` و پرچم‌های `ConnectFlags`). پیاده‌سازی و تست پذیرش، بازنویسی و آزمایش مستقل است.
 
-## ۲. خلاصه اجرایی {: #summary }
+<h2 id="summary">۲. خلاصه اجرایی</h2>
 
 برای ارتباط باز←دستگاه (مثلاً سلامت بازیکن به HUD) از سیگنال سفارشی استفاده کنید تا فرستنده لازم نداند چه کسی گوش می‌دهد: `signal health_changed(current: int, max: int)` در فرستنده، `emit` هنگام تغییر، و `connect` در گیرنده در `_ready`. این جداسازی (decoupling) یعنی می‌توانید HUD را عوض کنید بدون دست زدن به کد بازیکن. در صورت نیاز، اتصال را با `CONNECT_ONE_SHOT` یا `CONNECT_DEFERRED` تنظیم کنید.
 
-## ۳. کد کامل (GDScript) {: #code }
+<h2 id="code">۳. کد کامل (GDScript)</h2>
 
 **فرستنده — نود سلامت با سیگنال تایپ‌دار:**
 
@@ -90,7 +90,7 @@ func unbind_hud(health_node: Health) -> void:
     health_node.died.disconnect(_on_died)
 ```
 
-## ۴. تست پذیرش {: #test }
+<h2 id="test">۴. تست پذیرش</h2>
 
 **پیش‌نیازها:** نود بازیکن با فرزند `Health` و یک `Label` در HUD که با اسکریپت گیرنده وصل شده.
 
@@ -110,7 +110,7 @@ emit count per call  = 1
 - آسیب اضافه در سلامت صفر نباید متن را دوباره تغییر دهد؛ فقط `died` باید قبلاً یک بار منتشر شده باشد.
 - `take_damage(-10)` نباید مقدار را از max بیشتر کند؛ `mini/maxi` باید مقدار را مهار کنند و همچنان دقیقاً یک emit داشته باشند.
 
-## ۵. حالت‌های شکست (Failure Modes) {: #failures }
+<h2 id="failures">۵. حالت‌های شکست (Failure Modes)</h2>
 
 **اتصال به نمونه‌ی آزادشده:**
 اگر HUD به نود `Health` وصل باشد و بازیکن `queue_free` شود، اتصال خودکار قطع می‌شود؛ اما اگر Health خارج از درخت باشد (مثلاً نگه‌داری‌شده در autoload با WeakRef)، فراخوانی گیرنده‌ی مرده باعث خطای «previously freed instance» می‌شود. اتصال‌ها را در `_exit_tree` قطع کنید یا مطمئن شوید طول عمر فرستنده از گیرنده بیشتر نیست.

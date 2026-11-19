@@ -21,15 +21,15 @@ nav_order: 12
   <a href="#provenance">Provenance</a> · <a href="#summary">Summary</a> · <a href="#code">Full Code</a> · <a href="#test">Acceptance Test</a> · <a href="#failures">Failure Modes</a>
 </nav>
 
-## 1. Provenance {: #provenance }
+<h2 id="provenance">1. Provenance</h2>
 
 Based on two official Godot documentation pages — the signals section of [GDScript basics — Godot Docs](https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/gdscript_basics.html#signals) and the [Object — Godot Docs](https://docs.godotengine.org/en/stable/classes/class_object.html) class docs (`connect`, `emit_signal` and the `ConnectFlags`). Implementation and acceptance test are an independent rewrite verified in Godot 4.
 
-## 2. Executive Summary {: #summary } {: #summary }
+<h2 id="summary">2. Executive Summary</h2>
 
 For emitter→consumer communication (e.g. player health to HUD) use a custom signal so the sender never needs to know who is listening: declare `signal health_changed(current: int, max: int)` in the emitter, `emit` on change, and `connect` in the consumer during `_ready`. This decoupling means you can swap the HUD without touching the player code. When needed, tune the connection with `CONNECT_ONE_SHOT` or `CONNECT_DEFERRED`.
 
-## 3. Full Code (GDScript) {: #code }
+<h2 id="code">3. Full Code (GDScript)</h2>
 
 **Emitter — a health node with a typed signal:**
 
@@ -91,7 +91,7 @@ func unbind_hud(health_node: Health) -> void:
     health_node.died.disconnect(_on_died)
 ```
 
-## 4. Acceptance Test {: #test }
+<h2 id="test">4. Acceptance Test</h2>
 
 **Prerequisites:** a player node with a `Health` child, and a `Label` in the HUD using the consumer script.
 
@@ -111,7 +111,7 @@ emit count per call  = 1
 - Additional damage at zero health must not change the text again; `died` must have been emitted only once.
 - `take_damage(-10)` must not exceed max; `mini/maxi` must clamp the value and still produce exactly one emit per call.
 
-## 5. Failure Modes {: #failures }
+<h2 id="failures">5. Failure Modes</h2>
 
 **Connecting to a freed instance:**
 If the HUD connects to the `Health` node and the player is `queue_free`d, the connection is cut automatically; but if `Health` lives outside the tree (e.g. held in an autoload via WeakRef), invoking a dead receiver raises a "previously freed instance" error. Disconnect in `_exit_tree`, or ensure the emitter never outlives the consumer.

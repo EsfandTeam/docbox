@@ -21,15 +21,15 @@ nav_order: 11
   <a href="#provenance">منبع اصلی</a> · <a href="#summary">خلاصه اجرایی</a> · <a href="#code">کد کامل</a> · <a href="#test">تست پذیرش</a> · <a href="#failures">حالت‌های شکست</a>
 </nav>
 
-## ۱. منبع اصلی {: #provenance }
+<h2 id="provenance">۱. منبع اصلی</h2>
 
 این مستند بر اساس مستندات کلاس رسمی `RichTextLabel` تدوین شده است — [RichTextLabel — Godot Docs](https://docs.godotengine.org/en/stable/classes/class_richtextlabel.html) (پراپرتی `visible_ratio`). پیاده‌سازی و تست پذیرش، بازنویسی و آزمایش مستقل است.
 
-## ۲. خلاصه اجرایی {: #summary }
+<h2 id="summary">۲. خلاصه اجرایی</h2>
 
 یک سیستم دیالوگ حداقلی سه چیز لازم دارد: آرایه‌ای از خطوط، تایپ‌رایتر که با `visible_ratio` متن را به‌تدریج آشکار می‌کند، و کلید Next که یا تایپ‌رایتر را رد می‌کند (کل خط فوراً نمایش داده شود) یا به خط بعدی می‌رود. با اتمام آخرین خط، سیگنال `dialogue_finished` منتشر می‌شود تا بازیکن کنترل بازی را پس بگیرد. هیچ نود دیگری نیازی به دانستن جزئیات دیالوگ ندارد — فقط سیگنال.
 
-## ۳. کد کامل (GDScript) {: #code }
+<h2 id="code">۳. کد کامل (GDScript)</h2>
 
 **هسته‌ی دیالوگ با تایپ‌رایتر:**
 
@@ -113,7 +113,7 @@ func _physics_process(delta: float) -> void:
     move_and_slide()
 ```
 
-## ۴. تست پذیرش {: #test }
+<h2 id="test">۴. تست پذیرش</h2>
 
 **پیش‌نیازها:** یک `DialogueBox` با `RichTextLabel` و دو خط تست؛ اکشن `ui_accept` پیش‌فرض فعال.
 
@@ -134,7 +134,7 @@ visible_ratio delta  = per-frame increment = 30 / 40 = 0.75 per second
 - پس از آخرین خط و یک فشردن دیگر، `dialogue_finished` باید یک بار منتشر شود و جعبه مخفی شود.
 - در حین دیالوگ بازیکن نباید بتواند حرکت کند؛ پس از سیگنال، حرکت باید فوراً از سر گرفته شود.
 
-## ۵. حالت‌های شکست (Failure Modes) {: #failures }
+<h2 id="failures">۵. حالت‌های شکست (Failure Modes)</h2>
 
 **تقسیم بر صفر در خط خالی:**
 اگر یک خط رشته‌ی خالی باشد، `float(label.text.length())` صفر می‌شود و افزایش ratio باعث خطای تقسیم بر صفر می‌گردد. قبل از پخش، خطوط خالی را فیلتر کنید یا برای طول از `maxi(1, text.length())` استفاده کنید.

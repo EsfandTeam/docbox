@@ -21,15 +21,15 @@ nav_order: 6
   <a href="#provenance">منبع اصلی</a> · <a href="#summary">خلاصه اجرایی</a> · <a href="#code">کد کامل</a> · <a href="#test">تست پذیرش</a> · <a href="#failures">حالت‌های شکست</a>
 </nav>
 
-## ۱. منبع اصلی {: #provenance }
+<h2 id="provenance">۱. منبع اصلی</h2>
 
 این مستند بر اساس مستندات کلاس رسمی `Tween` و آموزش انیمیشن مستندات Godot تدوین شده است — [Tween — Godot Docs](https://docs.godotengine.org/en/stable/classes/class_tween.html). پیاده‌سازی و تست پذیرش، بازنویسی و آزمایش مستقل است.
 
-## ۲. خلاصه اجرایی {: #summary }
+<h2 id="summary">۲. خلاصه اجرایی</h2>
 
 در Godot 4 برای انیمیشن‌های کوتاه (حرکت، محو‌شدگی، تغییر رنگ) از `create_tween()` استفاده کنید، نه `AnimationPlayer`. هر Tween یک زنجیره‌ی مرتب از انیمیشن‌هاست: هر `tween_property` بعد از تمام‌شدن قبلی اجرا می‌شود. Tween به نودِ سازنده گره خورده است — اگر نود حذف شود، Tween هم خودکار می‌میرد و نشتی حافظه رخ نمی‌دهد.
 
-## ۳. کد کامل (GDScript) {: #code }
+<h2 id="code">۳. کد کامل (GDScript)</h2>
 
 **زنجیره‌ی ساده — حرکت و سپس محو شدن:**
 
@@ -64,7 +64,7 @@ func pop_in() -> void:
     tween.tween_property(self, "modulate:a", 1.0, 0.3)
 ```
 
-## ۴. تست پذیرش {: #test }
+<h2 id="test">۴. تست پذیرش</h2>
 
 **پیش‌نیازها:** یک `Sprite2D` با اسکریپت بالا.
 
@@ -81,7 +81,7 @@ offset          = 100 · 0.5 = 50 px
 - در نسخه‌ی `set_loops`: پرش باید بی‌نهایت تکرار شود؛ با حذف نود، تکرار هم متوقف شود (بدون خطا در Output).
 - در نسخه‌ی `set_parallel(true)`: تغییر `scale` و `alpha` باید هم‌زمان باشد، نه پشت‌سرهم.
 
-## ۵. حالت‌های شکست (Failure Modes) {: #failures }
+<h2 id="failures">۵. حالت‌های شکست (Failure Modes)</h2>
 
 **ساختن Tween در هر فریم:**
 اگر `create_tween()` را داخل `_process` صدا بزنید، هر فریم یک Tween تازه ساخته می‌شود که هرکدام از نصفه‌ راه دوباره شروع می‌کنند — نتیجه: قفل‌شدگی ظاهری و CPU اضافه. Tween را یک بار بسازید.

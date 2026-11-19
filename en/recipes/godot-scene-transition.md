@@ -21,15 +21,15 @@ nav_order: 5
   <a href="#provenance">Provenance</a> · <a href="#summary">Summary</a> · <a href="#code">Full Code</a> · <a href="#test">Acceptance Test</a> · <a href="#failures">Failure Modes</a>
 </nav>
 
-## 1. Provenance {: #provenance }
+<h2 id="provenance">1. Provenance</h2>
 
 Based on the official "Change scenes manually" tutorial — [Change scenes manually — Godot Docs](https://docs.godotengine.org/en/stable/tutorials/scripting/change_scenes_manually.html). Implementation and acceptance test are an independent rewrite verified in Godot 4.
 
-## 2. Summary {: #summary }
+<h2 id="summary">2. Summary</h2>
 
 The standard way to switch scenes in Godot 4 is `get_tree().change_scene_to_file(path)`. The change is deferred to the end of the current frame so the running node is not freed mid-code. For a polished feel, fade the screen with a Tween before switching.
 
-## 3. Full Code (GDScript) {: #code }
+<h2 id="code">3. Full Code (GDScript)</h2>
 
 **Simple transition — script on a Button:**
 
@@ -65,7 +65,7 @@ func start_transition() -> void:
     tween.tween_callback(func(): get_tree().change_scene_to_file(next_scene_path))
 ```
 
-## 4. Acceptance Test {: #test }
+<h2 id="test">4. Acceptance Test</h2>
 
 **Prerequisites:** two scenes (`level_1.tscn`, `level_2.tscn`) and a button in the first scene with the script above.
 
@@ -84,7 +84,7 @@ Click the button
 - In the fade version: the screen darkens over `0.3 s`, the scene switches, and the fade resets when the new scene's `_ready` runs its fade-in.
 - With a wrong path (missing file): `err` is non-zero and the error is printed — no crash.
 
-## 5. Failure Modes {: #failures }
+<h2 id="failures">5. Failure Modes</h2>
 
 **Path without `res://`:**
 Paths must be complete; `"level_2.tscn"` without the `res://scenes/` prefix fails and returns a non-zero error. Check the error or the switch fails silently.

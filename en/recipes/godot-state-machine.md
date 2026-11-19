@@ -21,15 +21,15 @@ nav_order: 10
   <a href="#provenance">Provenance</a> · <a href="#summary">Summary</a> · <a href="#code">Full Code</a> · <a href="#test">Acceptance Test</a> · <a href="#failures">Failure Modes</a>
 </nav>
 
-## 1. Provenance {: #provenance }
+<h2 id="provenance">1. Provenance</h2>
 
 Based on the official GDScript basics guide — [GDScript basics — Godot Docs](https://docs.godotengine.org/en/stable/getting_started/scripting/gdscript/gdscript_basics.html) (the `match` and `enum` sections). Implementation and acceptance test are an independent rewrite verified in Godot 4.
 
-## 2. Executive Summary {: #summary } {: #summary }
+<h2 id="summary">2. Executive Summary</h2>
 
 For characters with several distinct behaviors (idle, run, jump), instead of many boolean flags that contradict each other, use one `enum` for the states and `match` inside `_physics_process`. Only one state is active per frame and each state owns its own input and physics handling. Transitions live in one small function so behavior stays predictable and testable.
 
-## 3. Full Code (GDScript) {: #code }
+<h2 id="code">3. Full Code (GDScript)</h2>
 
 **State machine with enum + match on a CharacterBody2D:**
 
@@ -100,7 +100,7 @@ func _process(_delta: float) -> void:
     $StateLabel.text = State.keys()[state]
 ```
 
-## 4. Acceptance Test {: #test }
+<h2 id="test">4. Acceptance Test</h2>
 
 **Prerequisites:** a CharacterBody2D scene with ground and a ledge; the `jump`, `move_left`, `move_right` actions defined; a `StateLabel` node showing the current state.
 
@@ -126,7 +126,7 @@ any   | same-state transition requested  | ignored (no change)
 - Pressing jump while in JUMP must cause no change (the `_do_jump` guard).
 - After landing, the state must immediately become RUN or IDLE, never stay JUMP.
 
-## 5. Failure Modes {: #failures }
+<h2 id="failures">5. Failure Modes</h2>
 
 **Redundant or cyclic transitions:**
 If several branches in the same frame satisfy a transition (e.g. both `direction != 0` and `jump pressed`), the last condition wins and the state may flicker between states. Make branch order explicit and use the `new_state == state` guard.

@@ -21,15 +21,15 @@ nav_order: 7
   <a href="#provenance">Provenance</a> · <a href="#summary">Summary</a> · <a href="#code">Full Code</a> · <a href="#test">Acceptance Test</a> · <a href="#failures">Failure Modes</a>
 </nav>
 
-## 1. Provenance {: #provenance }
+<h2 id="provenance">1. Provenance</h2>
 
 Based on the official `AudioStreamPlayer` class documentation — [AudioStreamPlayer — Godot Docs](https://docs.godotengine.org/en/stable/classes/class_audio_stream_player.html). Implementation and acceptance test are an independent rewrite verified in Godot 4.
 
-## 2. Summary {: #summary }
+<h2 id="summary">2. Summary</h2>
 
 Use `AudioStreamPlayer` for UI/music sound, `AudioStreamPlayer2D` for positional sound in a 2D world, and `AudioStreamPlayer3D` for 3D worlds. Volume is set with `volume_db` in decibels (not a percentage!) and `pitch_scale` multiplies playback speed — changing both pitch and duration, which makes it a cheap tool for adding variance to repeated sound effects.
 
-## 3. Full Code (GDScript) {: #code }
+<h2 id="code">3. Full Code (GDScript)</h2>
 
 **Background music with a simple loop:**
 
@@ -57,7 +57,7 @@ func play_sfx() -> void:
     play()
 ```
 
-## 4. Acceptance Test {: #test }
+<h2 id="test">4. Acceptance Test</h2>
 
 **Prerequisites:** an `AudioStreamPlayer` with an imported stream (e.g. a 2-second WAV), using the script above.
 
@@ -77,7 +77,7 @@ pitch_scale = 2.0
 - `play_sfx()` with `±5%` variance sounds slightly different each time but remains the same sound.
 - With `pitch_scale = 2.0`, playback time halves and the pitch audibly rises.
 
-## 5. Failure Modes {: #failures }
+<h2 id="failures">5. Failure Modes</h2>
 
 **Calling `play()` on an already-playing player:**
 The current playback restarts. For rapid repeated sounds (gunfire) either raise `max_polyphony` in the Inspector or use several players sharing one stream.

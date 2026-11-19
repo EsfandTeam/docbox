@@ -21,15 +21,15 @@ nav_order: 8
   <a href="#provenance">Provenance</a> · <a href="#summary">Summary</a> · <a href="#code">Full Code</a> · <a href="#test">Acceptance Test</a> · <a href="#failures">Failure Modes</a>
 </nav>
 
-## 1. Provenance {: #provenance }
+<h2 id="provenance">1. Provenance</h2>
 
 Based on the official `CharacterBody2D` tutorial in the Godot documentation — [CharacterBody2D — Godot Docs](https://docs.godotengine.org/en/stable/tutorials/2d/character_body_2d.html). Input buffering is a well-known platformer pattern; the implementation and acceptance test are an independent rewrite verified in Godot 4.
 
-## 2. Executive Summary {: #summary } {: #summary }
+<h2 id="summary">2. Executive Summary</h2>
 
 If the player must press jump on the exact frame they touch the floor, the jump feels stiff and slightly-early presses are dropped. The fix: whenever `Input.is_action_just_pressed("jump")` is true, reset a buffer timer (e.g. `0.12` seconds). In `_physics_process`, execute the jump only when the character is on the floor **and** the buffer is still active. The result: a press up to `0.12` seconds before landing still fires the jump.
 
-## 3. Full Code (GDScript) {: #code }
+<h2 id="code">3. Full Code (GDScript)</h2>
 
 **CharacterBody2D with jump buffering:**
 
@@ -105,7 +105,7 @@ func _physics_process(delta: float) -> void:
     move_and_slide()
 ```
 
-## 4. Acceptance Test {: #test }
+<h2 id="test">4. Acceptance Test</h2>
 
 **Prerequisites:** a CharacterBody2D scene with a floor and a wall; the `jump`, `move_left`, `move_right` actions defined in the Input Map; the game running at 60 fps (delta ≈ `0.01667` s).
 
@@ -125,7 +125,7 @@ result          = jump fires on the landing frame
 - Pressing in mid-air without a subsequent landing within the window must not trigger a jump, and no double jump may occur.
 - Add a debug `print("jump fired")` and confirm it prints exactly once on landing, not on every ground-contact frame.
 
-## 5. Failure Modes {: #failures }
+<h2 id="failures">5. Failure Modes</h2>
 
 **Decaying the buffer in `_process` instead of `_physics_process`:**
 `_process` and `_physics_process` run at different rates. If you decrement in `_process` but check in physics, the buffer drains at the wrong rate — at 144 fps you effectively lose half the tolerance window. Both the buffer and its consumption belong in physics.
