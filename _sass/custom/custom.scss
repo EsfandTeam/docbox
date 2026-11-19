@@ -94,6 +94,18 @@ body, .site-header, .main-content, footer {
   display: flex !important;
 }
 
+// تم Just the Docs ناوبار کمکی را به یک اسکرول‌کنندهٔ افقی تبدیل می‌کند:
+//   .aux-nav { height: 100%; overflow-x: auto; }
+// طبق مشخصات CSS وقتی یک محور overflow:auto شود، محور دیگر هم از visible به auto
+// تغییر می‌کند؛ در نتیجه .lang-menu (که position:absolute داخل .lang-switch است)
+// در ارتفاع خود ناوبار کلیپ می‌شد و منوی زبان پس از باز شدن نامرئی می‌ماند.
+// چیدمان هدر ما به‌جای اسکرول از wrap استفاده می‌کند، پس کلیپ‌کننده را حذف می‌کنیم.
+.main .main-header .aux-nav,
+.site-header .aux-nav {
+  overflow: visible !important;
+  height: auto;
+}
+
 .site-header,
 .main-header {
   display: flex !important;
@@ -176,8 +188,10 @@ body, .site-header, .main-content, footer {
 .lang-menu {
   position: absolute;
   top: calc(100% + 8px);
+  inset-inline-start: auto;
   inset-inline-end: 0;
   min-width: 185px;
+  max-width: calc(100vw - 1.5rem);
   background: var(--docbox-surface);
   border: 1px solid var(--docbox-border);
   border-radius: var(--docbox-radius-md);
@@ -271,9 +285,12 @@ body, .site-header, .main-content, footer {
 
 // Aux links (top navigation) — live theme renders them as .site-button
 .aux-nav { margin-inline-start: auto; }
+// wrap در همه عرض‌ها: با حذف overflow اسکرول‌کنندهٔ تم، اگر لینک‌ها جا کم بیاورند
+// باید بشکنند تا هیچ‌وقت محتوای هدر از عرض صفحه بیرون نزند.
 .aux-nav-list {
   display: flex !important;
   align-items: center !important;
+  flex-wrap: wrap !important;
   gap: 0.3rem !important;
   margin: 0 !important;
   padding: 0 !important;
@@ -284,7 +301,9 @@ body, .site-header, .main-content, footer {
   border-radius: 999px !important;
   font-weight: 600;
   font-size: 0.9rem;
-  background: transparent !important;
+  // هشدار: !important روی background حالت hover و .aux-active را کور می‌کرد
+  // (چون آن‌ها !important ندارند و specificity در برابر important کاری نمی‌کند).
+  background: transparent;
   border: none !important;
   box-shadow: none !important;
   color: var(--docbox-text-muted) !important;
@@ -292,7 +311,8 @@ body, .site-header, .main-content, footer {
   transition: background-color var(--docbox-transition), color var(--docbox-transition);
 
   &:hover {
-    background-color: var(--docbox-surface-alt);
+    // shorthand به‌جای background-color تا background-image گرادیانی تم هم پاک شود
+    background: var(--docbox-surface-alt);
     color: var(--docbox-primary) !important;
   }
 
@@ -822,9 +842,6 @@ pre, code, .highlight, pre code {
 @media (max-width: 38rem) {
   .main .main-header .search {
     flex: 1 1 100%;
-  }
-  .aux-nav-list {
-    flex-wrap: wrap;
   }
   .aux-nav {
     margin-inline-start: 0 !important;
